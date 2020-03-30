@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface SurveyRepository extends JpaRepository<Survey, Integer>, JpaSpecificationExecutor<Survey> {
+public interface SurveyRepository extends JpaRepository<Survey, Integer> {
 
     List<Survey> findByIdAndTopic(int id, String topic);
 

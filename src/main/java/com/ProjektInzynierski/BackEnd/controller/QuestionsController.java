@@ -1,6 +1,5 @@
 package com.ProjektInzynierski.BackEnd.controller;
 
-
 import com.ProjektInzynierski.BackEnd.datamodel.Questions;
 import com.ProjektInzynierski.BackEnd.repository.QuestionsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +15,6 @@ public class QuestionsController {
 
     @Autowired
     private QuestionsRepository questionsRepository;
-
-
 
     @GetMapping("/questions/all")
     List<Questions> getAllQuestionsFromDatabase() {

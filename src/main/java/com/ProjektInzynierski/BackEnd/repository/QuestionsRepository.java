@@ -11,7 +11,6 @@ import java.util.List;
 @Repository
 public interface QuestionsRepository extends JpaRepository<Questions, Integer>, JpaSpecificationExecutor<Questions> {
 
-
     List<Questions> findByIdAndQuestion(int id, String question);
 
     Questions findById(int id);

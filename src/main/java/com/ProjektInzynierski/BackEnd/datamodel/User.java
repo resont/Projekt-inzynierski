@@ -11,19 +11,19 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Questions")
+@Table(name = "Users")
 @Getter
 @Setter
-public class Questions {
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "q_id", unique = true)
+    @Column(name = "u_id", unique = true)
     private int id;
 
-    @Column(name = "q_question")
-    private String question;
+    @Column(name = "u_email")
+    private String email;
 
-    @Column(name = "q_s_id")
-    private int q_s_id;
+    @Column(name = "u_password")
+    private String password;
 }

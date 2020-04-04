@@ -1,6 +1,6 @@
 package com.ProjektInzynierski.BackEnd.controller;
 
-import com.ProjektInzynierski.BackEnd.datamodel.Questions;
+import com.ProjektInzynierski.BackEnd.data.entity.Questions;
 import com.ProjektInzynierski.BackEnd.repository.QuestionsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;

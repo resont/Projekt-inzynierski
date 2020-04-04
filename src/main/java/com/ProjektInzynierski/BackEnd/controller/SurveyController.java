@@ -1,6 +1,6 @@
 package com.ProjektInzynierski.BackEnd.controller;
 
-import com.ProjektInzynierski.BackEnd.datamodel.Survey;
+import com.ProjektInzynierski.BackEnd.data.entity.Survey;
 import com.ProjektInzynierski.BackEnd.repository.SurveyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

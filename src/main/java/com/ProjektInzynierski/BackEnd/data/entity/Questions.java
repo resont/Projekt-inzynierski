@@ -1,4 +1,4 @@
-package com.ProjektInzynierski.BackEnd.datamodel;
+package com.ProjektInzynierski.BackEnd.data.entity;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -11,20 +11,19 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Survey")
+@Table(name = "Questions")
 @Getter
 @Setter
-public class Survey {
+public class Questions {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "s_id", unique = true)
+    @Column(name = "q_id", unique = true)
     private int id;
 
-    @Column(name = "s_topic")
-    private String topic;
+    @Column(name = "q_question")
+    private String question;
 
-    @Column(name = "s_description")
-    private String description;
-
+    @Column(name = "q_s_id")
+    private int q_s_id;
 }

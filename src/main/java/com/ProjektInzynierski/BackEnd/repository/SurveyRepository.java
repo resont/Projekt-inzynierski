@@ -1,8 +1,7 @@
 package com.ProjektInzynierski.BackEnd.repository;
 
-import com.ProjektInzynierski.BackEnd.datamodel.Survey;
+import com.ProjektInzynierski.BackEnd.data.entity.Survey;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 

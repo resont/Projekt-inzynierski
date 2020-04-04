@@ -52,7 +52,6 @@ public class SurveyController {
         return this.surveyRepository.save(survey);
     }
 
-    //TODO possible null value
     @PutMapping("/survey/{id}")
     Survey update(@PathVariable String id, @RequestBody Map<String, String> body) {
         Survey survey = this.surveyRepository.findById(Integer.parseInt(id));

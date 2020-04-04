@@ -14,7 +14,7 @@ public class RegistrationProcessor {
 
     private final UsersRepository usersRepository;
 
-    public RegistrationProcessor(UsersRepository usersRepository) {
+    RegistrationProcessor(UsersRepository usersRepository) {
         this.usersRepository = usersRepository;
     }
 

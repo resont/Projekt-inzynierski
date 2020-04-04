@@ -45,7 +45,6 @@ public class QuestionsController {
         return this.questionsRepository.save(questions);
     }
 
-    //TODO possible null value
     @PutMapping("/questions/{id}")
     Questions update(@PathVariable String id, @RequestBody Map<String, String> body) {
         Questions questions = this.questionsRepository.findById(Integer.parseInt(id));

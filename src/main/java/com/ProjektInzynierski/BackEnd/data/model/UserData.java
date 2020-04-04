@@ -16,13 +16,18 @@ public class UserData {
     @Setter(AccessLevel.NONE)
     private String password;
 
+    private String token;
 
     public UserData(String email, String password) {
         this.email = createEmail(email);
         this.password = this.hashPassword(password);
     }
 
-    void setEmail(String email){
+    public UserData(String email) {
+        this.email = createEmail(email);
+    }
+
+    void setEmail(String email) {
         this.email = createEmail(email);
     }
 

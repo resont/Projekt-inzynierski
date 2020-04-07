@@ -1,13 +1,13 @@
 package com.ProjektInzynierski.BackEnd.util;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
-@Service
+@Component
 public class CurrentDateProvider {
 
-    public Date getCurrentDate() {
+    public static Date getCurrentDate() {
         return new Date();
     }
 }

@@ -26,4 +26,5 @@ class UserDataTest {
         assertEquals(Hex.toHexString(digest), userData.getPassword());
 
     }
+
 }

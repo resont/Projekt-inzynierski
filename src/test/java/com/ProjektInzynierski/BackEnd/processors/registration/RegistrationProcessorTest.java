@@ -23,6 +23,10 @@ class RegistrationProcessorTest {
     private static final String TEST_PASSWORD = "test_password";
     private static final String EMAIL = "email";
     private static final String PASSWORD = "password";
+    private static final String CANNOT_BE_EMPTY = "Email cannot be empty.";
+    private static final String ERROR = "error";
+    private static final String RESULT = "result";
+    private static final String EMPTY = "";
 
     private RegistrationProcessor registrationProcessor;
 
@@ -46,8 +50,23 @@ class RegistrationProcessorTest {
         Map<String, String> result = registrationProcessor.process(map);
 
         //then
-        assertEquals(RegistrationMsg.REGISTRY_SUCCESSFUL.getErrorMsg(), result.get("result"));
-        assertEquals(TEST_EMAIL, result.get("email"));
+        assertEquals(RegistrationMsg.REGISTRY_SUCCESSFUL.getErrorMsg(), result.get(RESULT));
+        assertEquals(TEST_EMAIL, result.get(EMAIL));
+
+    }
+
+    @Test
+    void shouldNotProcessRegistrationWhenEmailOrPasswordEmpty() {
+        //given
+        Map<String, String> map = new HashMap<>();
+        map.put(EMAIL, EMPTY);
+        map.put(PASSWORD, EMPTY);
+
+        //when
+        Map<String, String> result = registrationProcessor.process(map);
+
+        //then
+        assertEquals(CANNOT_BE_EMPTY, result.get(ERROR));
 
     }
 

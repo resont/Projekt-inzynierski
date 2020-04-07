@@ -3,6 +3,7 @@ package com.ProjektInzynierski.BackEnd.controller;
 import com.ProjektInzynierski.BackEnd.processors.login.LoginProcessor;
 import com.ProjektInzynierski.BackEnd.processors.login.LogoutProcessor;
 import com.ProjektInzynierski.BackEnd.processors.registration.RegistrationProcessor;
+import com.ProjektInzynierski.BackEnd.util.ResultMap;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,24 +19,33 @@ public class LoginController {
 
     private LogoutProcessor logoutProcessor;
 
+    private ResultMap resultMap = new ResultMap();
+
     public LoginController(LoginProcessor loginProcessor, RegistrationProcessor registrationProcessor, LogoutProcessor logoutProcessor) {
         this.loginProcessor = loginProcessor;
         this.registrationProcessor = registrationProcessor;
         this.logoutProcessor = logoutProcessor;
     }
 
+    //ToDo add optional
     @PostMapping("/login")
     Map<String, String> tryToLogInto(@RequestBody Map<String, String> body) {
-        return loginProcessor.process(body);
+        if (body != null && body.size() != 0)
+            return loginProcessor.process(body);
+        else return resultMap.createNullBodyErrorMap();
     }
 
     @PostMapping("/registration")
     Map<String, String> registerAccount(@RequestBody Map<String, String> body) {
-        return registrationProcessor.process(body);
+        if (body != null && body.size() != 0)
+            return registrationProcessor.process(body);
+        else return resultMap.createNullBodyErrorMap();
     }
 
     @PostMapping("/logout")
     Map<String, String> logout(@RequestBody Map<String, String> body) {
-        return logoutProcessor.process(body);
+        if (body != null && body.size() != 0)
+            return logoutProcessor.process(body);
+        else return resultMap.createNullBodyErrorMap();
     }
 }

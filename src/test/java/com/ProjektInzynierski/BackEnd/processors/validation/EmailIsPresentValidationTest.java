@@ -1,8 +1,6 @@
 package com.ProjektInzynierski.BackEnd.processors.validation;
 
 import com.ProjektInzynierski.BackEnd.enums.LoginMsg;
-import com.ProjektInzynierski.BackEnd.processors.validation.EmailIsPresentValidation;
-import com.ProjektInzynierski.BackEnd.processors.validation.LoginValidationProcessor;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;

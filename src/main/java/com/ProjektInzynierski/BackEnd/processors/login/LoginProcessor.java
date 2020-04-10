@@ -11,7 +11,6 @@ import com.ProjektInzynierski.BackEnd.util.ResultMap;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Component;
 
-import java.util.Date;
 import java.util.Map;
 import java.util.UUID;
 
@@ -24,14 +23,10 @@ public class LoginProcessor {
 
     private ResultMap resultMap = new ResultMap();
 
-    public LoginProcessor(UsersRepository usersRepository) {
+    LoginProcessor(UsersRepository usersRepository) {
         this.usersRepository = usersRepository;
     }
 
-    //ToDo implement session set validto +1h?
-    //ToDo check this implementation
-    //ToDo mby return Map<String, String>?
-    //Todo test this processor
     public Map<String, String> process(Map<String, String> body) {
 
         logger.info("Start of login validation.");
@@ -48,28 +43,15 @@ public class LoginProcessor {
         try {
             UserEntity userEntity = usersRepository.findByEmailAndPassword(userData.getEmail(), userData.getPassword());
 
-            if (userEntity.getUuid() == null) {
-                //create session
-                UUID uuid = UUID.randomUUID();
-                usersRepository.setUuidAndValidToWithPassword(userEntity.getEmail(), userEntity.getPassword(), uuid.toString(), CurrentDateProvider.getCurrentDate());
-                return resultMap.createSuccessMap(uuid.toString());
-            }
-
-            Date userDate = userEntity.getValidTo();
-            int result = userDate.compareTo(CurrentDateProvider.getCurrentDate());
-            if (result <= 0) {
-                //update session
-                return resultMap.createEmptyMap();
-            } else {
-                return resultMap.createSuccessMap(LoginMsg.IS_STILL_VALID.getErrorMsg());
-            }
+            UUID uuid = UUID.randomUUID();
+            usersRepository.setUuidAndValidToWithPassword(userEntity.getEmail(), userEntity.getPassword(), uuid.toString(), CurrentDateProvider.getCurrentDate());
+            logger.info("Authentication successful.");
+            return resultMap.createSuccessMap(uuid.toString());
         } catch (Exception e) {
+            logger.error("Authentication went wrong.");
             return resultMap.createErrorMap(LoginMsg.WRONG_EMAIL_OR_PASSWORD.getErrorMsg());
         }
 
     }
 
-    public void createSession() {
-
-    }
 }

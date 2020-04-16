@@ -30,11 +30,23 @@
         <label for="password">Password</label>
         <input type="password" class="form-control" id="password" placeholder="Password" name="password">
     </div>
-    <button id="send" class="btn btn-dark" onclick="register()">Register</button>
+    <div class="form-group">
+        <label for="password">Re-enter password</label>
+        <input type="password" class="form-control" id="password2" placeholder="Password" name="password2">
+    </div>
+    <button id="send" class="btn btn-dark mb-3" onclick="register()">Register</button>
+
+    <div class="request-msg-success">
+        <output class="alert alert-success" role="alert" id="msg-success" name="request-msg"></output>
+    </div>
+
+    <div class="request-msg-error">
+        <output class="alert alert-danger" role="alert" id="msg-error" name="request-msg"></output>
+    </div>
     <!--    </form>-->
 </div>
 <script>
-    $("#password").keypress(function (event) {
+    $("#password2").keypress(function (event) {
         if (event.keyCode === 13) {
             $("#send").click();
         }

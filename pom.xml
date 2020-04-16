@@ -67,9 +67,15 @@
 			<artifactId>log4j-core</artifactId>
 			<version>2.12.1</version>
 		</dependency>
+		<dependency>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-project-info-reports-plugin</artifactId>
+			<version>2.9</version>
+		</dependency>
 
 
-        <dependency>
+
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
@@ -90,5 +96,18 @@
 			</plugin>
 		</plugins>
 	</build>
+
+	<reporting>
+		<plugins>
+			<plugin>
+				<groupId>kr.motd.maven</groupId>
+				<artifactId>sphinx-maven-plugin</artifactId>
+				<version>2.9.0</version>
+				<configuration>
+					<builder>html</builder>
+				</configuration>
+			</plugin>
+		</plugins>
+	</reporting>
 
 </project>

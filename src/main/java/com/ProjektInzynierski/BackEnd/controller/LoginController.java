@@ -4,12 +4,14 @@ import com.ProjektInzynierski.BackEnd.processors.login.LoginProcessor;
 import com.ProjektInzynierski.BackEnd.processors.login.LogoutProcessor;
 import com.ProjektInzynierski.BackEnd.processors.registration.RegistrationProcessor;
 import com.ProjektInzynierski.BackEnd.util.ResultMap;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Map;
 
+@CrossOrigin
 @RestController
 public class LoginController {
 
@@ -27,7 +29,6 @@ public class LoginController {
         this.logoutProcessor = logoutProcessor;
     }
 
-    //ToDo add optional
     @PostMapping("/login")
     Map<String, String> tryToLogInto(@RequestBody Map<String, String> body) {
         if (body != null && body.size() != 0)

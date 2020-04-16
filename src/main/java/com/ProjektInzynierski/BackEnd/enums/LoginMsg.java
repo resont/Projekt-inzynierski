@@ -9,7 +9,7 @@ public enum LoginMsg {
     EMPTY_PASSWORD("Password cannot be empty."),
     IS_STILL_VALID("Your token is still valid.");
 
-    private final String errorMsg;
+    public final String errorMsg;
 
     LoginMsg(String errorMsg) {
         this.errorMsg = errorMsg;

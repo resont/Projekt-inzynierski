@@ -12,11 +12,28 @@
 <script src="../js/jquery-3.4.1.js"></script>
 
 <div class="menu">
-    <div class="home menu-item">
-        <a href="../index.html">
-            <i class="fa fa-home fa-3x"></i>
-        </a>
-    </div>
+    <!--    todo collapse doesnt work-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03"
+                aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="../html/main.html">Projekt inzynierski</a>
+
+        <div class="collapse navbar-collapse" id="navbarToggler">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item active">
+                    <a class="nav-link" href="../html/login.html">Login<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../html/register.html">Register</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link logout" onclick="logout()">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 </div>
 <div class="main-panel">
     <!--    <form id="login" action="main.html" method="post">-->
@@ -29,7 +46,15 @@
         <label for="password">Password</label>
         <input type="password" class="form-control" id="password" placeholder="Password" name="password">
     </div>
-    <button id="send" class="btn btn-dark" onclick="login()">Login</button>
+    <button id="send" class="btn btn-dark mb-3" onclick="login()">Login</button>
+
+    <div class="request-msg-success">
+        <output class="alert alert-success" role="alert" id="msg-success" name="request-msg"></output>
+    </div>
+
+    <div class="request-msg-error">
+        <output class="alert alert-danger" role="alert" id="msg-error" name="request-msg"></output>
+    </div>
     <!--    </form>-->
 </div>
 <script>

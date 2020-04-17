@@ -32,3 +32,8 @@
 .alert.alert-danger, .alert.alert-success {
     display: none;
 }
+
+.nav-link.logout {
+    /*change to none*/
+    display: block;
+}

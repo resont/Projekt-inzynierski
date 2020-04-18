@@ -33,7 +33,7 @@
     display: none;
 }
 
-.nav-link.logout {
-    /*change to none*/
-    display: block;
-}
+#logout {
+     /*change to none*/
+     display: none;
+ }

@@ -76,7 +76,7 @@ function loginResult(xhr) {
                     responseSuccess[0].innerHTML = "Login successful.";
                     button.disabled = true;
                     setCookie("token", json.result, 1, true);
-                    //redirectToMain();
+                    redirectToMain();
                 }
             }
         }
@@ -106,18 +106,15 @@ function setCookie(name, val, days, secure) {
 function redirectToMain() {
     window.setTimeout(function () {
         location.href = "../html/main.html";
-    }, 5000);
+    }, 2000);
 }
 
-window.onload = showLogoutButton();
+window.onload = showLogoutButton;
 
-// todo fix .style.display="block"
 function showLogoutButton() {
-    var logoutButton = document.getElementsByClassName("nav-link-logout");
     const cookies = document.cookie.split(/; */);
-
     if (cookies[0].split("=")[0] === "token") {
-        logoutButton[0].style.display = 'block';
+        $("#logout").css("display","block");
     }
 }
 

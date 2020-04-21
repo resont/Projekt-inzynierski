@@ -170,6 +170,7 @@ CREATE TABLE [dbo].[Users](
 	[u_password] [varchar](150) NULL,
 	[u_uuid] [varchar](50) NULL,
 	[u_validTo] [date] NULL,
+	[u_group] [varchar](50) DEFAULT 'user' NULL,
  CONSTRAINT [PK_Users] PRIMARY KEY CLUSTERED
 (
 	[u_id] ASC

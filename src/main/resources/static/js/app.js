@@ -105,7 +105,7 @@ function setCookie(name, val, days, secure) {
 
 function redirectToMain() {
     window.setTimeout(function () {
-        location.href = "../html/main.html";
+        location.href = "../main.html";
     }, 2000);
 }
 

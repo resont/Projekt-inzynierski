@@ -12,7 +12,10 @@
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
+
 <script src="js/app.js"></script>
+<script src="js/main.js"></script>
+
 <div class="menu">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="main.html">Projekt inzynierski</a>
@@ -22,7 +25,6 @@
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
@@ -42,7 +44,52 @@
         </div>
     </nav>
 </div>
-<h3>Działa :)))</h3>
+
+<div class="main-panel main">
+    <div class="title mb-3">
+        <h2>Stwórz nową ankietę <span class="badge badge-secondary">New</span></h2>
+    </div>
+    <div class="form-group">
+        <label for="name">Nazwa</label>
+        <input type="text" class="form-control" id="name" placeholder="Podaj nazwę ankiety" name="name">
+    </div>
+    <div class="form-group">
+        <label for="description">Opis</label>
+        <textarea class="form-control" id="description" rows="4" placeholder="Podaj opis ankiety"></textarea>
+    </div>
+    <button id="add" class="btn btn-dark mb-3" onclick="add()">Dalej</button>
+
+    <div class="main-msg-error">
+        <output class="alert alert-danger main" role="alert" id="msg-error" name="request-msg"></output>
+    </div>
+</div>
+<div class="main-panel question-type hide">
+    <div class="title mb-3">
+        <h2>Wybierz rodzaj pytania</h2>
+    </div>
+    <div class="form-group">
+        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+            <label class="btn btn-secondary" onclick="show1()">
+                <input type="radio" name="options" id="option1" autocomplete="off"> Pytanie otwarte
+            </label>
+            <label class="btn btn-secondary" onclick="show2()">
+                <input type="radio" name="options" id="option2" autocomplete="off"> Radio
+            </label>
+            <label class="btn btn-secondary" onclick="show3()">
+                <input type="radio" name="options" id="option3" autocomplete="off"> Checkbox
+            </label>
+        </div>
+    </div>
+    <div class="form-group border border-secondary rounded type-border hide p-3">
+        <h6 class="type-description"></h6>
+    </div>
+    <button id="chose-type" class="btn btn-dark mb-3" onclick="choseType()">Dalej</button>
+
+    <div class="request-msg-error">
+        <output class="alert alert-danger" role="alert" id="question-type-msg-error" name="request-msg"></output>
+    </div>
+</div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
         crossorigin="anonymous"></script>

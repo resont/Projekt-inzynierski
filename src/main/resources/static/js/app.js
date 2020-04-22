@@ -36,7 +36,7 @@ function registerResult(xhr) {
                     responseSuccess[0].style.display = 'block';
                     responseSuccess[0].innerHTML = "User: " + json.email + " - " + json.result;
                     button.disabled = true;
-                    //redirectToMain();
+                    redirectToMain();
                 }
             }
         }
@@ -114,7 +114,7 @@ window.onload = showLogoutButton;
 function showLogoutButton() {
     const cookies = document.cookie.split(/; */);
     if (cookies[0].split("=")[0] === "token") {
-        $("#logout").css("display","block");
+        $("#logout").css("display", "block");
     }
 }
 

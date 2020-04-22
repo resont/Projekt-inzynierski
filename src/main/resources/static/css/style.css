@@ -34,6 +34,10 @@
 }
 
 #logout {
-     /*change to none*/
-     display: none;
- }
+    /*change to none*/
+    display: none;
+}
+
+.hide {
+    display: none;
+}

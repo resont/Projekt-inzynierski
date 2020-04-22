@@ -105,16 +105,26 @@ function setCookie(name, val, days, secure) {
 
 function redirectToMain() {
     window.setTimeout(function () {
-        location.href = "../main.html";
+        location.href = "main.html";
     }, 2000);
 }
 
-window.onload = showLogoutButton;
+function redirectToIndex() {
+    window.setTimeout(function () {
+        location.href = "index.html";
+    }, 1000);
+}
 
-function showLogoutButton() {
+window.onload = showLogoutAndProfile;
+
+function showLogoutAndProfile() {
     const cookies = document.cookie.split(/; */);
     if (cookies[0].split("=")[0] === "token") {
         $("#logout").css("display","block");
+        $("#profile").css("display","block");
+        $("#nav-login").css("display","none");
+        $("#nav-register").css("display","none");
+
     }
 }
 
@@ -122,9 +132,42 @@ function logout() {
     const cookies = document.cookie.split(/; */);
     if (cookies[0].split("=")[0] === "token") {
         deleteCookie(cookies[0].split("=")[0]);
+        redirectToIndex();
     }
 }
 
 function deleteCookie(cookieName) {
     document.cookie = cookieName + "=; expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+}
+
+function resetPasswordMenu(){
+    $(".right-panel").hide();
+    $(".reset-password").show();
+
+}
+
+function backToProfile() {
+    $(".right-panel").show();
+    $(".reset-password").hide();
+}
+
+function resetPassword() {
+
+    //registerResult(xhr);
+    var xhr = new XMLHttpRequest();
+    var oldPassword = $("#oldPassword").val();
+    var newPassword = $("#newPassword").val();
+    var token = $.cookie("token");
+    if (oldPassword !== newPassword) {
+        var data = '{"token":"' + token + '","oldPassword":"' + oldPassword + '","newPassword":"' + newPassword +'"}';
+        xhr.open('POST', 'http://localhost:8080/reset', true);
+        xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
+        xhr.send(data);
+        backToProfile()
+    } else {
+        var responseError = document.getElementsByClassName("alert alert-danger");
+        responseError[0].innerHTML = "Error: passwords are not the same.";
+    }
+
+    //TODO make success msg
 }

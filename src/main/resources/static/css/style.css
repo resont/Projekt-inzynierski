@@ -1,3 +1,7 @@
+body{
+    font-family: helvetica neue, helvetica, sans-serif;
+}
+
 .main-panel {
     background-color: white;
     height: 100%;
@@ -33,7 +37,57 @@
     display: none;
 }
 
-#logout {
-     /*change to none*/
-     display: none;
- }
+#logout, #profile {
+    display: none;
+}
+#logout{
+    cursor: pointer;
+}
+
+.profile {
+    width: 100%;
+    border: 3px solid #343a40;
+    border-radius: 20px;
+    padding: 10px;
+    display: flex;
+}
+
+#main-profile.main-panel {
+    margin-top: 2%;
+    padding-left: 30%;
+    padding-right: 30%;
+}
+
+.left-panel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30%;
+    border-right: 3px solid #343a40;
+
+}
+
+.right-panel{
+    padding: 10px;
+    flex-grow: 1;
+}
+
+.avatar{
+    max-height: 100px;
+    max-width: 100px;
+}
+
+#email-profile{
+    margin-left: 5%;
+}
+
+a.disabled {
+    pointer-events: none;
+    cursor: default;
+}
+
+.reset-password{
+    display: none;
+    padding: 10px;
+    flex-grow: 1;
+}

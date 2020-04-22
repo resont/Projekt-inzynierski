@@ -49,4 +49,11 @@ public class LoginController {
             return logoutProcessor.process(body);
         else return resultMap.createNullBodyErrorMap();
     }
+
+    @PostMapping("/reset")
+    Map<String, String> resetPassword(@RequestBody Map<String, String> body) {
+        if (body != null && body.size() != 0)
+            return loginProcessor.resetPassword(body);
+        else return resultMap.createNullBodyErrorMap();
+    }
 }

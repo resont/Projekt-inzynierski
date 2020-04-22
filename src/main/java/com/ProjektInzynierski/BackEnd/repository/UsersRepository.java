@@ -16,6 +16,8 @@ public interface UsersRepository extends JpaRepository<UserEntity, Integer> {
 
     UserEntity findByEmailAndPassword(String email, String password);
 
+    UserEntity findByUuidAndPassword(String token, String password);
+
     @Transactional
     @Modifying
     @Query("UPDATE UserEntity u\n" +
@@ -29,4 +31,11 @@ public interface UsersRepository extends JpaRepository<UserEntity, Integer> {
             "SET u.uuid=NULL, u.validTo=:date\n" +
             "WHERE u.email=:email AND u.uuid=:uuid")
     void setUuidAndValidTo(String email, String uuid, Date date);
+
+    @Transactional
+    @Modifying
+    @Query("UPDATE UserEntity u\n" +
+            "SET u.password=:newPassword \n" +
+            "WHERE u.password=:oldPassword AND u.uuid=:uuid")
+    void setNewPassword(String oldPassword, String newPassword, String uuid);
 }

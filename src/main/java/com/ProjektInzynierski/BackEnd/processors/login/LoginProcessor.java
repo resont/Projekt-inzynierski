@@ -75,7 +75,7 @@ public class LoginProcessor {
             UserEntity userEntity = usersRepository.findByUuidAndPassword(oldUserData.getToken(), oldUserData.getPassword());
 
             usersRepository.setNewPassword(userEntity.getPassword(), newUserData.getPassword(), userEntity.getUuid());
-            return resultMap.createPasswordResetSuccessMap(PasswordResetMsg.RESET_SUCCESSFUL.getErrorMsg());
+            return resultMap.createSuccessMap(PasswordResetMsg.RESET_SUCCESSFUL.getErrorMsg());
 
         }catch (Exception e){
             logger.error("Reset went wrong.");

@@ -38,12 +38,6 @@ public class ResultMap {
         return resultMap;
     }
 
-    public Map<String, String> createPasswordResetSuccessMap(String result) {
-        Map<String, String> resultMap = new HashMap<>();
-        resultMap.put(RESULT, result);
-        return resultMap;
-    }
-
     public Map<String, String> createEmptyMap() {
         return new HashMap<>();
     }

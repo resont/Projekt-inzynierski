@@ -27,11 +27,13 @@ public class UserData {
         this.email = createEmail(email);
     }
 
+    public UserData(){ }
+
     void setEmail(String email) {
         this.email = createEmail(email);
     }
 
-    void setPassword(String password) {
+    public void setPassword(String password) {
         this.password = hashPassword(password);
     }
 

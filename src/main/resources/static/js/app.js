@@ -13,6 +13,7 @@ function register() {
         xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
         xhr.send(data);
     } else {
+        //TODO: Fix this (it doesn't work)
         var responseError = document.getElementsByClassName("alert alert-danger");
         responseError[0].innerHTML = "Error: passwords are not the same.";
     }
@@ -106,7 +107,7 @@ function setCookie(name, val, days, secure) {
 function redirectToMain() {
     window.setTimeout(function () {
         location.href = "main.html";
-    }, 2000);
+    }, 1000);
 }
 
 function redirectToIndex() {
@@ -120,10 +121,10 @@ window.onload = showLogoutAndProfile;
 function showLogoutAndProfile() {
     const cookies = document.cookie.split(/; */);
     if (cookies[0].split("=")[0] === "token") {
-        $("#logout").css("display","block");
-        $("#profile").css("display","block");
-        $("#nav-login").css("display","none");
-        $("#nav-register").css("display","none");
+        $("#logout").css("display", "block");
+        $("#profile").css("display", "block");
+        $("#nav-login").css("display", "none");
+        $("#nav-register").css("display", "none");
 
     }
 }
@@ -140,7 +141,7 @@ function deleteCookie(cookieName) {
     document.cookie = cookieName + "=; expires=Thu, 01 Jan 1970 00:00:01 GMT;";
 }
 
-function resetPasswordMenu(){
+function resetPasswordMenu() {
     $(".right-panel").hide();
     $(".reset-password").show();
 
@@ -151,23 +152,57 @@ function backToProfile() {
     $(".reset-password").hide();
 }
 
+function redirectToProfile() {
+    window.setTimeout(function () {
+        location.href = "profile.html";
+    }, 1000);
+}
+
 function resetPassword() {
 
     //registerResult(xhr);
     var xhr = new XMLHttpRequest();
+
     var oldPassword = $("#oldPassword").val();
     var newPassword = $("#newPassword").val();
     var token = $.cookie("token");
+
+    var responseError = $(".alert.alert-danger");
+    var responseSuccess = $(".alert.alert-success");
+
+    resetResult(xhr, responseError, responseSuccess);
+
     if (oldPassword !== newPassword) {
-        var data = '{"token":"' + token + '","oldPassword":"' + oldPassword + '","newPassword":"' + newPassword +'"}';
+        var data = '{"token":"' + token + '","oldPassword":"' + oldPassword + '","newPassword":"' + newPassword + '"}';
         xhr.open('POST', 'http://localhost:8080/reset', true);
         xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
         xhr.send(data);
-        backToProfile()
+
     } else {
-        var responseError = document.getElementsByClassName("alert alert-danger");
-        responseError[0].innerHTML = "Error: passwords are not the same.";
+        responseSuccess.hide();
+        responseError.html("Error: new password cannot be the same as the old password!");
+        responseError.show();
     }
 
-    //TODO make success msg
+}
+
+function resetResult(xhr, responseError, responseSuccess) {
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+                var json = JSON.parse(xhr.responseText);
+
+                if (json.error) {
+                    responseSuccess.hide();
+                    responseError.show();
+                    responseError.html("Error: " + json.error);
+                } else if (json.result) {
+                    responseError.hide();
+                    responseSuccess.show();
+                    responseSuccess.html("Success!");
+                    redirectToProfile();
+                }
+            }
+        }
+    };
 }

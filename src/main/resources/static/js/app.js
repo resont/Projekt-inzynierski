@@ -13,8 +13,8 @@ function register() {
         xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
         xhr.send(data);
     } else {
-        //TODO: Fix this (it doesn't work)
         var responseError = document.getElementsByClassName("alert alert-danger");
+        responseError[0].style.display = 'block';
         responseError[0].innerHTML = "Error: passwords are not the same.";
     }
 }

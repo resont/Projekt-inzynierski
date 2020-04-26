@@ -27,7 +27,8 @@ public class UserData {
         this.email = createEmail(email);
     }
 
-    public UserData(){ }
+    public UserData() {
+    }
 
     void setEmail(String email) {
         this.email = createEmail(email);

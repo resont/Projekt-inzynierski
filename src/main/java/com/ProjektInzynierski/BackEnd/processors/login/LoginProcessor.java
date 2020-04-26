@@ -5,9 +5,7 @@ import com.ProjektInzynierski.BackEnd.data.entity.UserEntity;
 import com.ProjektInzynierski.BackEnd.data.model.UserData;
 import com.ProjektInzynierski.BackEnd.enums.LoginMsg;
 import com.ProjektInzynierski.BackEnd.enums.PasswordResetMsg;
-import com.ProjektInzynierski.BackEnd.enums.RegistrationMsg;
 import com.ProjektInzynierski.BackEnd.processors.validation.LoginValidationChain;
-import com.ProjektInzynierski.BackEnd.processors.validation.PasswordIsPresentValidation;
 import com.ProjektInzynierski.BackEnd.processors.validation.PasswordsArePresentValidation;
 import com.ProjektInzynierski.BackEnd.repository.UsersRepository;
 import com.ProjektInzynierski.BackEnd.util.CurrentDateProvider;
@@ -58,7 +56,7 @@ public class LoginProcessor {
 
     }
 
-    public Map<String, String> resetPassword(Map<String, String> body){
+    public Map<String, String> resetPassword(Map<String, String> body) {
         body = new PasswordsArePresentValidation().process(body);
         if (body.get("error") != null) {
             logger.error("Error while password reset validating.");
@@ -71,13 +69,14 @@ public class LoginProcessor {
         UserData newUserData = new UserData();
         newUserData.setPassword(body.get("newPassword"));
 
-        try{
+        try {
             UserEntity userEntity = usersRepository.findByUuidAndPassword(oldUserData.getToken(), oldUserData.getPassword());
 
             usersRepository.setNewPassword(userEntity.getPassword(), newUserData.getPassword(), userEntity.getUuid());
+            logger.info("Password reset successful.");
             return resultMap.createSuccessMap(PasswordResetMsg.RESET_SUCCESSFUL.getErrorMsg());
 
-        }catch (Exception e){
+        } catch (Exception e) {
             logger.error("Reset went wrong.");
             return resultMap.createErrorMap(PasswordResetMsg.RESET_NOT_SUCCESSFUL.getErrorMsg());
         }

@@ -5,7 +5,7 @@ import com.ProjektInzynierski.BackEnd.enums.LoginMsg;
 import java.util.HashMap;
 import java.util.Map;
 
-public class PasswordsArePresentValidation{
+public class PasswordsArePresentValidation {
 
     public Map<String, String> process(Map<String, String> map) {
 

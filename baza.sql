@@ -94,8 +94,8 @@ SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[Answers](
 	[a_id] [int] IDENTITY(1,1) NOT NULL,
-	[s_answer] [varchar](250) NULL,
-	[a_count] [int] NULL,
+	[a_answer] [varchar](250) NULL,
+	[a_count] [int] DEFAULT 0 NULL,
 	[a_q_id] [int] NULL,
  CONSTRAINT [PK_Answers] PRIMARY KEY CLUSTERED
 (

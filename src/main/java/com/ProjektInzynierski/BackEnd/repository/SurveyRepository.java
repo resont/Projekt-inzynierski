@@ -16,4 +16,7 @@ public interface SurveyRepository extends JpaRepository<Survey, Integer> {
 
     @Query("SELECT s FROM Survey s WHERE s.topic=:topic")
     Survey findValidSurveyByTopic(String topic);
+
+    @Query("SELECT s FROM Survey s WHERE s.id=:id")
+    Survey findCompleteSurveyById(int id);
 }

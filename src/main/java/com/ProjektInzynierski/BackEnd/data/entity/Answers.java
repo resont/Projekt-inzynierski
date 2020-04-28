@@ -12,33 +12,27 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import java.util.Set;
 
 @Entity
-@Table(name = "Questions")
+@Table(name = "Answers")
 @Getter
 @Setter
-public class Questions {
+public class Answers {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "q_id", unique = true)
+    @Column(name = "a_id", unique = true)
     private int id;
 
-    @Column(name = "q_question")
-    private String question;
+    @Column(name = "a_answer")
+    private String answer;
 
-    @Column(name = "q_type")
-    private int type;
-
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "question")
-    private Set<Answers> answers;
+    @Column(name = "a_count")
+    private int count;
 
     @JsonBackReference
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "q_s_id")
-    private Survey survey;
-
+    @JoinColumn(name = "a_q_id")
+    private Questions question;
 }

@@ -37,7 +37,7 @@ function registerResult(xhr) {
                     responseSuccess[0].style.display = 'block';
                     responseSuccess[0].innerHTML = "User: " + json.email + " - " + json.result;
                     button.disabled = true;
-                    redirectToMain();
+                    redirectToIndex();
                 }
             }
         }
@@ -160,7 +160,6 @@ function redirectToProfile() {
 
 function resetPassword() {
 
-    //registerResult(xhr);
     var xhr = new XMLHttpRequest();
 
     var oldPassword = $("#oldPassword").val();

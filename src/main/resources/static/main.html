@@ -45,7 +45,7 @@
     </nav>
 </div>
 
-<div class="main-panel main">
+<div class="main-panel main border rounded p-4">
     <div class="title mb-3">
         <h2>Stwórz nową ankietę <span class="badge badge-secondary">New</span></h2>
     </div>
@@ -63,7 +63,18 @@
         <output class="alert alert-danger main" role="alert" id="msg-error" name="request-msg"></output>
     </div>
 </div>
-<div class="main-panel question-type hide">
+
+<div class="main-panel survey-title-panel container hide border rounded p-4">
+    <div class="title mb-1">
+        <h2>Ankieta - tytuł</h2>
+    </div>
+
+    <div class="title mb-3">
+        <h6>Ankieta - opis</h6>
+    </div>
+</div>
+
+<div class="main-panel question-type hide border rounded p-4">
     <div class="title mb-3">
         <h2>Wybierz rodzaj pytania</h2>
     </div>
@@ -88,6 +99,60 @@
     <div class="request-msg-error">
         <output class="alert alert-danger" role="alert" id="question-type-msg-error" name="request-msg"></output>
     </div>
+</div>
+
+<div class="main-panel question-type-1 container hide border rounded p-4">
+    <div class="title mb-3">
+        <h2>Uzupełnij dane pytania otwartego:</h2>
+    </div>
+
+    <div class="title mb-3">
+        <label for="name">Treść pytania:</label>
+        <textarea class="form-control" id="openQuestion" rows="4"
+                  placeholder="Podaj treść pytania otwartego"></textarea>
+    </div>
+    <button class="btn btn-dark mb-3" onclick="backToQuestionType()">Cofnij</button>
+    <button class="btn btn-dark mb-3 float-right" onclick="nextQuestion()">Dodaj Pytanie</button>
+</div>
+
+<div class="main-panel question-type-2 container hide border rounded p-4">
+    <div class="title mb-3">
+        <h2>Uzupełnij dane pytania typu Radio:</h2>
+    </div>
+
+    <div class="title mb-3">
+        <label for="name">Treść pytania:</label>
+        <textarea class="form-control mb-1" id="radioQuestion" rows="4"
+                  placeholder="Podaj treść pytania typu Radio"></textarea>
+
+        <label for="name">Odpowiedzi:</label>
+        <div class="question-type-2-answers">
+            <input type="text" class="form-control mb-2" placeholder="Podaj odpowiedz" name="name">
+        </div>
+    </div>
+    <button class="btn btn-dark mb-3" onclick="addAnswer2()">Dodaj Odpowiedz</button>
+    <button class="btn btn-dark mb-3" onclick="backToQuestionType()">Cofnij</button>
+    <button class="btn btn-dark mb-3 float-right" onclick="nextQuestion()">Dodaj Pytanie</button>
+</div>
+
+<div class="main-panel question-type-3 container hide border rounded p-4">
+    <div class="title mb-3">
+        <h2>Uzupełnij dane pytania typu Checkbox:</h2>
+    </div>
+
+    <div class="title mb-3">
+        <label for="name">Treść pytania:</label>
+        <textarea class="form-control mb-1" id="checkboxQuestion" rows="4"
+                  placeholder="Podaj treść pytania typu Checkbox"></textarea>
+
+        <label for="name">Odpowiedzi:</label>
+        <div class="question-type-3-answers">
+            <input type="text" class="form-control mb-2" placeholder="Podaj odpowiedz" name="name">
+        </div>
+    </div>
+    <button class="btn btn-dark mb-3" onclick="addAnswer3()">Dodaj Odpowiedz</button>
+    <button class="btn btn-dark mb-3" onclick="backToQuestionType()">Cofnij</button>
+    <button class="btn btn-dark mb-3 float-right" onclick="nextQuestion()">Dodaj Pytanie</button>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"

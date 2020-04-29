@@ -1,15 +1,16 @@
-body{
+body {
+    background-color: #f0f0f0;
     font-family: helvetica neue, helvetica, sans-serif;
 }
 
 .main-panel {
     background-color: white;
     height: 100%;
-    width: 100%;
+    width: 50%;
     float: left;
-    padding-left: 35%;
-    padding-right: 35%;
-    margin-top: 5%;
+    margin-left: 25%;
+    margin-right: 35%;
+    margin-top: 1%;
 }
 
 .menu-item {
@@ -40,7 +41,8 @@ body{
 #logout, #profile {
     display: none;
 }
-#logout{
+
+#logout {
     cursor: pointer;
 }
 
@@ -64,20 +66,19 @@ body{
     justify-content: center;
     width: 30%;
     border-right: 3px solid #343a40;
-
 }
 
-.right-panel{
+.right-panel {
     padding: 10px;
     flex-grow: 1;
 }
 
-.avatar{
+.avatar {
     max-height: 100px;
     max-width: 100px;
 }
 
-#email-profile{
+#email-profile {
     margin-left: 5%;
 }
 
@@ -86,7 +87,7 @@ a.disabled {
     cursor: default;
 }
 
-.reset-password{
+.reset-password {
     display: none;
     padding: 10px;
     flex-grow: 1;

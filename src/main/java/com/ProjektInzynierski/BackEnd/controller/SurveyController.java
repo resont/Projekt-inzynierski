@@ -1,7 +1,9 @@
 package com.ProjektInzynierski.BackEnd.controller;
 
+import com.ProjektInzynierski.BackEnd.data.entity.Answers;
 import com.ProjektInzynierski.BackEnd.data.entity.Survey;
 import com.ProjektInzynierski.BackEnd.repository.SurveyRepository;
+import com.ProjektInzynierski.BackEnd.util.ResultMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +23,8 @@ import java.util.Map;
 @CrossOrigin
 @RestController
 public class SurveyController {
+
+    private ResultMap resultMap = new ResultMap();
 
     @Autowired
     private SurveyRepository surveyRepository;
@@ -68,5 +72,12 @@ public class SurveyController {
         survey.setId(Integer.parseInt(id));
         this.surveyRepository.delete(survey);
         return true;
+    }
+
+    @PostMapping("/answer/{id}")
+    Map<String, String> update(@PathVariable("id") String id){
+        int answerId = Integer.parseInt(id);
+        this.surveyRepository.updateCount(answerId);
+        return resultMap.createSuccessMap("Survey send!");
     }
 }

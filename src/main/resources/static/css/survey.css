@@ -1,3 +1,11 @@
 .id, .count, .type{
     display: none;
 }
+
+input{
+    margin-left:1em;
+}
+
+#back{
+    margin-right: 0.3em;
+}

@@ -10,7 +10,8 @@ function showSurvey() {
         if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
             obj = JSON.parse(xhr.responseText);
             body = iterateJSON(obj);
-            body += "<button id=\"send\" class=\"btn btn-dark mb-3\" onclick=\"sendSurvey()\">Login</button>";
+            body += "<br><button id=\"back\" class=\"btn btn-dark mb-3\" onclick=\"instantRedirectToProfile()\">Back</button>";
+            body += "<button id=\"send\" class=\"btn btn-dark mb-3\" onclick=\"sendSurvey()\">Send</button>";
             $(".main-panel").html(body);
 
 
@@ -27,11 +28,7 @@ var questionIDArray = [];
 
 function iterateJSON(json) {
     var keys = Object.keys(json);
-    if (keys.includes("id")) {
-        var body = "<div style=\"border-top:1px solid black;\">";
-    } else {
-        var body = "<div>";
-    }
+    var body = "<div>";
     var tempid;
     for (var i in json) {
 
@@ -52,10 +49,10 @@ function iterateJSON(json) {
             if (i === "answer") {
                 if (buttonType === 2) {
                     body += "<input type='radio' name='" + questionID + "' class='" + tempid + "' value='" + json[i] + "'>" +
-                        "<label for='" + json[i] + "'>" + json[i] + "</label><br>";
+                        "<label for='" + json[i] + "'>&nbsp;" + json[i] + "</label><br>";
                 } else if (buttonType === 3) {
                     body += "<input type='checkbox' name='" + questionID + "' class='" + tempid + "' value='" + json[i] + "'>" +
-                        "<label for='" + json[i] + "'>" + json[i] + "</label><br>";
+                        "<label for='" + json[i] + "'>&nbsp;" + json[i] + "</label><br>";
                 } else if (buttonType === 1) {
                     body += "<input type='text' class='" + json[i] + "'>" +
                         "<label for='" + json[i] + "'>" + json[i] + "</label><br>";
@@ -63,7 +60,16 @@ function iterateJSON(json) {
 
 
             } else if (keys.includes("id")) {
-                body += "<div class='" + i + "'>" + json[i] + "</div>";
+                if (i === "topic") {
+                    body += "<div class='" + i + " lead'><h3>" + json[i] + "</h3></div>";
+                } else if (i === "description") {
+                    body += "<div class='" + i + " lead'>" + json[i] + "</div><br>";
+                } else if (i === "question") {
+                    body += "<div class='" + i + " border-top'>" + json[i] + "</div>";
+                } else {
+                    body += "<div class='" + i + "'>" + json[i] + "</div>";
+
+                }
             }
         }
     }
@@ -87,4 +93,10 @@ function sendSurvey() {
         xhr.open('POST', 'http://localhost:8080/answer/' + checked[id], true);
         xhr.send(null);
     }
+}
+
+function instantRedirectToProfile(){
+    window.setTimeout(function () {
+        location.href = "profile.html";
+    });
 }

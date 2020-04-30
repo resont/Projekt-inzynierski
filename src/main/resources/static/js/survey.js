@@ -10,10 +10,17 @@ function showSurvey() {
         if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
             obj = JSON.parse(xhr.responseText);
             body = iterateJSON(obj);
-            body += "<br><button id=\"back\" class=\"btn btn-dark mb-3\" onclick=\"instantRedirectToProfile()\">Back</button>";
-            body += "<button id=\"send\" class=\"btn btn-dark mb-3\" onclick=\"sendSurvey()\">Send</button>";
-            $(".main-panel").html(body);
-
+            body = body.substring(0, body.length - 24);
+            body += "<button id=\"back\" class=\"btn btn-dark mt-2\" onclick=\"instantRedirectToProfile()\">Back</button>";
+            body += "<button id=\"send\" class=\"btn btn-dark mt-2\" onclick=\"sendSurvey()\">Send</button>";
+            body += "<div class=\"request-msg-success\">\n" +
+                "                <output class=\"alert alert-success\" role=\"alert\" id=\"msg-success\" name=\"request-msg\"></output>\n" +
+                "            </div>\n" +
+                "\n" +
+                "            <div class=\"request-msg-error\">\n" +
+                "                <output class=\"alert alert-danger\" role=\"alert\" id=\"msg-error\" name=\"request-msg\"></output>\n" +
+                "            </div></div>";
+            $("body").append(body);
 
         }
     };
@@ -30,10 +37,15 @@ function iterateJSON(json) {
     var keys = Object.keys(json);
     var body = "<div>";
     var tempid;
+    var borderCreated = false;
     for (var i in json) {
 
         if (i === "id") {
             tempid = json[i];
+            if (!keys.includes("answer")) {
+                body += "<div class='main-panel border rounded p-4'>";
+                borderCreated = true;
+            }
         }
 
         if (i === "type") {
@@ -44,7 +56,21 @@ function iterateJSON(json) {
         }
 
         if (typeof json[i] === 'object') {
-            body += iterateJSON(json[i]);
+
+            if (borderCreated === true) {
+                if (keys.includes("topic")) {
+                    body += "</div>";
+                    borderCreated = false;
+                    body += iterateJSON(json[i]);
+                } else {
+                    body += iterateJSON(json[i]);
+                    body += "</div>";
+                    borderCreated = false;
+                }
+            } else {
+                body += iterateJSON(json[i]);
+            }
+
         } else {
             if (i === "answer") {
                 if (buttonType === 2) {
@@ -63,15 +89,16 @@ function iterateJSON(json) {
                 if (i === "topic") {
                     body += "<div class='" + i + " lead'><h3>" + json[i] + "</h3></div>";
                 } else if (i === "description") {
-                    body += "<div class='" + i + " lead'>" + json[i] + "</div><br>";
+                    body += "<div class='" + i + " lead'>" + json[i] + "</div>";
                 } else if (i === "question") {
-                    body += "<div class='" + i + " border-top'>" + json[i] + "</div>";
+                    body += "<div class='" + i + " mb-2'>" + json[i] + "</div>";
                 } else {
                     body += "<div class='" + i + "'>" + json[i] + "</div>";
 
                 }
             }
         }
+
     }
     body += "</div>";
     return body;
@@ -87,16 +114,43 @@ function sendSurvey() {
             }
         }
     }
+    var responseError = $(".alert.alert-danger");
+    var responseSuccess = $(".alert.alert-success");
 
-    var xhr = new XMLHttpRequest();
+
     for (var id in checked) {
+
+        var xhr = new XMLHttpRequest();
+        sendResult(xhr, responseError, responseSuccess);
         xhr.open('POST', 'http://localhost:8080/answer/' + checked[id], true);
         xhr.send(null);
+
     }
 }
 
-function instantRedirectToProfile(){
+function instantRedirectToProfile() {
     window.setTimeout(function () {
         location.href = "profile.html";
     });
+}
+
+function sendResult(xhr, responseError, responseSuccess) {
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+                var json = JSON.parse(xhr.responseText);
+
+                if (json.error) {
+                    responseSuccess.hide();
+                    responseError.show();
+                    responseError.html("Error: " + json.error);
+                } else if (json.result) {
+                    responseError.hide();
+                    responseSuccess.show();
+                    responseSuccess.html("Survey send!");
+                    redirectToProfile();
+                }
+            }
+        }
+    };
 }

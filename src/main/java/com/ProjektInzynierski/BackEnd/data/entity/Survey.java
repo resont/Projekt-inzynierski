@@ -33,6 +33,8 @@ public class Survey {
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "survey")
     private Set<Questions> questions;
 
+//    For selecting users attached to survey
+//
 //    @OneToMany(fetch = FetchType.EAGER, mappedBy = "surveyId")
 //    private Set<SurveyToUser> surveyToUser;
 

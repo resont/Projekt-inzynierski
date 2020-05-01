@@ -48,8 +48,6 @@ body {
 
 .profile {
     width: 100%;
-    /*border: 3px solid #343a40;*/
-    /*border-radius: 20px;*/
     padding: 10px;
     display: flex;
 }

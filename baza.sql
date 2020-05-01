@@ -109,6 +109,7 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[Conn_us_su](
+	[con_id] [int] IDENTITY(1,1) NOT NULL,
 	[con_u_id] [int] NULL,
 	[con_s_id] [int] NULL,
 	[con_answer] [bit] NULL

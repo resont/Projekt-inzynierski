@@ -1,5 +1,6 @@
 package com.ProjektInzynierski.BackEnd.util;
 
+import com.ProjektInzynierski.BackEnd.data.entity.Survey;
 import com.ProjektInzynierski.BackEnd.enums.LoginMsg;
 import org.springframework.stereotype.Component;
 
@@ -35,6 +36,13 @@ public class ResultMap {
     public Map<String, String> createNullBodyErrorMap() {
         Map<String, String> resultMap = new HashMap<>();
         resultMap.put(ERROR, LoginMsg.WRONG_EMAIL_OR_PASSWORD.getErrorMsg());
+        return resultMap;
+    }
+
+    public Map<String, String> createSurveyAndAnswerSuccessMap(int id, boolean answer) {
+        Map<String, String> resultMap = new HashMap<>();
+        resultMap.put("id", String.valueOf(id));
+        resultMap.put("answer", String.valueOf(answer));
         return resultMap;
     }
 

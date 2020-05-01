@@ -1,7 +1,10 @@
-window.onload = showSurvey;
+window.onload = function(){
+    showSurvey();
+    showLogoutAndProfile();
+};
 
 function showSurvey() {
-    var id = 1; //temp
+    var id = sessionStorage.getItem('surveyId');
     var xhr = new XMLHttpRequest();
     var obj;
     var body = "";
@@ -13,11 +16,11 @@ function showSurvey() {
             body = body.substring(0, body.length - 24);
             body += "<button id=\"back\" class=\"btn btn-dark mt-2\" onclick=\"instantRedirectToProfile()\">Back</button>";
             body += "<button id=\"send\" class=\"btn btn-dark mt-2\" onclick=\"sendSurvey()\">Send</button>";
-            body += "<div class=\"request-msg-success\">\n" +
+            body += "<div class=\"request-msg-success mt-2\">\n" +
                 "                <output class=\"alert alert-success\" role=\"alert\" id=\"msg-success\" name=\"request-msg\"></output>\n" +
                 "            </div>\n" +
                 "\n" +
-                "            <div class=\"request-msg-error\">\n" +
+                "            <div class=\"request-msg-error mt-2\">\n" +
                 "                <output class=\"alert alert-danger\" role=\"alert\" id=\"msg-error\" name=\"request-msg\"></output>\n" +
                 "            </div></div>";
             $("body").append(body);
@@ -105,6 +108,7 @@ function iterateJSON(json) {
 }
 
 function sendSurvey() {
+
     var checked = [];
     for (var i in questionIDArray) {
         var buttons = document.getElementsByName(questionIDArray[i]);
@@ -122,10 +126,12 @@ function sendSurvey() {
 
         var xhr = new XMLHttpRequest();
         sendResult(xhr, responseError, responseSuccess);
-        xhr.open('POST', 'http://localhost:8080/answer/' + checked[id], true);
+        xhr.open('POST', 'http://localhost:8080/answer/' + checked[id], false);
         xhr.send(null);
 
     }
+
+
 }
 
 function instantRedirectToProfile() {
@@ -148,9 +154,19 @@ function sendResult(xhr, responseError, responseSuccess) {
                     responseError.hide();
                     responseSuccess.show();
                     responseSuccess.html("Survey send!");
+                    setSurveyAsAnswered();
                     redirectToProfile();
                 }
             }
         }
     };
+}
+
+function setSurveyAsAnswered(){
+    var xhr = new XMLHttpRequest();
+    var token = $.cookie("token");
+    var data = '{"token":"' + token + '","surveyId":"' + sessionStorage.getItem("surveyId") + '"}';
+    xhr.open('POST', 'http://localhost:8080/con_us_su/', false);
+    xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
+    xhr.send(data);
 }

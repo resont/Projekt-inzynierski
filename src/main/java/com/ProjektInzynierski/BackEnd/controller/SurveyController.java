@@ -2,7 +2,9 @@ package com.ProjektInzynierski.BackEnd.controller;
 
 import com.ProjektInzynierski.BackEnd.data.entity.Answers;
 import com.ProjektInzynierski.BackEnd.data.entity.Survey;
+import com.ProjektInzynierski.BackEnd.data.entity.SurveyToUser;
 import com.ProjektInzynierski.BackEnd.repository.SurveyRepository;
+import com.ProjektInzynierski.BackEnd.repository.UsersRepository;
 import com.ProjektInzynierski.BackEnd.util.ResultMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -80,4 +82,17 @@ public class SurveyController {
         this.surveyRepository.updateCount(answerId);
         return resultMap.createSuccessMap("Survey send!");
     }
+
+    @GetMapping("/con_us_su/{uuid}")
+    int[] showCon(@PathVariable("uuid") String uuid) {
+        return this.surveyRepository.findSurveysByUserUuid(uuid);
+    }
+
+    @PostMapping("/con_us_su")
+    Map<String, String> updateAnswer(@RequestBody Map<String, String> body) {
+        int id = this.surveyRepository.findIdByUuidAndSurveyId(body.get("token"),Integer.parseInt(body.get("surveyId")));
+        this.surveyRepository.updateAnswer(id);
+        return resultMap.createSuccessMap("Survey answered.");
+    }
+
 }

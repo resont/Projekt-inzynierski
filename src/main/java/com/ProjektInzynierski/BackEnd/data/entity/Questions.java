@@ -41,4 +41,35 @@ public class Questions {
     @JoinColumn(name = "q_s_id")
     private Survey survey;
 
+    public static final class QuestionsBuilder {
+        private int type;
+
+        private String question;
+
+        private Survey survey;
+
+        public QuestionsBuilder setType(int type) {
+            this.type = type;
+            return this;
+        }
+
+        public QuestionsBuilder setQuestion(String question) {
+            this.question = question;
+            return this;
+        }
+
+        public QuestionsBuilder setSurvey(Survey survey) {
+            this.survey = survey;
+            return this;
+        }
+
+        public Questions build() {
+            Questions questions = new Questions();
+            questions.setType(this.type);
+            questions.setQuestion(this.question);
+            questions.setSurvey(this.survey);
+            return questions;
+        }
+    }
+
 }

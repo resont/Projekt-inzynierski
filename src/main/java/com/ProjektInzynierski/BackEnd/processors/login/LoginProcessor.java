@@ -1,6 +1,7 @@
 package com.ProjektInzynierski.BackEnd.processors.login;
 
 import com.ProjektInzynierski.BackEnd.controller.LoggerController;
+import com.ProjektInzynierski.BackEnd.data.UserDataFactory;
 import com.ProjektInzynierski.BackEnd.data.entity.UserEntity;
 import com.ProjektInzynierski.BackEnd.data.model.UserData;
 import com.ProjektInzynierski.BackEnd.enums.LoginMsg;
@@ -41,7 +42,7 @@ public class LoginProcessor extends ProcessInterface {
         }
         logger.info("End of login validation.");
 
-        UserData userData = new UserData(body.get("email"), body.get("password"));
+        UserData userData = UserDataFactory.create(body.get("email"), body.get("password"));
 
         logger.info("Start of login authentication.");
         try {
@@ -64,12 +65,12 @@ public class LoginProcessor extends ProcessInterface {
             logger.error("Error while password reset validating.");
             return body;
         }
-        UserData oldUserData = new UserData();
-        oldUserData.setToken(body.get("token"));
-        oldUserData.setPassword(body.get("oldPassword"));
 
-        UserData newUserData = new UserData();
-        newUserData.setPassword(body.get("newPassword"));
+        UserData oldUserData = UserDataFactory.create(null, body.get("oldPassword"));
+        oldUserData.setToken(body.get("token"));
+
+        UserData newUserData = UserDataFactory.create(null, body.get("newPassword"));
+
 
         try {
             UserEntity userEntity = usersRepository.findByUuidAndPassword(oldUserData.getToken(), oldUserData.getPassword());

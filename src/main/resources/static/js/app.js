@@ -163,31 +163,36 @@ function redirectToProfile() {
 }
 
 function resetPassword(buttonId) {
-    buttonId.disabled = true;
 
     var xhr = new XMLHttpRequest();
 
     var oldPassword = $("#oldPassword").val();
     var newPassword = $("#newPassword").val();
+    var newPassword2 = $("#newPassword2").val();
     var token = $.cookie("token");
 
     var responseError = $(".alert.alert-danger");
     var responseSuccess = $(".alert.alert-success");
 
     resetResult(xhr, responseError, responseSuccess);
+    if (newPassword === newPassword2) {
+        buttonId.disabled = true;
+        if (oldPassword !== newPassword) {
+            var data = '{"token":"' + token + '","oldPassword":"' + oldPassword + '","newPassword":"' + newPassword + '"}';
+            xhr.open('POST', 'http://localhost:8080/reset', true);
+            xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
+            xhr.send(data);
 
-    if (oldPassword !== newPassword) {
-        var data = '{"token":"' + token + '","oldPassword":"' + oldPassword + '","newPassword":"' + newPassword + '"}';
-        xhr.open('POST', 'http://localhost:8080/reset', true);
-        xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
-        xhr.send(data);
-
+        } else {
+            responseSuccess.hide();
+            responseError.html("Error: new password cannot be the same as the old password!");
+            responseError.show();
+        }
     } else {
         responseSuccess.hide();
-        responseError.html("Error: new password cannot be the same as the old password!");
+        responseError.html("Error: passwords are not the same!");
         responseError.show();
     }
-
 }
 
 function resetResult(xhr, responseError, responseSuccess) {

@@ -1,6 +1,7 @@
 package com.ProjektInzynierski.BackEnd.processors.registration;
 
 import com.ProjektInzynierski.BackEnd.controller.LoggerController;
+import com.ProjektInzynierski.BackEnd.data.UserDataFactory;
 import com.ProjektInzynierski.BackEnd.data.entity.UserEntity;
 import com.ProjektInzynierski.BackEnd.data.model.UserData;
 import com.ProjektInzynierski.BackEnd.enums.RegistrationMsg;
@@ -25,7 +26,6 @@ public class RegistrationProcessor {
         this.usersRepository = usersRepository;
     }
 
-    //ToDo this looks terrible mby create util? Do we need User class at all?
     public Map<String, String> process(Map<String, String> body) {
 
         logger.info("Start of registration validation.");
@@ -36,7 +36,7 @@ public class RegistrationProcessor {
         }
         logger.info("End of registration validation.");
 
-        UserData userData = new UserData(body.get("email"), body.get("password"));
+        UserData userData = UserDataFactory.create(body.get("email"), body.get("password"));
         UserEntity userEntity = new UserEntity();
         userEntity.setEmail(userData.getEmail());
         userEntity.setPassword(userData.getPassword());

@@ -1,6 +1,7 @@
 package com.ProjektInzynierski.BackEnd.processors.login;
 
 import com.ProjektInzynierski.BackEnd.controller.LoggerController;
+import com.ProjektInzynierski.BackEnd.data.UserDataFactory;
 import com.ProjektInzynierski.BackEnd.data.model.UserData;
 import com.ProjektInzynierski.BackEnd.enums.LogoutMsg;
 import com.ProjektInzynierski.BackEnd.processors.ProcessInterface;
@@ -37,7 +38,7 @@ public class LogoutProcessor extends ProcessInterface {
         }
         logger.info("End of logout validation.");
 
-        UserData userData = new UserData(body.get("email"));
+        UserData userData = UserDataFactory.create(body.get("email"));
         userData.setToken(body.get("token"));
 
         usersRepository.setUuidAndValidTo(userData.getEmail(), userData.getToken(), CurrentDateProvider.getCurrentDate());

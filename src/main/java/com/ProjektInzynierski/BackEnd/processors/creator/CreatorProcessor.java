@@ -45,18 +45,21 @@ public class CreatorProcessor extends ProcessInterface {
         try {
             Survey survey = saveSurvey(surveyDetailsData);
             for (QuestionData element : surveyDetailsData.getQuestions()) {
-                Questions questions = new Questions();
-                questions.setType(element.getType());
-                questions.setQuestion(element.getQuestion());
-                questions.setSurvey(survey);
+
+                Questions questions = new Questions.QuestionsBuilder()
+                        .setType(element.getType())
+                        .setQuestion(element.getQuestion())
+                        .setSurvey(survey)
+                        .build();
+
                 Questions question = questionRepository.save(questions);
                 if (element.getAnswers() != null) {
 
                     AnswerRep answers = new AnswerRep();
                     answers.setAnswers(element.getAnswers());
 
-                    for (Iterator iter = answers.getIterator(); iter.hasNext();) {
-                        String string = (String)iter.next();
+                    for (Iterator iter = answers.getIterator(); iter.hasNext(); ) {
+                        String string = (String) iter.next();
                         if (!string.equals("") && !string.equals(" ")) {
                             Answers answersObj = new Answers();
                             answersObj.setAnswer(string);

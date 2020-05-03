@@ -27,24 +27,28 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                <li class="nav-item disabled" aria-disabled="true">
-                    <a id="nav-login" class="nav-link" href="login.html">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a id="nav-register" class="nav-link" href="register.html">Register</a>
-                </li>
-                <li class="nav-item">
-                    <a id="logout" class="nav-link logout" onclick="logout()">Logout</a>
-                </li>
-                <li class="nav-item">
-                    <a id="profile" class="nav-link" href="profile.html">Profile</a>
-                </li>
             </ul>
         </div>
     </nav>
 </div>
 
 <div class="main-panel border rounded p-4" id="main-profile">
+    <div class="title mb-4">
+        <h2>Projekt-inzynierski</h2>
+    </div>
+    <div class="title mb-3">
+        <h7>Projekt i implemetacja systemu webowego umożliwiającego głosowanie (lub ankietowanie) w sposób umożliwiający zachowanie anonimowości użytkowników. System zrealizowany w formie aplikacji webowej powinien uwzględniać możliwość oddania głosu lub wyrażenia opinii w taki sposób, aby realizować następujące funkcje:
+            <br><br>
+            <ul>
+                <li>informacje przechowywane w bazie danych,</li>
+                <li>reprezentacja nie umożliwia powiązania użytkownika z konkretnymi danymi,</li>
+                <li>reprezentacja umożliwia sprawdzenie czy dana osoba przekazała dane,</li>
+                <li>reprezentacja umożliwia sprawdzenie przez użytkownika czy jego dane są zapisane w bazie.</li>
+            </ul>
+            Implementacja powinna uzględniać responsywny interfejs. Do zapewnienia anonimowości należy wykorzystać techniki kryptograficzne (funkcje skrótu) oraz metody generowania tokenów. Rekomedowane jest wykorzystanie ogólnodostępnych bibliotek programistycznych.</h7>
+    </div>
+    <button type="button" class="btn btn-outline-dark btn-block mb-1" href="login.html">Login</button>
+    <button type="button" class="btn btn-outline-dark btn-block" href="register.html">Register</button>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"

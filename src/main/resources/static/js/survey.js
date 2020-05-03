@@ -1,4 +1,4 @@
-window.onload = function(){
+window.onload = function () {
     showSurvey();
     showLogoutAndProfile();
 };
@@ -35,6 +35,7 @@ function showSurvey() {
 var buttonType = 0;
 var questionID;
 var questionIDArray = [];
+var textInputs = [];
 
 function iterateJSON(json) {
     var keys = Object.keys(json);
@@ -74,6 +75,10 @@ function iterateJSON(json) {
                 body += iterateJSON(json[i]);
             }
 
+        } else if (buttonType === 1) {
+            textInputs.push({"questionID":questionID.toString(),"answer":""});
+            body += "<input type='text' id='textInput"+questionID+"' name='" + questionID + "' class='form-control mr-4' placeholder='Answer' style='max-width:96%;'>";
+            buttonType = 0;
         } else {
             if (i === "answer") {
                 if (buttonType === 2) {
@@ -82,9 +87,6 @@ function iterateJSON(json) {
                 } else if (buttonType === 3) {
                     body += "<input type='checkbox' name='" + questionID + "' class='" + tempid + "' value='" + json[i] + "'>" +
                         "<label for='" + json[i] + "'>&nbsp;" + json[i] + "</label><br>";
-                } else if (buttonType === 1) {
-                    body += "<input type='text' class='" + json[i] + "'>" +
-                        "<label for='" + json[i] + "'>" + json[i] + "</label><br>";
                 }
 
 
@@ -118,9 +120,32 @@ function sendSurvey() {
             }
         }
     }
+    var idKey;
+    for (var i = 0; i < textInputs.length; i++){
+        var obj = textInputs[i];
+        for (var key in obj){
+            var attrName = key;
+            if(key === "questionID"){
+                idKey = obj[key];
+            }
+            if(key === "answer"){
+                obj[key] = document.getElementById("textInput"+idKey).value;
+            }
+
+        }
+    }
+
     var responseError = $(".alert.alert-danger");
     var responseSuccess = $(".alert.alert-success");
 
+    for (var i = 0; i < textInputs.length; i++) {
+        var obj = textInputs[i];
+        var data = '{"questionID":"' + obj["questionID"] + '","answer":"' + obj["answer"] + '"}';
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'http://localhost:8080/answer', false);
+        xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
+        xhr.send(data);
+    }
 
     for (var id in checked) {
 
@@ -154,15 +179,15 @@ function sendResult(xhr, responseError, responseSuccess) {
                     responseError.hide();
                     responseSuccess.show();
                     responseSuccess.html("Survey send!");
-                    setSurveyAsAnswered();
-                    redirectToProfile();
+                    //setSurveyAsAnswered();
+                    //redirectToProfile();
                 }
             }
         }
     };
 }
 
-function setSurveyAsAnswered(){
+function setSurveyAsAnswered() {
     var xhr = new XMLHttpRequest();
     var token = $.cookie("token");
     var data = '{"token":"' + token + '","surveyId":"' + sessionStorage.getItem("surveyId") + '"}';

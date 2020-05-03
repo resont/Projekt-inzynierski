@@ -1,8 +1,10 @@
 package com.ProjektInzynierski.BackEnd.controller;
 
 import com.ProjektInzynierski.BackEnd.data.entity.Answers;
+import com.ProjektInzynierski.BackEnd.data.entity.Questions;
 import com.ProjektInzynierski.BackEnd.data.entity.Survey;
 import com.ProjektInzynierski.BackEnd.data.entity.SurveyToUser;
+import com.ProjektInzynierski.BackEnd.repository.AnswersRepository;
 import com.ProjektInzynierski.BackEnd.repository.SurveyRepository;
 import com.ProjektInzynierski.BackEnd.repository.UsersRepository;
 import com.ProjektInzynierski.BackEnd.util.ResultMap;
@@ -30,6 +32,9 @@ public class SurveyController {
 
     @Autowired
     private SurveyRepository surveyRepository;
+
+    @Autowired
+    private AnswersRepository answersRepository;
 
     @GetMapping("/status")
     public ResponseEntity<String> status() {
@@ -92,6 +97,16 @@ public class SurveyController {
     Map<String, String> updateAnswer(@RequestBody Map<String, String> body) {
         int id = this.surveyRepository.findIdByUuidAndSurveyId(body.get("token"),Integer.parseInt(body.get("surveyId")));
         this.surveyRepository.updateAnswer(id);
+        return resultMap.createSuccessMap("Survey answered.");
+    }
+
+    @PostMapping("/answer")
+    Map<String, String> insertAnswer(@RequestBody Map<String, String> body) {
+        Answers answers = new Answers();
+        answers.setAnswer(body.get("answer"));
+        Answers answer = this.answersRepository.save(answers);
+        String questionId = body.get("questionID");
+        this.answersRepository.updateAnswer(Integer.valueOf(questionId),answer.getId());
         return resultMap.createSuccessMap("Survey answered.");
     }
 

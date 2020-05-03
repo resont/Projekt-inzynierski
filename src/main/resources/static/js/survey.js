@@ -179,8 +179,8 @@ function sendResult(xhr, responseError, responseSuccess) {
                     responseError.hide();
                     responseSuccess.show();
                     responseSuccess.html("Survey send!");
-                    //setSurveyAsAnswered();
-                    //redirectToProfile();
+                    setSurveyAsAnswered();
+                    redirectToProfile();
                 }
             }
         }

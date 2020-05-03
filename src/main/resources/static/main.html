@@ -95,10 +95,7 @@
         <h6 class="type-description"></h6>
     </div>
     <button id="chose-type" class="btn btn-dark mb-3" onclick="choseType()">Dalej</button>
-
-    <div class="request-msg-error">
-        <output class="alert alert-danger" role="alert" id="question-type-msg-error" name="request-msg"></output>
-    </div>
+    <button class="btn btn-dark mb-3 float-right" onclick="showConfirm()">Zakończ</button>
 </div>
 
 <div class="main-panel question-type-1 container hide border rounded p-4">
@@ -112,7 +109,15 @@
                   placeholder="Podaj treść pytania otwartego"></textarea>
     </div>
     <button class="btn btn-dark mb-3" onclick="backToQuestionType()">Cofnij</button>
-    <button class="btn btn-dark mb-3 float-right" onclick="nextQuestion()">Dodaj Pytanie</button>
+    <button class="btn btn-dark mb-3 float-right" onclick="nextQuestionOpen()">Dodaj Pytanie</button>
+
+    <div class="request-msg-success">
+        <output class="alert alert-success" role="alert" id="open-question-success" name="request-msg"></output>
+    </div>
+
+    <div class="request-msg-error">
+        <output class="alert alert-danger" role="alert" id="open-question-error" name="request-msg"></output>
+    </div>
 </div>
 
 <div class="main-panel question-type-2 container hide border rounded p-4">
@@ -127,12 +132,20 @@
 
         <label for="name">Odpowiedzi:</label>
         <div class="question-type-2-answers">
-            <input type="text" class="form-control mb-2" placeholder="Podaj odpowiedz" name="name">
+            <input type="text" class="form-control mb-2" id="2answer0" placeholder="Podaj odpowiedz" name="name">
         </div>
     </div>
     <button class="btn btn-dark mb-3" onclick="addAnswer2()">Dodaj Odpowiedz</button>
     <button class="btn btn-dark mb-3" onclick="backToQuestionType()">Cofnij</button>
-    <button class="btn btn-dark mb-3 float-right" onclick="nextQuestion()">Dodaj Pytanie</button>
+    <button class="btn btn-dark mb-3 float-right" onclick="nextQuestionRadio()">Dodaj Pytanie</button>
+
+    <div class="request-msg-success">
+        <output class="alert alert-success" role="alert" id="radio-question-success" name="request-msg"></output>
+    </div>
+
+    <div class="request-msg-error">
+        <output class="alert alert-danger" role="alert" id="radio-question-error" name="request-msg"></output>
+    </div>
 </div>
 
 <div class="main-panel question-type-3 container hide border rounded p-4">
@@ -147,14 +160,47 @@
 
         <label for="name">Odpowiedzi:</label>
         <div class="question-type-3-answers">
-            <input type="text" class="form-control mb-2" placeholder="Podaj odpowiedz" name="name">
+            <input type="text" class="form-control mb-2" id="3answer0" placeholder="Podaj odpowiedz" name="name">
         </div>
     </div>
     <button class="btn btn-dark mb-3" onclick="addAnswer3()">Dodaj Odpowiedz</button>
     <button class="btn btn-dark mb-3" onclick="backToQuestionType()">Cofnij</button>
-    <button class="btn btn-dark mb-3 float-right" onclick="nextQuestion()">Dodaj Pytanie</button>
+    <button class="btn btn-dark mb-3 float-right" onclick="nextQuestionCheckbox()">Dodaj Pytanie</button>
+
+    <div class="request-msg-success">
+        <output class="alert alert-success" role="alert" id="checkbox-question-success" name="request-msg"></output>
+    </div>
+
+    <div class="request-msg-error">
+        <output class="alert alert-danger" role="alert" id="checkbox-question-error" name="request-msg"></output>
+    </div>
 </div>
 
+<div class="main-panel confirmation container hide border rounded p-4">
+    <div class="title mb-3">
+        <h5>Czy na pewno chcesz zakończyć i wysłać?</h5>
+    </div>
+
+    <button id="send" class="btn btn-dark mb-3" onclick="confirm(true,send)">Tak</button>
+    <button class="btn btn-dark mb-3" onclick="confirm(false)">Nie</button>
+
+    <div class="request-msg-success">
+        <output class="alert alert-success" role="alert" id="confirm-success" name="request-msg"></output>
+    </div>
+
+    <div class="request-msg-error">
+        <output class="alert alert-danger" role="alert" id="confirm-question-error" name="request-msg"></output>
+    </div>
+</div>
+<script>
+    //ToDo
+    $("#description").keypress(function (event) {
+        if (event.keyCode === 13) {
+            $("#id").click();
+        }
+    });
+
+</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
         crossorigin="anonymous"></script>

@@ -1,6 +1,5 @@
 package com.ProjektInzynierski.BackEnd.util;
 
-import com.ProjektInzynierski.BackEnd.data.entity.Survey;
 import com.ProjektInzynierski.BackEnd.enums.LoginMsg;
 import org.springframework.stereotype.Component;
 

@@ -1,4 +1,6 @@
-function register() {
+function register(buttonId) {
+    buttonId.disabled = true;
+
     var xhr = new XMLHttpRequest();
 
     registerResult(xhr);
@@ -44,7 +46,9 @@ function registerResult(xhr) {
     };
 }
 
-function login() {
+function login(buttonId) {
+    buttonId.disabled = true;
+
     var xhr = new XMLHttpRequest();
 
     loginResult(xhr);
@@ -158,7 +162,8 @@ function redirectToProfile() {
     }, 1000);
 }
 
-function resetPassword() {
+function resetPassword(buttonId) {
+    buttonId.disabled = true;
 
     var xhr = new XMLHttpRequest();
 

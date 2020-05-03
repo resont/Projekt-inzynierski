@@ -9,9 +9,6 @@ public class LoggerController {
 
     private static final Logger logger = LogManager.getLogger(LoggerController.class);
 
-    private LoggerController() {
-    }
-
     public static Logger getInstance() {
         return logger;
     }

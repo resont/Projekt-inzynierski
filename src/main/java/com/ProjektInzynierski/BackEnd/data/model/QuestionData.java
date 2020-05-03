@@ -1,0 +1,17 @@
+package com.ProjektInzynierski.BackEnd.data.model;
+
+import lombok.Getter;
+import lombok.Setter;
+
+import java.util.List;
+
+@Setter
+@Getter
+public class QuestionData {
+
+    int type;
+
+    String question;
+
+    List<String> answers;
+}

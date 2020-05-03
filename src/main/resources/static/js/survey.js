@@ -15,7 +15,7 @@ function showSurvey() {
             body = iterateJSON(obj);
             body = body.substring(0, body.length - 24);
             body += "<button id=\"back\" class=\"btn btn-dark mt-2\" onclick=\"instantRedirectToProfile()\">Back</button>";
-            body += "<button id=\"send\" class=\"btn btn-dark mt-2\" onclick=\"sendSurvey()\">Send</button>";
+            body += "<button id=\"send\" class=\"btn btn-dark mt-2\" onclick=\"sendSurvey(send)\">Send</button>";
             body += "<div class=\"request-msg-success mt-2\">\n" +
                 "                <output class=\"alert alert-success\" role=\"alert\" id=\"msg-success\" name=\"request-msg\"></output>\n" +
                 "            </div>\n" +
@@ -76,8 +76,8 @@ function iterateJSON(json) {
             }
 
         } else if (buttonType === 1) {
-            textInputs.push({"questionID":questionID.toString(),"answer":""});
-            body += "<input type='text' id='textInput"+questionID+"' name='" + questionID + "' class='form-control mr-4' placeholder='Answer' style='max-width:96%;'>";
+            textInputs.push({"questionID": questionID.toString(), "answer": ""});
+            body += "<input type='text' id='textInput" + questionID + "' name='" + questionID + "' class='form-control mr-4' placeholder='Answer' style='max-width:96%;'>";
             buttonType = 0;
         } else {
             if (i === "answer") {
@@ -109,7 +109,7 @@ function iterateJSON(json) {
     return body;
 }
 
-function sendSurvey() {
+function sendSurvey(buttonId) {
 
     var checked = [];
     for (var i in questionIDArray) {
@@ -121,15 +121,15 @@ function sendSurvey() {
         }
     }
     var idKey;
-    for (var i = 0; i < textInputs.length; i++){
+    for (var i = 0; i < textInputs.length; i++) {
         var obj = textInputs[i];
-        for (var key in obj){
+        for (var key in obj) {
             var attrName = key;
-            if(key === "questionID"){
+            if (key === "questionID") {
                 idKey = obj[key];
             }
-            if(key === "answer"){
-                obj[key] = document.getElementById("textInput"+idKey).value;
+            if (key === "answer") {
+                obj[key] = document.getElementById("textInput" + idKey).value;
             }
 
         }
@@ -148,7 +148,7 @@ function sendSurvey() {
     }
 
     for (var id in checked) {
-
+        buttonId.disabled = true;
         var xhr = new XMLHttpRequest();
         sendResult(xhr, responseError, responseSuccess);
         xhr.open('POST', 'http://localhost:8080/answer/' + checked[id], false);

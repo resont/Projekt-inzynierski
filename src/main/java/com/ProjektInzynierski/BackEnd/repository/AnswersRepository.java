@@ -10,6 +10,7 @@ import javax.transaction.Transactional;
 
 @Repository
 public interface AnswersRepository extends JpaRepository<Answers, Integer> {
+
     @Transactional
     @Modifying
     @Query("UPDATE Answers a SET a.question.id=:id WHERE a.id =:aId")

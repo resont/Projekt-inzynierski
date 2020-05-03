@@ -1,13 +1,13 @@
 package com.ProjektInzynierski.BackEnd.controller;
 
 import com.ProjektInzynierski.BackEnd.data.entity.Answers;
-import com.ProjektInzynierski.BackEnd.data.entity.Questions;
 import com.ProjektInzynierski.BackEnd.data.entity.Survey;
-import com.ProjektInzynierski.BackEnd.data.entity.SurveyToUser;
+import com.ProjektInzynierski.BackEnd.data.model.SurveyDetailsData;
+import com.ProjektInzynierski.BackEnd.processors.creator.CreatorProcessor;
 import com.ProjektInzynierski.BackEnd.repository.AnswersRepository;
 import com.ProjektInzynierski.BackEnd.repository.SurveyRepository;
-import com.ProjektInzynierski.BackEnd.repository.UsersRepository;
 import com.ProjektInzynierski.BackEnd.util.ResultMap;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,13 +28,21 @@ import java.util.Map;
 @RestController
 public class SurveyController {
 
+    private Logger logger = LoggerController.getInstance();
+
     private ResultMap resultMap = new ResultMap();
+
+    private CreatorProcessor creatorProcessor;
 
     @Autowired
     private SurveyRepository surveyRepository;
 
     @Autowired
     private AnswersRepository answersRepository;
+
+    public SurveyController(CreatorProcessor creatorProcessor) {
+        this.creatorProcessor = creatorProcessor;
+    }
 
     @GetMapping("/status")
     public ResponseEntity<String> status() {
@@ -82,7 +90,7 @@ public class SurveyController {
     }
 
     @PostMapping("/answer/{id}")
-    Map<String, String> update(@PathVariable("id") String id){
+    Map<String, String> update(@PathVariable("id") String id) {
         int answerId = Integer.parseInt(id);
         this.surveyRepository.updateCount(answerId);
         return resultMap.createSuccessMap("Survey send!");
@@ -95,7 +103,7 @@ public class SurveyController {
 
     @PostMapping("/con_us_su")
     Map<String, String> updateAnswer(@RequestBody Map<String, String> body) {
-        int id = this.surveyRepository.findIdByUuidAndSurveyId(body.get("token"),Integer.parseInt(body.get("surveyId")));
+        int id = this.surveyRepository.findIdByUuidAndSurveyId(body.get("token"), Integer.parseInt(body.get("surveyId")));
         this.surveyRepository.updateAnswer(id);
         return resultMap.createSuccessMap("Survey answered.");
     }
@@ -106,8 +114,15 @@ public class SurveyController {
         answers.setAnswer(body.get("answer"));
         Answers answer = this.answersRepository.save(answers);
         String questionId = body.get("questionID");
-        this.answersRepository.updateAnswer(Integer.valueOf(questionId),answer.getId());
+        this.answersRepository.updateAnswer(Integer.valueOf(questionId), answer.getId());
         return resultMap.createSuccessMap("Survey answered.");
+    }
+
+    @PostMapping("/surveyCreator")
+    Map<String, String> createSurvey(@RequestBody SurveyDetailsData body) {
+        if (body != null) {
+            return creatorProcessor.process(body);
+        } else return resultMap.createNullBodyErrorMap();
     }
 
 }

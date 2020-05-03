@@ -5,6 +5,7 @@ import com.ProjektInzynierski.BackEnd.data.entity.UserEntity;
 import com.ProjektInzynierski.BackEnd.data.model.UserData;
 import com.ProjektInzynierski.BackEnd.enums.LoginMsg;
 import com.ProjektInzynierski.BackEnd.enums.PasswordResetMsg;
+import com.ProjektInzynierski.BackEnd.processors.ProcessInterface;
 import com.ProjektInzynierski.BackEnd.processors.validation.LoginValidationChain;
 import com.ProjektInzynierski.BackEnd.processors.validation.PasswordsArePresentValidation;
 import com.ProjektInzynierski.BackEnd.repository.UsersRepository;
@@ -17,7 +18,7 @@ import java.util.Map;
 import java.util.UUID;
 
 @Component
-public class LoginProcessor {
+public class LoginProcessor extends ProcessInterface {
 
     private final UsersRepository usersRepository;
 
@@ -29,6 +30,7 @@ public class LoginProcessor {
         this.usersRepository = usersRepository;
     }
 
+    @Override
     public Map<String, String> process(Map<String, String> body) {
 
         logger.info("Start of login validation.");

@@ -3,6 +3,7 @@ package com.ProjektInzynierski.BackEnd.processors.login;
 import com.ProjektInzynierski.BackEnd.controller.LoggerController;
 import com.ProjektInzynierski.BackEnd.data.model.UserData;
 import com.ProjektInzynierski.BackEnd.enums.LogoutMsg;
+import com.ProjektInzynierski.BackEnd.processors.ProcessInterface;
 import com.ProjektInzynierski.BackEnd.processors.validation.LoginValidationChain;
 import com.ProjektInzynierski.BackEnd.repository.UsersRepository;
 import com.ProjektInzynierski.BackEnd.util.CurrentDateProvider;
@@ -13,7 +14,7 @@ import org.springframework.stereotype.Component;
 import java.util.Map;
 
 @Component
-public class LogoutProcessor {
+public class LogoutProcessor extends ProcessInterface {
 
     private final UsersRepository usersRepository;
 
@@ -25,6 +26,7 @@ public class LogoutProcessor {
         this.usersRepository = usersRepository;
     }
 
+    @Override
     public Map<String, String> process(Map<String, String> body) {
 
         logger.info("Start of logout validation.");

@@ -7,9 +7,12 @@ import com.ProjektInzynierski.BackEnd.data.entity.Survey;
 import com.ProjektInzynierski.BackEnd.data.model.QuestionData;
 import com.ProjektInzynierski.BackEnd.data.model.SurveyDetailsData;
 import com.ProjektInzynierski.BackEnd.enums.LoginMsg;
+import com.ProjektInzynierski.BackEnd.processors.ProcessInterface;
 import com.ProjektInzynierski.BackEnd.repository.AnswersRepository;
 import com.ProjektInzynierski.BackEnd.repository.QuestionRepository;
 import com.ProjektInzynierski.BackEnd.repository.SurveyRepository;
+import com.ProjektInzynierski.BackEnd.util.AnswerRep;
+import com.ProjektInzynierski.BackEnd.util.Iterator;
 import com.ProjektInzynierski.BackEnd.util.ResultMap;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Component;
@@ -17,7 +20,7 @@ import org.springframework.stereotype.Component;
 import java.util.Map;
 
 @Component
-public class CreatorProcessor {
+public class CreatorProcessor extends ProcessInterface {
 
     private Logger logger = LoggerController.getInstance();
 
@@ -35,6 +38,7 @@ public class CreatorProcessor {
         this.answersRepository = answersRepository;
     }
 
+    @Override
     public Map<String, String> process(SurveyDetailsData surveyDetailsData) {
 
         logger.info("Start of creation process.");
@@ -47,12 +51,17 @@ public class CreatorProcessor {
                 questions.setSurvey(survey);
                 Questions question = questionRepository.save(questions);
                 if (element.getAnswers() != null) {
-                    for (String string : element.getAnswers()) {
+
+                    AnswerRep answers = new AnswerRep();
+                    answers.setAnswers(element.getAnswers());
+
+                    for (Iterator iter = answers.getIterator(); iter.hasNext();) {
+                        String string = (String)iter.next();
                         if (!string.equals("") && !string.equals(" ")) {
-                            Answers answers = new Answers();
-                            answers.setAnswer(string);
-                            answers.setQuestion(question);
-                            answersRepository.save(answers);
+                            Answers answersObj = new Answers();
+                            answersObj.setAnswer(string);
+                            answersObj.setQuestion(question);
+                            answersRepository.save(answersObj);
                         }
                     }
                 }

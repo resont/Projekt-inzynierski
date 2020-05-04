@@ -37,4 +37,7 @@ public interface SurveyRepository extends JpaRepository<Survey, Integer> {
 
     @Query("SELECT s.id FROM SurveyToUser s WHERE s.userId.uuid=:uuid AND s.surveyId.id=:surveyId")
     int findIdByUuidAndSurveyId(String uuid, int surveyId);
+
+    @Query("SELECT s FROM Survey s WHERE s.id<>:id")
+    Survey findSurveyForUser(int id);
 }

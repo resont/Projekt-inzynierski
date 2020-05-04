@@ -112,7 +112,7 @@ CREATE TABLE [dbo].[Conn_us_su](
 	[con_id] [int] IDENTITY(1,1) NOT NULL,
 	[con_u_id] [int] NULL,
 	[con_s_id] [int] NULL,
-	[con_answer] [bit] NULL
+	[con_answer] [bit] DEFAULT 0 NOT NULL
 ) ON [PRIMARY]
 GO
 /****** Object:  Table [dbo].[Question_type]    Script Date: 17.04.2020 23:47:49 ******/

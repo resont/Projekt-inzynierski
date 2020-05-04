@@ -38,4 +38,10 @@ public interface UsersRepository extends JpaRepository<UserEntity, Integer> {
             "SET u.password=:newPassword \n" +
             "WHERE u.password=:oldPassword AND u.uuid=:uuid")
     void setNewPassword(String oldPassword, String newPassword, String uuid);
+
+    @Transactional
+    @Modifying
+    @Query("UPDATE UserEntity u SET u.group=:group WHERE u.id=:id")
+    void setAdmin(int id, String group);
+
 }

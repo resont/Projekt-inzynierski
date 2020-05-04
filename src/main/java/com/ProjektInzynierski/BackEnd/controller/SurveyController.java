@@ -2,10 +2,14 @@ package com.ProjektInzynierski.BackEnd.controller;
 
 import com.ProjektInzynierski.BackEnd.data.entity.Answers;
 import com.ProjektInzynierski.BackEnd.data.entity.Survey;
+import com.ProjektInzynierski.BackEnd.data.entity.SurveyToUser;
+import com.ProjektInzynierski.BackEnd.data.entity.UserEntity;
 import com.ProjektInzynierski.BackEnd.data.model.SurveyDetailsData;
 import com.ProjektInzynierski.BackEnd.processors.creator.CreatorProcessor;
 import com.ProjektInzynierski.BackEnd.repository.AnswersRepository;
 import com.ProjektInzynierski.BackEnd.repository.SurveyRepository;
+import com.ProjektInzynierski.BackEnd.repository.SurveyToUserRepository;
+import com.ProjektInzynierski.BackEnd.repository.UsersRepository;
 import com.ProjektInzynierski.BackEnd.util.ResultMap;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +25,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 @CrossOrigin
 @RestController
@@ -39,6 +45,12 @@ public class SurveyController {
 
     @Autowired
     private AnswersRepository answersRepository;
+
+    @Autowired
+    private UsersRepository usersRepository;
+
+    @Autowired
+    private SurveyToUserRepository surveyToUserRepository;
 
     public SurveyController(CreatorProcessor creatorProcessor) {
         this.creatorProcessor = creatorProcessor;
@@ -124,5 +136,38 @@ public class SurveyController {
             return creatorProcessor.process(body);
         } else return resultMap.createNullBodyErrorMap();
     }
+
+    @GetMapping("/users/all")
+    List<UserEntity> getAllUsersFromDatabase() {
+        return this.usersRepository.findAll();
+    }
+
+//    @GetMapping("/unansweredSurveys/{id}")
+//    Set<Survey> getAllUnasweredSurveys(@PathVariable("id") String id){
+//        int[] ids = this.surveyToUserRepository.findAllAnsweredSurveys(Integer.parseInt(id));
+//        Set<Survey> surveys = new HashSet<>();
+//        for(int i: ids){
+//            surveys.add(this.surveyRepository.findSurveyForUser(i));
+//        }
+//        return surveys;
+//    }
+
+    @PostMapping("/admin")
+    Map<String, String> setAdmin(@RequestBody Map<String, String> body) {
+        this.usersRepository.setAdmin(Integer.parseInt(body.get("id")),body.get("group"));
+        return resultMap.createSuccessMap("Group updated.");
+    }
+
+    @PostMapping("/surveyToUser")
+    Map<String, String> setSurveyToUser(@RequestBody Map<String, String> body){
+        SurveyToUser surveyToUser = new SurveyToUser();
+        surveyToUser.setSurveyAnswer(false);
+        SurveyToUser surveyToUser1 = this.surveyToUserRepository.save(surveyToUser);
+        int uId = Integer.parseInt(body.get("uId"));
+        int sId = Integer.parseInt(body.get("sId"));
+        this.surveyToUserRepository.addSurveyToUser(uId,sId,surveyToUser1.getId());
+        return resultMap.createSuccessMap("Survey add to user.");
+    }
+
 
 }

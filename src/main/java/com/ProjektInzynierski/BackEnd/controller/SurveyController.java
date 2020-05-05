@@ -12,7 +12,6 @@ import com.ProjektInzynierski.BackEnd.repository.SurveyToUserRepository;
 import com.ProjektInzynierski.BackEnd.repository.UsersRepository;
 import com.ProjektInzynierski.BackEnd.util.ResultMap;
 import org.apache.logging.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -25,10 +24,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 @CrossOrigin
 @RestController
@@ -40,20 +37,24 @@ public class SurveyController {
 
     private CreatorProcessor creatorProcessor;
 
-    @Autowired
-    private SurveyRepository surveyRepository;
+    private final SurveyRepository surveyRepository;
 
-    @Autowired
-    private AnswersRepository answersRepository;
+    private final AnswersRepository answersRepository;
 
-    @Autowired
-    private UsersRepository usersRepository;
+    private final UsersRepository usersRepository;
 
-    @Autowired
-    private SurveyToUserRepository surveyToUserRepository;
+    private final SurveyToUserRepository surveyToUserRepository;
 
-    public SurveyController(CreatorProcessor creatorProcessor) {
+    public SurveyController(CreatorProcessor creatorProcessor,
+                            SurveyRepository surveyRepository,
+                            AnswersRepository answersRepository,
+                            UsersRepository usersRepository,
+                            SurveyToUserRepository surveyToUserRepository) {
         this.creatorProcessor = creatorProcessor;
+        this.surveyRepository = surveyRepository;
+        this.answersRepository = answersRepository;
+        this.usersRepository = usersRepository;
+        this.surveyToUserRepository = surveyToUserRepository;
     }
 
     @GetMapping("/status")
@@ -154,18 +155,18 @@ public class SurveyController {
 
     @PostMapping("/admin")
     Map<String, String> setAdmin(@RequestBody Map<String, String> body) {
-        this.usersRepository.setAdmin(Integer.parseInt(body.get("id")),body.get("group"));
+        this.usersRepository.setAdmin(Integer.parseInt(body.get("id")), body.get("group"));
         return resultMap.createSuccessMap("Group updated.");
     }
 
     @PostMapping("/surveyToUser")
-    Map<String, String> setSurveyToUser(@RequestBody Map<String, String> body){
+    Map<String, String> setSurveyToUser(@RequestBody Map<String, String> body) {
         SurveyToUser surveyToUser = new SurveyToUser();
         surveyToUser.setSurveyAnswer(false);
         SurveyToUser surveyToUser1 = this.surveyToUserRepository.save(surveyToUser);
         int uId = Integer.parseInt(body.get("uId"));
         int sId = Integer.parseInt(body.get("sId"));
-        this.surveyToUserRepository.addSurveyToUser(uId,sId,surveyToUser1.getId());
+        this.surveyToUserRepository.addSurveyToUser(uId, sId, surveyToUser1.getId());
         return resultMap.createSuccessMap("Survey add to user.");
     }
 

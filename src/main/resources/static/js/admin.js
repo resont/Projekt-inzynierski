@@ -12,7 +12,7 @@ function showUsers() {
         if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
             var json = JSON.parse(xhr.responseText);
 
-            body += "<table class=\"table\">\n" +
+            var body = "<table class=\"table\">\n" +
                 "  <thead class = \"thead-dark\">\n" +
                 "    <tr>\n" +
                 "      <th scope=\"col\">#</th>\n" +

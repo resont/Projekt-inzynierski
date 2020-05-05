@@ -21,6 +21,8 @@ import java.util.UUID;
 @Component
 public class LoginProcessor extends ProcessInterface {
 
+    private static final String ERROR = "error";
+
     private final UsersRepository usersRepository;
 
     private Logger logger = LoggerController.getInstance();
@@ -34,9 +36,11 @@ public class LoginProcessor extends ProcessInterface {
     @Override
     public Map<String, String> process(Map<String, String> body) {
 
+        Map<String, String> result;
+
         logger.info("Start of login validation.");
         body = LoginValidationChain.getValidationChainProcessor().process(body);
-        if (body.get("error") != null) {
+        if (body.get(ERROR) != null) {
             logger.error("Error while login validating.");
             return body;
         }
@@ -50,13 +54,22 @@ public class LoginProcessor extends ProcessInterface {
 
             UUID uuid = UUID.randomUUID();
             usersRepository.setUuidAndValidToWithPassword(userEntity.getEmail(), userEntity.getPassword(), uuid.toString(), CurrentDateProvider.getCurrentDate());
-            logger.info("Authentication successful.");
-            return resultMap.createSuccessMap(uuid.toString());
+            result = resultMap.createSuccessMap(uuid.toString());
         } catch (Exception e) {
-            logger.error("Authentication went wrong.");
-            return resultMap.createErrorMap(LoginMsg.WRONG_EMAIL_OR_PASSWORD.getErrorMsg());
+            result = resultMap.createErrorMap(LoginMsg.WRONG_EMAIL_OR_PASSWORD.getErrorMsg());
         }
 
+        checkIfError(result);
+
+        return result;
+    }
+
+    private void checkIfError(Map<String, String> result) {
+        if (result.get(ERROR) != null) {
+            logger.error("Authentication went wrong.");
+        } else {
+            logger.info("Authentication successful.");
+        }
     }
 
     public Map<String, String> resetPassword(Map<String, String> body) {

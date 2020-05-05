@@ -1,11 +1,12 @@
 window.onload = function () {
     showUsers();
+    showLogoutAndProfile();
 };
 
 const tab = [];
 
 function showUsers() {
-    var body = "";
+
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
         if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
@@ -17,7 +18,7 @@ function showUsers() {
                 "      <th scope=\"col\">#</th>\n" +
                 "      <th scope=\"col\">Email</th>\n" +
                 "      <th scope=\"col\">Survey</th>\n" +
-                "      <th align=\"center\" scope=\"col\">Admin</th>\n" +
+                "      <th scope=\"col\">Admin</th>\n" +
                 "      <th scope=\"col\">Send</th>\n" +
                 "    </tr>\n" +
                 "  </thead><tbody>";
@@ -27,26 +28,18 @@ function showUsers() {
                 body += "<tr>\n" +
                     "<th scope=\"row\">" + iter + "</th>";
                 var obj = json[i];
-                for (var key in obj) {
-                    if (key === "id") {
-                        var id = obj[key];
-                    }
-                    if (key === "email") {
-                        body += "<td>" + obj[key] + "</td><td>";
-                        body += getAllSurveys(i);
-                        body += "</td>";
-                        body += "<td><div class=\"form-check d-flex justify-content-center\">\n" +
-                            "  <input id='input" + i + "' class=\"form-check-input\" type=\"checkbox\" value=\"\">\n" +
-                            "</div></td>";
-                        body += "<td><button id=\"send\" class=\"btn btn-dark\" onclick=\"sendForm(" + i + "," + id + ")\">Update</button></td>";
-                    }
-
-                    if (key === "group") {
-                        if (obj[key] === "admin") {
-                            tab.push(i);
-                        }
-                    }
+                body += "<td>" + obj["email"] + "</td><td>";
+                body += getAllSurveys(i);
+                body += "</td>";
+                body += "<td><div class=\"form-check d-flex justify-content-center\">";
+                if (obj["group"] === "admin") {
+                    body += "<input id='input" + i + "' class=\"form-check-input\" type=\"checkbox\" value=\"\" checked>";
+                } else {
+                    body += "<input id='input" + i + "' class=\"form-check-input\" type=\"checkbox\" value=\"\">";
                 }
+                body += "</div></td>";
+                body += "<td><button id=\"send\" class=\"btn btn-dark\" onclick=\"sendForm(" + i + "," + obj["id"] + ")\">Update</button></td>";
+
                 body += "</tr>";
 
             }
@@ -64,7 +57,6 @@ function showUsers() {
 }
 
 function getAllSurveys(i) {
-
     var body = "";
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
@@ -81,7 +73,6 @@ function getAllSurveys(i) {
     };
     xhr.open('GET', 'http://localhost:8080/survey/all', false);
     xhr.send(null);
-
     return body;
 }
 
@@ -131,9 +122,4 @@ function redirectToAdminPanel() {
     window.setTimeout(function () {
         location.href = "admin.html";
     }, 1000);
-}
-
-function changeCheckbox(i) {
-    console.log(document.getElementById("input" + i));
-    document.getElementById("input" + i).checked = true;
 }

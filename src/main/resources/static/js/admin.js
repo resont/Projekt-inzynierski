@@ -3,10 +3,7 @@ window.onload = function () {
     showLogoutAndProfile();
 };
 
-const tab = [];
-
 function showUsers() {
-
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
         if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
@@ -50,10 +47,6 @@ function showUsers() {
     };
     xhr.open('GET', 'http://localhost:8080/users/all', false);
     xhr.send(null);
-
-    for (var j = 0; j < tab.length; j++) {
-        changeCheckbox(tab[j]);
-    }
 }
 
 function getAllSurveys(i) {
@@ -77,7 +70,6 @@ function getAllSurveys(i) {
 }
 
 function sendForm(i, id) {
-
     var surveyId = $("#sel" + i).children("option:selected").val();
 
     if (surveyId !== "") {
@@ -92,7 +84,6 @@ function sendForm(i, id) {
     }
     var body = '{"id":"' + id + '", "group":"' + group + '"}';
     updateAdmin(body);
-
 }
 
 function updateAdmin(body) {

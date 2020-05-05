@@ -18,6 +18,8 @@ public interface UsersRepository extends JpaRepository<UserEntity, Integer> {
 
     UserEntity findByUuidAndPassword(String token, String password);
 
+    UserEntity findByUuid(String uuid);
+
     @Transactional
     @Modifying
     @Query("UPDATE UserEntity u\n" +

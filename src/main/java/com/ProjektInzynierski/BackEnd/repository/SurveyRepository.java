@@ -30,6 +30,9 @@ public interface SurveyRepository extends JpaRepository<Survey, Integer> {
     @Query("SELECT con_u_s.surveyId.id FROM SurveyToUser con_u_s WHERE con_u_s.userId.uuid=:uuid AND con_u_s.surveyAnswer = FALSE")
     int[] findSurveysByUserUuid(String uuid);
 
+    @Query("SELECT con_u_s.surveyId.id FROM SurveyToUser con_u_s WHERE con_u_s.userId.uuid=:uuid AND con_u_s.surveyAnswer = TRUE")
+    int[] findAnsweredSurveysByUserUuid(String uuid);
+
     @Transactional
     @Modifying
     @Query("UPDATE SurveyToUser con_u_s SET con_u_s.surveyAnswer = TRUE WHERE con_u_s.id=:id")

@@ -114,6 +114,11 @@ public class SurveyController {
         return this.surveyRepository.findSurveysByUserUuid(uuid);
     }
 
+    @GetMapping("/answered/{uuid}")
+    int[] showConAns(@PathVariable("uuid") String uuid) {
+        return this.surveyRepository.findAnsweredSurveysByUserUuid(uuid);
+    }
+
     @PostMapping("/con_us_su")
     Map<String, String> updateAnswer(@RequestBody Map<String, String> body) {
         int id = this.surveyRepository.findIdByUuidAndSurveyId(body.get("token"), Integer.parseInt(body.get("surveyId")));
@@ -141,6 +146,11 @@ public class SurveyController {
     @GetMapping("/users/all")
     List<UserEntity> getAllUsersFromDatabase() {
         return this.usersRepository.findAll();
+    }
+
+    @GetMapping("/users/{uuid}")
+    UserEntity getUser(@PathVariable("uuid") String uuid) {
+        return this.usersRepository.findByUuid(uuid);
     }
 
 //    @GetMapping("/unansweredSurveys/{id}")

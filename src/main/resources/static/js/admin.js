@@ -35,7 +35,7 @@ function showUsers() {
                     body += "<input id='input" + i + "' class=\"form-check-input\" type=\"checkbox\" value=\"\">";
                 }
                 body += "</div></td>";
-                body += "<td><button id=\"send\" class=\"btn btn-dark\" onclick=\"sendForm(" + i + "," + obj["id"] + ")\">Update</button></td>";
+                body += "<td><button id=\"send\" class=\"btn btn-dark btn-block\" onclick=\"sendForm(" + i + "," + obj["id"] + ")\">Update</button></td>";
 
                 body += "</tr>";
 

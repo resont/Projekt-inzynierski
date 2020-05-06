@@ -15,22 +15,24 @@ function showAvailableSurveys() {
         if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
             var surveyIds = xhr.responseText.substring(1, xhr.responseText.length - 1);
             surveyIds = surveyIds.split(',').map(x => +x);
-            var html = "<div class=\"main-panel border rounded p-4\">";
-            for (var i in surveyIds) {
-                getTitleAndDescription(surveyIds[i]);
-                var topic = json.topic;
-                var description = json.description;
+            if (surveyIds[0] !== 0) {
+                var html = "<div class=\"main-panel border rounded p-4\">";
+                for (var i in surveyIds) {
+                    getTitleAndDescription(surveyIds[i]);
+                    var topic = json.topic;
+                    var description = json.description;
 
-                html += "<div class=\"card mr-2 mb-2\" style=\"width: 18.2rem; float: left;\">\n" +
-                    "  <div class=\"card-body\">\n" +
-                    "    <h5 class=\"card-title\">" + topic + "</h5>\n" +
-                    "    <p class=\"card-text\">" + description + "</p>\n" +
-                    "    <button class=\"btn btn-dark\" onclick='goToSurvey(" + surveyIds[i] + ")'>Open survey</button>\n" +
-                    "  </div>\n" +
-                    "</div>";
+                    html += "<div class=\"card mr-2 mb-2\" style=\"width: 18.2rem; float: left;\">\n" +
+                        "  <div class=\"card-body\">\n" +
+                        "    <h5 class=\"card-title\">" + topic + "</h5>\n" +
+                        "    <p class=\"card-text\">" + description + "</p>\n" +
+                        "    <button class=\"btn btn-dark\" onclick='goToSurvey(" + surveyIds[i] + ")'>Open survey</button>\n" +
+                        "  </div>\n" +
+                        "</div>";
+                }
+                html += "</div>";
+                $("body").append(html);
             }
-            html += "</div>";
-            $("body").append(html);
 
         }
     };
@@ -52,6 +54,7 @@ function getTitleAndDescription(id) {
     xhr.onreadystatechange = function () {
         if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
             json = JSON.parse(xhr.responseText);
+
         }
     };
     xhr.open('GET', 'http://localhost:8080/survey/' + id, false);
@@ -79,7 +82,7 @@ function getUser() {
 function redirectToAdminPanel() {
     window.setTimeout(function () {
         location.href = "admin.html";
-    }, );
+    },);
 }
 
 function showUnavailableSurveys() {
@@ -91,23 +94,24 @@ function showUnavailableSurveys() {
         if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
             var surveyIds = xhr.responseText.substring(1, xhr.responseText.length - 1);
             surveyIds = surveyIds.split(',').map(x => +x);
-            var html = "<div class=\"main-panel border rounded p-4\">";
-            for (var i in surveyIds) {
-                getTitleAndDescription(surveyIds[i]);
-                var topic = json.topic;
-                var description = json.description;
+            if (surveyIds[0] !== 0) {
+                var html = "<div class=\"main-panel border rounded p-4\">";
+                for (var i in surveyIds) {
+                    getTitleAndDescription(surveyIds[i]);
+                    var topic = json.topic;
+                    var description = json.description;
 
-                html += "<div class=\"card mr-2 mb-2 text-muted\" style=\"width: 18.2rem; float: left;\">\n" +
-                    "  <div class=\"card-body\">\n" +
-                    "    <h5 class=\"card-title\">" + topic + "</h5>\n" +
-                    "    <p class=\"card-text\">" + description + "</p>\n" +
-                    "    <button class=\"btn btn-dark\" onclick='goToSurvey(" + surveyIds[i] + ")' disabled>Answered</button>\n" +
-                    "  </div>\n" +
-                    "</div>";
+                    html += "<div class=\"card mr-2 mb-2 text-muted\" style=\"width: 18.2rem; float: left;\">\n" +
+                        "  <div class=\"card-body\">\n" +
+                        "    <h5 class=\"card-title\">" + topic + "</h5>\n" +
+                        "    <p class=\"card-text\">" + description + "</p>\n" +
+                        "    <button class=\"btn btn-dark\" onclick='goToSurvey(" + surveyIds[i] + ")' disabled>Answered</button>\n" +
+                        "  </div>\n" +
+                        "</div>";
+                }
+                html += "</div>";
+                $("body").append(html);
             }
-            html += "</div>";
-            $("body").append(html);
-
         }
     };
 

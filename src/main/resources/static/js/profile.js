@@ -101,7 +101,7 @@ function showUnavailableSurveys() {
                     "  <div class=\"card-body\">\n" +
                     "    <h5 class=\"card-title\">" + topic + "</h5>\n" +
                     "    <p class=\"card-text\">" + description + "</p>\n" +
-                    "    <button class=\"btn btn-dark\" onclick='goToSurvey(" + surveyIds[i] + ")' disabled>Open survey</button>\n" +
+                    "    <button class=\"btn btn-dark\" onclick='goToSurvey(" + surveyIds[i] + ")' disabled>Answered</button>\n" +
                     "  </div>\n" +
                     "</div>";
             }

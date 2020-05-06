@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -149,8 +150,12 @@ public class SurveyController {
     }
 
     @GetMapping("/users/{uuid}")
-    UserEntity getUser(@PathVariable("uuid") String uuid) {
-        return this.usersRepository.findByUuid(uuid);
+    Map<String, String> getUser(@PathVariable("uuid") String uuid) {
+        Map<String,String> user = new HashMap();
+        UserEntity userEntity = this.usersRepository.findByUuid(uuid);
+        user.put("email",userEntity.getEmail());
+        user.put("group",userEntity.getGroup());
+        return user;
     }
 
 //    @GetMapping("/unansweredSurveys/{id}")

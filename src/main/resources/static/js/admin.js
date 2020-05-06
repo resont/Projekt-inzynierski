@@ -30,7 +30,12 @@ function showUsers() {
                 body += "</td>";
                 body += "<td><div class=\"form-check d-flex justify-content-center\">";
                 if (obj["group"] === "admin") {
-                    body += "<input id='input" + i + "' class=\"form-check-input\" type=\"checkbox\" value=\"\" checked>";
+                    if(obj["uuid"] === $.cookie("token")){
+                        body += "<input id='input" + i + "' class=\"form-check-input\" type=\"checkbox\" value=\"\" checked disabled>";
+                    }else{
+                        body += "<input id='input" + i + "' class=\"form-check-input\" type=\"checkbox\" value=\"\" checked>";
+                    }
+
                 } else {
                     body += "<input id='input" + i + "' class=\"form-check-input\" type=\"checkbox\" value=\"\">";
                 }

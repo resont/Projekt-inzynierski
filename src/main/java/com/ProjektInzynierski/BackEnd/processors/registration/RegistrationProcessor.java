@@ -20,8 +20,6 @@ public class RegistrationProcessor {
 
     private Logger logger = LoggerController.getInstance();
 
-    private ResultMap resultMap = new ResultMap();
-
     RegistrationProcessor(UsersRepository usersRepository) {
         this.usersRepository = usersRepository;
     }
@@ -43,6 +41,6 @@ public class RegistrationProcessor {
 
         UserEntity userEntityResult = usersRepository.save(userEntity);
 
-        return resultMap.createRegistrationSuccessMap(RegistrationMsg.REGISTRY_SUCCESSFUL.getErrorMsg(), userEntityResult.getEmail());
+        return ResultMap.createRegistrationSuccessMap(RegistrationMsg.REGISTRY_SUCCESSFUL.getErrorMsg(), userEntityResult.getEmail());
     }
 }

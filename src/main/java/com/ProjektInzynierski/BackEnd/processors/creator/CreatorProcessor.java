@@ -24,8 +24,6 @@ public class CreatorProcessor extends ProcessInterface {
 
     private Logger logger = LoggerController.getInstance();
 
-    private ResultMap resultMap = new ResultMap();
-
     private final SurveyRepository surveyRepository;
 
     private final QuestionRepository questionRepository;
@@ -70,10 +68,10 @@ public class CreatorProcessor extends ProcessInterface {
                 }
             }
             logger.info("Creation successful.");
-            return resultMap.createSuccessMap("Pomyślnie dodano ankietę.");
+            return ResultMap.createSuccessMap("Pomyślnie dodano ankietę.");
         } catch (Exception e) {
             logger.error("Creation went wrong.");
-            return resultMap.createErrorMap(LoginMsg.WRONG_EMAIL_OR_PASSWORD.getErrorMsg());
+            return ResultMap.createErrorMap(LoginMsg.WRONG_EMAIL_OR_PASSWORD.getErrorMsg());
         }
     }
 

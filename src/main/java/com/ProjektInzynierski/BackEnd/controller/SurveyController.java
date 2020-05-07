@@ -2,8 +2,6 @@ package com.ProjektInzynierski.BackEnd.controller;
 
 import com.ProjektInzynierski.BackEnd.data.entity.Answers;
 import com.ProjektInzynierski.BackEnd.data.entity.Survey;
-import com.ProjektInzynierski.BackEnd.data.entity.SurveyToUser;
-import com.ProjektInzynierski.BackEnd.data.entity.UserEntity;
 import com.ProjektInzynierski.BackEnd.data.model.SurveyDetailsData;
 import com.ProjektInzynierski.BackEnd.processors.creator.CreatorProcessor;
 import com.ProjektInzynierski.BackEnd.repository.AnswersRepository;
@@ -11,7 +9,6 @@ import com.ProjektInzynierski.BackEnd.repository.SurveyRepository;
 import com.ProjektInzynierski.BackEnd.repository.SurveyToUserRepository;
 import com.ProjektInzynierski.BackEnd.repository.UsersRepository;
 import com.ProjektInzynierski.BackEnd.util.ResultMap;
-import org.apache.logging.log4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -24,17 +21,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 @CrossOrigin
 @RestController
 public class SurveyController {
-
-    private Logger logger = LoggerController.getInstance();
-
-    private ResultMap resultMap = new ResultMap();
 
     private CreatorProcessor creatorProcessor;
 
@@ -107,7 +99,7 @@ public class SurveyController {
     Map<String, String> update(@PathVariable("id") String id) {
         int answerId = Integer.parseInt(id);
         this.surveyRepository.updateCount(answerId);
-        return resultMap.createSuccessMap("Survey send!");
+        return ResultMap.createSuccessMap("Survey send!");
     }
 
     @GetMapping("/con_us_su/{uuid}")
@@ -124,7 +116,7 @@ public class SurveyController {
     Map<String, String> updateAnswer(@RequestBody Map<String, String> body) {
         int id = this.surveyRepository.findIdByUuidAndSurveyId(body.get("token"), Integer.parseInt(body.get("surveyId")));
         this.surveyRepository.updateAnswer(id);
-        return resultMap.createSuccessMap("Survey answered.");
+        return ResultMap.createSuccessMap("Survey answered.");
     }
 
     @PostMapping("/answer")
@@ -134,28 +126,14 @@ public class SurveyController {
         Answers answer = this.answersRepository.save(answers);
         String questionId = body.get("questionID");
         this.answersRepository.updateAnswer(Integer.valueOf(questionId), answer.getId());
-        return resultMap.createSuccessMap("Survey answered.");
+        return ResultMap.createSuccessMap("Survey answered.");
     }
 
     @PostMapping("/surveyCreator")
     Map<String, String> createSurvey(@RequestBody SurveyDetailsData body) {
         if (body != null) {
             return creatorProcessor.process(body);
-        } else return resultMap.createNullBodyErrorMap();
-    }
-
-    @GetMapping("/users/all")
-    List<UserEntity> getAllUsersFromDatabase() {
-        return this.usersRepository.findAll();
-    }
-
-    @GetMapping("/users/{uuid}")
-    Map<String, String> getUser(@PathVariable("uuid") String uuid) {
-        Map<String,String> user = new HashMap();
-        UserEntity userEntity = this.usersRepository.findByUuid(uuid);
-        user.put("email",userEntity.getEmail());
-        user.put("group",userEntity.getGroup());
-        return user;
+        } else return ResultMap.createNullBodyErrorMap();
     }
 
 //    @GetMapping("/unansweredSurveys/{id}")
@@ -167,23 +145,5 @@ public class SurveyController {
 //        }
 //        return surveys;
 //    }
-
-    @PostMapping("/admin")
-    Map<String, String> setAdmin(@RequestBody Map<String, String> body) {
-        this.usersRepository.setAdmin(Integer.parseInt(body.get("id")), body.get("group"));
-        return resultMap.createSuccessMap("Group updated.");
-    }
-
-    @PostMapping("/surveyToUser")
-    Map<String, String> setSurveyToUser(@RequestBody Map<String, String> body) {
-        SurveyToUser surveyToUser = new SurveyToUser();
-        surveyToUser.setSurveyAnswer(false);
-        SurveyToUser surveyToUser1 = this.surveyToUserRepository.save(surveyToUser);
-        int uId = Integer.parseInt(body.get("uId"));
-        int sId = Integer.parseInt(body.get("sId"));
-        this.surveyToUserRepository.addSurveyToUser(uId, sId, surveyToUser1.getId());
-        return resultMap.createSuccessMap("Survey add to user.");
-    }
-
 
 }

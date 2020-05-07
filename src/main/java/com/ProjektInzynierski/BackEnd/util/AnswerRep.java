@@ -1,15 +1,12 @@
 package com.ProjektInzynierski.BackEnd.util;
 
-import org.springframework.stereotype.Component;
-
 import java.util.List;
 
-@Component
-public class AnswerRep implements Container{
+public class AnswerRep implements Container {
 
     public List<String> answers;
 
-    public void setAnswers(List<String> Answers){
+    public void setAnswers(List<String> Answers) {
         answers = Answers;
     }
 
@@ -18,7 +15,7 @@ public class AnswerRep implements Container{
         return new AnswerIterator();
     }
 
-    private class AnswerIterator implements Iterator{
+    private class AnswerIterator implements Iterator {
 
         int index;
 
@@ -29,7 +26,7 @@ public class AnswerRep implements Container{
 
         @Override
         public Object next() {
-            if(this.hasNext()){
+            if (this.hasNext()) {
                 return answers.get(index++);
             }
             return null;

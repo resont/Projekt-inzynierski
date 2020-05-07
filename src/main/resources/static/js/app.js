@@ -47,11 +47,10 @@ function registerResult(xhr) {
 }
 
 function login(buttonId) {
-    buttonId.disabled = true;
 
     var xhr = new XMLHttpRequest();
 
-    loginResult(xhr);
+    loginResult(xhr, buttonId);
 
     var email = $("#email").val();
     var password = $("#password").val();
@@ -62,11 +61,10 @@ function login(buttonId) {
     xhr.send(data);
 }
 
-function loginResult(xhr) {
+function loginResult(xhr, buttonId) {
     xhr.onreadystatechange = function () {
         var responseError = document.getElementsByClassName("alert alert-danger");
         var responseSuccess = document.getElementsByClassName("alert alert-success");
-        const button = document.querySelector('button');
         if (xhr.readyState === XMLHttpRequest.DONE) {
             if (xhr.status === 200) {
                 var json = JSON.parse(xhr.responseText);
@@ -79,7 +77,7 @@ function loginResult(xhr) {
                     responseError[0].style.display = 'none';
                     responseSuccess[0].style.display = 'block';
                     responseSuccess[0].innerHTML = "Login successful.";
-                    button.disabled = true;
+                    buttonId.disabled = true;
                     setCookie("token", json.result, 1, true);
                     redirectToMain();
                 }
@@ -134,11 +132,25 @@ function showLogoutAndProfile() {
 }
 
 function logout() {
-    const cookies = document.cookie.split(/; */);
-    if (cookies[0].split("=")[0] === "token") {
-        deleteCookie(cookies[0].split("=")[0]);
-        redirectToIndex();
-    }
+    const xhr = new XMLHttpRequest();
+    const token = $.cookie("token");
+
+    const data = '{"token":"' + token + '"}';
+    xhr.open('POST', 'http://localhost:8080/logout', true);
+    xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
+    xhr.send(data);
+
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+                const cookies = document.cookie.split(/; */);
+                if (cookies[0].split("=")[0] === "token") {
+                    deleteCookie(cookies[0].split("=")[0]);
+                    redirectToIndex();
+                }
+            }
+        }
+    };
 }
 
 function deleteCookie(cookieName) {

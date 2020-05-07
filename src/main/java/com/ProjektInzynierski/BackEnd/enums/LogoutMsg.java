@@ -4,7 +4,8 @@ import lombok.Getter;
 
 @Getter
 public enum LogoutMsg {
-    LOGOUT("Logout.");
+    LOGOUT("Logout."),
+    LOGOUT_ERROR("Logout error.");
 
     private final String errorMsg;
 

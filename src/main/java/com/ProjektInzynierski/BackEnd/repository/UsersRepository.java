@@ -31,8 +31,8 @@ public interface UsersRepository extends JpaRepository<UserEntity, Integer> {
     @Modifying
     @Query("UPDATE UserEntity u\n" +
             "SET u.uuid=NULL, u.validTo=:date\n" +
-            "WHERE u.email=:email AND u.uuid=:uuid")
-    void setUuidAndValidTo(String email, String uuid, Date date);
+            "WHERE u.uuid=:uuid")
+    void setUuidAndValidTo(String uuid, Date date);
 
     @Transactional
     @Modifying
@@ -45,5 +45,6 @@ public interface UsersRepository extends JpaRepository<UserEntity, Integer> {
     @Modifying
     @Query("UPDATE UserEntity u SET u.group=:group WHERE u.id=:id")
     void setAdmin(int id, String group);
+
 
 }

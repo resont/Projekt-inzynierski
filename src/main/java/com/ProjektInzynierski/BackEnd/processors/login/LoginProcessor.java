@@ -15,6 +15,8 @@ import com.ProjektInzynierski.BackEnd.util.ResultMap;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Component;
 
+import java.time.Instant;
+import java.util.Date;
 import java.util.Map;
 import java.util.UUID;
 
@@ -26,8 +28,6 @@ public class LoginProcessor extends ProcessInterface {
     private final UsersRepository usersRepository;
 
     private Logger logger = LoggerController.getInstance();
-
-    private ResultMap resultMap = new ResultMap();
 
     LoginProcessor(UsersRepository usersRepository) {
         this.usersRepository = usersRepository;
@@ -53,10 +53,12 @@ public class LoginProcessor extends ProcessInterface {
             UserEntity userEntity = usersRepository.findByEmailAndPassword(userData.getEmail(), userData.getPassword());
 
             UUID uuid = UUID.randomUUID();
-            usersRepository.setUuidAndValidToWithPassword(userEntity.getEmail(), userEntity.getPassword(), uuid.toString(), CurrentDateProvider.getCurrentDate());
-            result = resultMap.createSuccessMap(uuid.toString());
+            Instant instant = CurrentDateProvider.getCurrentDate().toInstant().plusSeconds(3600);
+            Date newDate = Date.from(instant);
+            usersRepository.setUuidAndValidToWithPassword(userEntity.getEmail(), userEntity.getPassword(), uuid.toString(), newDate);
+            result = ResultMap.createSuccessMap(uuid.toString());
         } catch (Exception e) {
-            result = resultMap.createErrorMap(LoginMsg.WRONG_EMAIL_OR_PASSWORD.getErrorMsg());
+            result = ResultMap.createErrorMap(LoginMsg.WRONG_EMAIL_OR_PASSWORD.getErrorMsg());
         }
 
         checkIfError(result);
@@ -90,11 +92,11 @@ public class LoginProcessor extends ProcessInterface {
 
             usersRepository.setNewPassword(userEntity.getPassword(), newUserData.getPassword(), userEntity.getUuid());
             logger.info("Password reset successful.");
-            return resultMap.createSuccessMap(PasswordResetMsg.RESET_SUCCESSFUL.getErrorMsg());
+            return ResultMap.createSuccessMap(PasswordResetMsg.RESET_SUCCESSFUL.getErrorMsg());
 
         } catch (Exception e) {
             logger.error("Reset went wrong.");
-            return resultMap.createErrorMap(PasswordResetMsg.RESET_NOT_SUCCESSFUL.getErrorMsg());
+            return ResultMap.createErrorMap(PasswordResetMsg.RESET_NOT_SUCCESSFUL.getErrorMsg());
         }
 
     }

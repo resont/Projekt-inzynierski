@@ -9,45 +9,50 @@ function showUsers() {
         if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
             var json = JSON.parse(xhr.responseText);
 
-            var body = "<table class=\"table\">\n" +
-                "  <thead class = \"thead-dark\">\n" +
-                "    <tr>\n" +
-                "      <th scope=\"col\">#</th>\n" +
-                "      <th scope=\"col\">Email</th>\n" +
-                "      <th scope=\"col\">Survey</th>\n" +
-                "      <th scope=\"col\">Admin</th>\n" +
-                "      <th scope=\"col\">Send</th>\n" +
-                "    </tr>\n" +
-                "  </thead><tbody>";
-
-            for (var i = 0; i < json.length; i++) {
-                var iter = i + 1;
-                body += "<tr>\n" +
-                    "<th scope=\"row\">" + iter + "</th>";
-                var obj = json[i];
-                body += "<td>" + obj["email"] + "</td><td>";
-                body += getAllSurveys(i);
-                body += "</td>";
-                body += "<td><div class=\"form-check d-flex justify-content-center\">";
-                if (obj["group"] === "admin") {
-                    if(obj["uuid"] === $.cookie("token")){
-                        body += "<input id='input" + i + "' class=\"form-check-input\" type=\"checkbox\" value=\"\" checked disabled>";
-                    }else{
-                        body += "<input id='input" + i + "' class=\"form-check-input\" type=\"checkbox\" value=\"\" checked>";
-                    }
-
+            for (var j = 0; j < json.length; j++) {
+                if (json[j].token === $.cookie("token") && json[j].group !== "admin") {
+                    window.location.href = "main.html";
                 } else {
-                    body += "<input id='input" + i + "' class=\"form-check-input\" type=\"checkbox\" value=\"\">";
+                    var body = "<table class=\"table\">\n" +
+                        "  <thead class = \"thead-dark\">\n" +
+                        "    <tr>\n" +
+                        "      <th scope=\"col\">#</th>\n" +
+                        "      <th scope=\"col\">Email</th>\n" +
+                        "      <th scope=\"col\">Survey</th>\n" +
+                        "      <th scope=\"col\">Admin</th>\n" +
+                        "      <th scope=\"col\">Send</th>\n" +
+                        "    </tr>\n" +
+                        "  </thead><tbody>";
+
+                    for (var i = 0; i < json.length; i++) {
+                        var iter = i + 1;
+                        body += "<tr>\n" +
+                            "<th scope=\"row\">" + iter + "</th>";
+                        var obj = json[i];
+                        body += "<td>" + obj["email"] + "</td><td>";
+                        body += getAllSurveys(i);
+                        body += "</td>";
+                        body += "<td><div class=\"form-check d-flex justify-content-center\">";
+                        if (obj["group"] === "admin") {
+                            if (obj["uuid"] === $.cookie("token")) {
+                                body += "<input id='input" + i + "' class=\"form-check-input\" type=\"checkbox\" value=\"\" checked disabled>";
+                            } else {
+                                body += "<input id='input" + i + "' class=\"form-check-input\" type=\"checkbox\" value=\"\" checked>";
+                            }
+
+                        } else {
+                            body += "<input id='input" + i + "' class=\"form-check-input\" type=\"checkbox\" value=\"\">";
+                        }
+                        body += "</div></td>";
+                        body += "<td><button id=\"send\" class=\"btn btn-dark btn-block\" onclick=\"sendForm(" + i + "," + obj["id"] + ")\">Update</button></td>";
+
+                        body += "</tr>";
+
+                    }
+                    body += "</tbody></table>";
+                    $(".main-panel").html(body);
                 }
-                body += "</div></td>";
-                body += "<td><button id=\"send\" class=\"btn btn-dark btn-block\" onclick=\"sendForm(" + i + "," + obj["id"] + ")\">Update</button></td>";
-
-                body += "</tr>";
-
             }
-            body += "</tbody></table>";
-            $(".main-panel").html(body);
-
         }
     };
     xhr.open('GET', 'http://localhost:8080/users/all', false);

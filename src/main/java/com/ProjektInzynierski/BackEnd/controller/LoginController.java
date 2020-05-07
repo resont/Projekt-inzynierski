@@ -21,7 +21,6 @@ public class LoginController {
 
     private LogoutProcessor logoutProcessor;
 
-    private ResultMap resultMap = new ResultMap();
 
     public LoginController(LoginProcessor loginProcessor, RegistrationProcessor registrationProcessor, LogoutProcessor logoutProcessor) {
         this.loginProcessor = loginProcessor;
@@ -33,27 +32,27 @@ public class LoginController {
     Map<String, String> tryToLogInto(@RequestBody Map<String, String> body) {
         if (body != null && body.size() != 0)
             return loginProcessor.process(body);
-        else return resultMap.createNullBodyErrorMap();
+        else return ResultMap.createNullBodyErrorMap();
     }
 
     @PostMapping("/registration")
     Map<String, String> registerAccount(@RequestBody Map<String, String> body) {
         if (body != null && body.size() != 0)
             return registrationProcessor.process(body);
-        else return resultMap.createNullBodyErrorMap();
+        else return ResultMap.createNullBodyErrorMap();
     }
 
     @PostMapping("/logout")
     Map<String, String> logout(@RequestBody Map<String, String> body) {
         if (body != null && body.size() != 0)
             return logoutProcessor.process(body);
-        else return resultMap.createNullBodyErrorMap();
+        else return ResultMap.createNullBodyErrorMap();
     }
 
     @PostMapping("/reset")
     Map<String, String> resetPassword(@RequestBody Map<String, String> body) {
         if (body != null && body.size() != 0)
             return loginProcessor.resetPassword(body);
-        else return resultMap.createNullBodyErrorMap();
+        else return ResultMap.createNullBodyErrorMap();
     }
 }

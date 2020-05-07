@@ -13,15 +13,15 @@ import org.springframework.stereotype.Component;
 import java.util.Map;
 
 @Component
-public class LogoutProcessor extends ProcessInterface {
+public class AuthProcessor extends ProcessInterface {
 
-    public static final String TOKEN = "token";
+    private static final String TOKEN = "token";
 
     private final UsersRepository usersRepository;
 
     private Logger logger = LoggerController.getInstance();
 
-    public LogoutProcessor(UsersRepository usersRepository) {
+    AuthProcessor(UsersRepository usersRepository) {
         this.usersRepository = usersRepository;
     }
 
@@ -34,9 +34,11 @@ public class LogoutProcessor extends ProcessInterface {
 
         UserEntity userEntity = this.usersRepository.findByUuid(body.get(TOKEN));
 
-        usersRepository.setUuidAndValidTo(body.get(TOKEN), CurrentDateProvider.getOldDate());
+        if (userEntity == null || CurrentDateProvider.getCurrentDate().compareTo(userEntity.getValidTo()) > 0) {
+            logger.warn("Unauthorised access.");
+            return ResultMap.createErrorMap("Error.");
+        }
 
-        logger.info("Finish logout process.");
-        return ResultMap.createSuccessMap(LogoutMsg.LOGOUT.getErrorMsg());
+        return ResultMap.createSuccessMap("Succes.");
     }
 }

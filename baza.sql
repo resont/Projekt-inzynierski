@@ -160,6 +160,36 @@ CREATE TABLE [dbo].[Survey](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
+/****** Object:  Table [dbo].[Keys]    Script Date: 10.05.2020 01:05:43 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Keys](
+	[k_id] [int] IDENTITY(1,1) NOT NULL,
+	[k_key] [varchar](128) NULL,
+	[k_a_id] [int] NULL,
+ CONSTRAINT [PK_Keys] PRIMARY KEY CLUSTERED
+(
+	[k_id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Conn_an_key]    Script Date: 10.05.2020 01:05:43 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Conn_an_key](
+	[con_id] [int] IDENTITY(1,1) NOT NULL,
+	[con_a_id] [int] NULL,
+	[con_k_id] [int] NULL,
+ CONSTRAINT [PK_Conn_an_key] PRIMARY KEY CLUSTERED
+(
+	[con_id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
 /****** Object:  Table [dbo].[Users]    Script Date: 17.04.2020 23:47:49 ******/
 SET ANSI_NULLS ON
 GO
@@ -170,7 +200,7 @@ CREATE TABLE [dbo].[Users](
 	[u_email] [varchar](50) NULL,
 	[u_password] [varchar](150) NULL,
 	[u_uuid] [varchar](50) NULL,
-	[u_validTo] [date] NULL,
+	[u_validTo] [datetime] NULL,
 	[u_group] [varchar](50) DEFAULT 'user' NULL,
  CONSTRAINT [PK_Users] PRIMARY KEY CLUSTERED
 (

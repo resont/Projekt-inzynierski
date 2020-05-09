@@ -15,10 +15,10 @@ import javax.persistence.MapsId;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Conn_us_su")
+@Table(name = "Conn_an_key")
 @Getter
 @Setter
-public class SurveyToUser {
+public class AnswerToKeyEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,17 +27,13 @@ public class SurveyToUser {
 
     @JsonBackReference
     @ManyToOne
-    @MapsId("con_u_id")
-    @JoinColumn(name = "con_u_id")
-    UserEntity userId;
+    @MapsId("con_a_id")
+    @JoinColumn(name = "con_a_id")
+    Answers answersId;
 
     @JsonBackReference
     @ManyToOne
-    @MapsId("con_s_id")
-    @JoinColumn(name = "con_s_id")
-    Survey surveyId;
-
-    @Column(name = "con_answer")
-    private boolean surveyAnswer;
-
+    @MapsId("con_k_id")
+    @JoinColumn(name = "con_k_id")
+    KeyEntity keyEntityId;
 }

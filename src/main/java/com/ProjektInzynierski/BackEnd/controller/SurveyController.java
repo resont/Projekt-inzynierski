@@ -1,6 +1,7 @@
 package com.ProjektInzynierski.BackEnd.controller;
 
 import com.ProjektInzynierski.BackEnd.data.entity.Answers;
+import com.ProjektInzynierski.BackEnd.data.entity.Questions;
 import com.ProjektInzynierski.BackEnd.data.entity.Survey;
 import com.ProjektInzynierski.BackEnd.data.model.SurveyDetailsData;
 import com.ProjektInzynierski.BackEnd.processors.creator.CreatorProcessor;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -34,10 +36,6 @@ public class SurveyController {
 
     private final AnswersRepository answersRepository;
 
-    private final UsersRepository usersRepository;
-
-    private final SurveyToUserRepository surveyToUserRepository;
-
     public SurveyController(CreatorProcessor creatorProcessor,
                             SurveyRepository surveyRepository,
                             AnswersRepository answersRepository,
@@ -46,8 +44,6 @@ public class SurveyController {
         this.creatorProcessor = creatorProcessor;
         this.surveyRepository = surveyRepository;
         this.answersRepository = answersRepository;
-        this.usersRepository = usersRepository;
-        this.surveyToUserRepository = surveyToUserRepository;
     }
 
     @GetMapping("/status")
@@ -146,4 +142,13 @@ public class SurveyController {
 //        return surveys;
 //    }
 
+    @PostMapping("/answerKey/{key}")
+    Map<Integer, Questions> getAnswersByKey(@PathVariable("key") String key) {
+        List<Answers> answers = answersRepository.findAnswersByKeyId(Integer.valueOf(key));
+        Map<Integer, Questions> map = new HashMap<>();
+        for (Answers a : answers) {
+            map.put(a.getId(), a.getQuestion());
+        }
+        return map;
+    }
 }

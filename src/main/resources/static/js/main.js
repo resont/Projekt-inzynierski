@@ -303,10 +303,10 @@ function finishSurvey() {
     xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
     xhr.send(data);
     xhr.onreadystatechange = function () {
-            if (xhr.readyState === XMLHttpRequest.DONE) {
-                if (xhr.status === 200) {
-                    redirectToMain();
-                }
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+                redirectToMain();
             }
-        };
+        }
+    };
 }

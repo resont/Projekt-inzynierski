@@ -168,7 +168,6 @@ GO
 CREATE TABLE [dbo].[Keys](
 	[k_id] [int] IDENTITY(1,1) NOT NULL,
 	[k_key] [varchar](128) NULL,
-	[k_a_id] [int] NULL,
  CONSTRAINT [PK_Keys] PRIMARY KEY CLUSTERED
 (
 	[k_id] ASC
@@ -216,7 +215,7 @@ INSERT [dbo].[Question_type] ([qt_it], [qt_name]) VALUES (3, N'checkbox')
 SET IDENTITY_INSERT [dbo].[Question_type] OFF
 SET IDENTITY_INSERT [dbo].[Users] ON
 
-INSERT [dbo].[Users] ([u_id], [u_email], [u_password], [u_uuid], [u_validTo]) VALUES (1, N'test', N'9ece086e9bac491fac5c1d1046ca11d737b92a2b2ebd93f005d7b710110c0a678288166e7fbe796883a4f2e9b3ca9f484f521d0ce464345cc1aec96779149c14', NULL, NULL)
+INSERT [dbo].[Users] ([u_id], [u_email], [u_password], [u_uuid], [u_validTo], [u_group]) VALUES (1, N'test', N'9ece086e9bac491fac5c1d1046ca11d737b92a2b2ebd93f005d7b710110c0a678288166e7fbe796883a4f2e9b3ca9f484f521d0ce464345cc1aec96779149c14', NULL, NULL, N'admin')
 SET IDENTITY_INSERT [dbo].[Users] OFF
 ALTER TABLE [dbo].[Answers]  WITH CHECK ADD  CONSTRAINT [FK_Answers_Answers] FOREIGN KEY([a_id])
 REFERENCES [dbo].[Answers] ([a_id])

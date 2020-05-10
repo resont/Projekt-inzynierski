@@ -187,13 +187,12 @@ function showAnswers(item, index) {
             resultBody += item["answer"];
             resultBody += "&emsp; NO ANSWERS";
         } else {
-            //resultBody += '<textarea type="text" class="form-control" rows="1.5" disabled>'+item["answer"]+'</textarea>';
-            resultBody += "<div class='border pl-2 pt-2 pr-2 rounded' style='background-color: #eaeaea;'><p>"+item["answer"]+"</p></div>";
+            resultBody += "<div class='border pl-2 pt-2 pr-2 rounded' style='background-color: #eaeaea;'><p>" + item["answer"] + "</p></div>";
         }
     } else {
         resultBody += item["answer"];
         resultBody += `<div class="progress">
-                            <div class="progress-bar bg-dark" role="progressbar" style="width: `+percent+`%;" aria-valuenow="`+percent+`" aria-valuemin="0" aria-valuemax="100">`+percent+`%</div>
+                            <div class="progress-bar bg-dark" role="progressbar" style="width: ` + percent + `%;" aria-valuenow="` + percent + `" aria-valuemin="0" aria-valuemax="100">` + percent + `%</div>
                        </div>`;
     }
     resultBody += "</div>";

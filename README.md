@@ -5,5 +5,5 @@ Projekt i implementacja systemu webowego umożliwiającego głosowanie (lub anki
 - reprezentacja umożliwia sprawdzenie czy dana osoba przekazała dane,
 - reprezentacja umożliwia sprawdzenie przez użytkownika czy jego dane są zapisane w bazie.
 
-Implementacja powinna uzględniać responsywny interfejs. Do zapewnienia anonimowości należy wykorzystać techniki kryptograficzne (funkcje skrótu) oraz metody generowania tokenów. Rekomedowane jest wykorzystanie ogólnodostępnych bibliotek programistycznych.
+Implementacja powinna uwzględniać responsywny interfejs. Do zapewnienia anonimowości należy wykorzystać techniki kryptograficzne (funkcje skrótu) oraz metody generowania tokenów. Rekomendowane jest wykorzystanie ogólnodostępnych bibliotek programistycznych.
 

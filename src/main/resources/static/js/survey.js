@@ -77,7 +77,7 @@ function iterateJSON(json) {
 
         } else if (buttonType === 1) {
             textInputs.push({"questionID": questionID.toString(), "answer": ""});
-            body += "<input aria-describedby='answerHelp" + questionID + "' type='text' id='textInput" + questionID + "' name='" + questionID + "' class='form-control mr-4' placeholder='Answer' style='max-width:96%;'>";
+            body += "<input aria-describedby='answerHelp" + questionID + "' type='text' id='textInput" + questionID + "' name='" + questionID + "' class='form-control mr-4' placeholder='Answer' style='max-width:96%;' maxlength=\"200\">";
             body += "<small id='answerHelp" + questionID + "' class=\"ml-3 form-text text-muted\">Maksymalnie 250 znaków</small>";
             buttonType = 0;
         } else {

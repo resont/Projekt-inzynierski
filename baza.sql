@@ -237,11 +237,11 @@ INSERT [dbo].[Question_type] ([qt_it], [qt_name]) VALUES (3, N'checkbox')
 SET IDENTITY_INSERT [dbo].[Question_type] OFF
 SET IDENTITY_INSERT [dbo].[Questions] ON
 
-INSERT [dbo].[Questions] ([q_id], [q_question], [q_type], [q_s_id]) VALUES (1, N'Co najbardziej podoba się Wam w naszym nowym produkcie?', 1, 8)
-INSERT [dbo].[Questions] ([q_id], [q_question], [q_type], [q_s_id]) VALUES (2, N'Jakie zmiany, według Was, mogłyby wyraźnie poprawić nasz produkt?', 1, 8)
-INSERT [dbo].[Questions] ([q_id], [q_question], [q_type], [q_s_id]) VALUES (3, N'Gdyby dzisiaj nasza firma zaproponowała nowy produkt, z jakim prawdopodobieństwem wybiorą państwo naszą ofertę a nie podobną ofertę konkurencji?', 2, 8)
-INSERT [dbo].[Questions] ([q_id], [q_question], [q_type], [q_s_id]) VALUES (4, N'Czy polecilibyście/poleciłybyście innym nasz nowy produkt, jeżeli już dzisiaj byłby dostępny na rynku?', 2, 8)
-INSERT [dbo].[Questions] ([q_id], [q_question], [q_type], [q_s_id]) VALUES (5, N'Gdzie kupują Państwo nasze produkty?', 3, 8)
+INSERT [dbo].[Questions] ([q_id], [q_question], [q_type], [q_s_id]) VALUES (1, N'Co najbardziej podoba się Wam w naszym nowym produkcie?', 1, 1)
+INSERT [dbo].[Questions] ([q_id], [q_question], [q_type], [q_s_id]) VALUES (2, N'Jakie zmiany, według Was, mogłyby wyraźnie poprawić nasz produkt?', 1, 1)
+INSERT [dbo].[Questions] ([q_id], [q_question], [q_type], [q_s_id]) VALUES (3, N'Gdyby dzisiaj nasza firma zaproponowała nowy produkt, z jakim prawdopodobieństwem wybiorą państwo naszą ofertę a nie podobną ofertę konkurencji?', 2, 1)
+INSERT [dbo].[Questions] ([q_id], [q_question], [q_type], [q_s_id]) VALUES (4, N'Czy polecilibyście/poleciłybyście innym nasz nowy produkt, jeżeli już dzisiaj byłby dostępny na rynku?', 2, 1)
+INSERT [dbo].[Questions] ([q_id], [q_question], [q_type], [q_s_id]) VALUES (5, N'Gdzie kupują Państwo nasze produkty?', 3, 1)
 SET IDENTITY_INSERT [dbo].[Questions] OFF
 SET IDENTITY_INSERT [dbo].[Survey] ON
 

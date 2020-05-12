@@ -94,3 +94,42 @@ a.disabled {
 .hide {
     display: none;
 }
+
+@media only screen and (max-width: 1200px) {
+    .main-panel {
+        background-color: white;
+        height: 100%;
+        width: 90%;
+        float: left;
+        margin-left: 5%;
+        margin-right: 5%;
+        margin-top: 1%;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .left-panel {
+        display: flex;
+        width: 100%;
+        border-right: 0;
+        border-bottom: 3px solid #343a40;
+        padding-bottom: 10px;
+        justify-content:center;
+        align-items:center;
+        float: left;
+    }
+
+    .right-panel {
+        margin-top: 10px;
+        display: block;
+        width: 100%;
+        float: left;
+    }
+
+    .profile {
+        width: 100%;
+        padding: 10px;
+        display: block;
+        float: left;
+    }
+}

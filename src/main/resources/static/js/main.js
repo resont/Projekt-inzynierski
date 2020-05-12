@@ -126,11 +126,11 @@ function updateContent2() {
 }
 
 function nextQuestionRadio() {
-    var radioQuestion = document.getElementById("radioQuestion").value;
+    var radioQuestion = document.getElementById("radioQuestion");
     var responseErrorRadio = document.getElementById("radio-question-error");
     var responseSuccessRadio = document.getElementById("radio-question-success");
 
-    if (radioQuestion !== "" && radioQuestion !== null) {
+    if (radioQuestion.value !== "" && radioQuestion.value !== null) {
 
         var obj2 = [];
         for (var i = 0; i <= answer2Number; i++) {
@@ -144,7 +144,7 @@ function nextQuestionRadio() {
 
         var obj = {};
         obj.type = 2;
-        obj.question = radioQuestion;
+        obj.question = radioQuestion.value;
         obj.answers = obj2;
 
         var property = "objectNumber" + objectNumber++;
@@ -154,6 +154,7 @@ function nextQuestionRadio() {
         responseSuccessRadio.innerHTML = "Result: " + "Dodano.";
         setTimeout(function () {
             var questionType2Answers = document.getElementsByClassName("question-type-2-answers");
+            radioQuestion.value = "";
             answer2Number = 0;
             questionType2Answers[0].innerHTML = "<input type=\"text\" class=\"form-control mb-2\" id=\"2answer0\" placeholder=\"Podaj odpowiedz\" name=\"name\">";
             hideQuestionTypes();
@@ -195,11 +196,11 @@ function updateContent3() {
 }
 
 function nextQuestionCheckbox() {
-    var checkboxQuestion = document.getElementById("checkboxQuestion").value;
+    var checkboxQuestion = document.getElementById("checkboxQuestion");
     var responseErrorCheckbox = document.getElementById("checkbox-question-error");
     var responseSuccessCheckbox = document.getElementById("checkbox-question-success");
 
-    if (checkboxQuestion !== "" && checkboxQuestion !== null) {
+    if (checkboxQuestion.value !== "" && checkboxQuestion.value !== null) {
 
         var obj2 = [];
         for (var i = 0; i <= answer3Number; i++) {
@@ -213,7 +214,7 @@ function nextQuestionCheckbox() {
 
         var obj = {};
         obj.type = 3;
-        obj.question = checkboxQuestion;
+        obj.question = checkboxQuestion.value;
         obj.answers = obj2;
 
         var property = "objectNumber" + objectNumber++;
@@ -223,6 +224,7 @@ function nextQuestionCheckbox() {
         responseSuccessCheckbox.innerHTML = "Result: " + "Dodano.";
         setTimeout(function () {
             var questionType3Answers = document.getElementsByClassName("question-type-3-answers");
+            checkboxQuestion.value = "";
             answer3Number = 0;
             questionType3Answers[0].innerHTML = "<input type=\"text\" class=\"form-control mb-2\" id=\"3answer0\" placeholder=\"Podaj odpowiedz\" name=\"name\">";
             hideQuestionTypes();

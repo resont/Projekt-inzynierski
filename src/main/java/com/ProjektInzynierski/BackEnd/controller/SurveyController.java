@@ -1,11 +1,13 @@
 package com.ProjektInzynierski.BackEnd.controller;
 
+import com.ProjektInzynierski.BackEnd.data.entity.AnswerToKeyEntity;
 import com.ProjektInzynierski.BackEnd.data.entity.Answers;
 import com.ProjektInzynierski.BackEnd.data.entity.Questions;
 import com.ProjektInzynierski.BackEnd.data.entity.Survey;
 import com.ProjektInzynierski.BackEnd.data.model.SurveyDetailsData;
 import com.ProjektInzynierski.BackEnd.processors.creator.CreatorProcessor;
 import com.ProjektInzynierski.BackEnd.repository.AnswersRepository;
+import com.ProjektInzynierski.BackEnd.repository.KeyToAnswerRepository;
 import com.ProjektInzynierski.BackEnd.repository.SurveyRepository;
 import com.ProjektInzynierski.BackEnd.repository.SurveyToUserRepository;
 import com.ProjektInzynierski.BackEnd.repository.UsersRepository;
@@ -36,14 +38,17 @@ public class SurveyController {
 
     private final AnswersRepository answersRepository;
 
+    private final KeyToAnswerRepository keyToAnswerRepository;
+
     public SurveyController(CreatorProcessor creatorProcessor,
                             SurveyRepository surveyRepository,
                             AnswersRepository answersRepository,
                             UsersRepository usersRepository,
-                            SurveyToUserRepository surveyToUserRepository) {
+                            SurveyToUserRepository surveyToUserRepository, KeyToAnswerRepository keyToAnswerRepository) {
         this.creatorProcessor = creatorProcessor;
         this.surveyRepository = surveyRepository;
         this.answersRepository = answersRepository;
+        this.keyToAnswerRepository = keyToAnswerRepository;
     }
 
     @GetMapping("/status")
@@ -94,8 +99,11 @@ public class SurveyController {
     @PostMapping("/answer/{id}")
     Map<String, String> update(@PathVariable("id") String id) {
         int answerId = Integer.parseInt(id);
+
+        String key = updateKeyToAnswer(answerId);
+
         this.surveyRepository.updateCount(answerId);
-        return ResultMap.createSuccessMap("Survey send!");
+        return ResultMap.createSuccessMap(key);
     }
 
     @GetMapping("/con_us_su/{uuid}")
@@ -121,8 +129,11 @@ public class SurveyController {
         answers.setAnswer(body.get("answer"));
         Answers answer = this.answersRepository.save(answers);
         String questionId = body.get("questionID");
+
+        String key = updateKeyToAnswer(answer.getId());
+
         this.answersRepository.updateAnswer(Integer.valueOf(questionId), answer.getId());
-        return ResultMap.createSuccessMap("Survey answered.");
+        return ResultMap.createSuccessMap(key);
     }
 
     @PostMapping("/surveyCreator")
@@ -150,5 +161,14 @@ public class SurveyController {
             map.put(a.getId(), a.getQuestion());
         }
         return map;
+    }
+
+    String updateKeyToAnswer(int answerId) {
+        String key = "key1"; //temp
+        int keyId = 1; //temp
+        AnswerToKeyEntity answerToKeyEntity = new AnswerToKeyEntity();
+        AnswerToKeyEntity keyToAnswerId = this.keyToAnswerRepository.save(answerToKeyEntity);
+        this.keyToAnswerRepository.addAnswerToKey(keyToAnswerId.getId(), keyId, answerId);
+        return key;
     }
 }

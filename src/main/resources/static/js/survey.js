@@ -179,9 +179,8 @@ function sendResult(xhr, responseError, responseSuccess) {
                 } else if (json.result) {
                     responseError.hide();
                     responseSuccess.show();
-                    responseSuccess.html("Survey send!");
+                    responseSuccess.html("Survey send! Verification key: <b>" + json.result + "</b>");
                     setSurveyAsAnswered();
-                    redirectToProfile();
                 }
             }
         }

@@ -144,7 +144,7 @@ public class SurveyController {
 
     @PostMapping("/answerKey/{key}")
     Map<Integer, Questions> getAnswersByKey(@PathVariable("key") String key) {
-        List<Answers> answers = answersRepository.findAnswersByKeyId(Integer.valueOf(key));
+        List<Answers> answers = answersRepository.findAnswersByKeyId(key);
         Map<Integer, Questions> map = new HashMap<>();
         for (Answers a : answers) {
             map.put(a.getId(), a.getQuestion());

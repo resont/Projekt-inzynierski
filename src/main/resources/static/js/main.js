@@ -1,29 +1,27 @@
-var mainPanel = document.getElementsByClassName("main-panel main");
-var questionTypePanel = document.getElementsByClassName("main-panel question-type")
-var mainError = document.getElementsByClassName("alert alert-danger main");
-var questionType1 = document.getElementsByClassName("question-type-1");
-var questionType2 = document.getElementsByClassName("question-type-2");
-var questionType3 = document.getElementsByClassName("question-type-3");
-var surveyTitlePanel = document.getElementsByClassName("survey-title-panel");
-var title = $("#name").val();
-var description = $("#description").val();
-var json = {
+const mainPanel = document.getElementsByClassName("main-panel main");
+const questionTypePanel = document.getElementsByClassName("main-panel question-type");
+const mainError = document.getElementsByClassName("alert alert-danger main");
+const questionType1 = document.getElementsByClassName("question-type-1");
+const questionType2 = document.getElementsByClassName("question-type-2");
+const questionType3 = document.getElementsByClassName("question-type-3");
+const surveyTitlePanel = document.getElementsByClassName("survey-title-panel");
+
+const json = {
     questions: []
 };
-var objectNumber = 0;
-var answer2Number = 0;
-var answer3Number = 0;
+let answer2Number = 0;
+let answer3Number = 0;
 
 function add() {
 
-    title = $("#name").val();
-    description = $("#description").val();
+    let title = $("#name").val();
+    let description = $("#description").val();
     if (title && description) {
         mainPanel[0].style.display = 'none';
         questionTypePanel[0].style.display = 'block';
         surveyTitlePanel[0].style.display = 'block';
-        surveyTitlePanel[0].children[0].children[0].textContent = title;
-        surveyTitlePanel[0].children[1].children[0].textContent = description;
+        surveyTitlePanel[0].children[0].children[0].textContent += title;
+        surveyTitlePanel[0].children[1].children[0].textContent += description;
 
         json.title = title;
         json.description = description;
@@ -35,8 +33,8 @@ function add() {
 
 }
 
-var typeDescription = document.getElementsByClassName("type-description");
-var typeDescriptionBorder = document.getElementsByClassName("type-border hide");
+const typeDescription = document.getElementsByClassName("type-description");
+const typeDescriptionBorder = document.getElementsByClassName("type-border hide");
 
 function show1() {
     typeDescriptionBorder[0].style.display = 'block';
@@ -54,9 +52,9 @@ function show3() {
 }
 
 function choseType() {
-    var radioOption = document.getElementsByClassName("btn btn-secondary active");
-    var radioOptionValue = radioOption[0].children[0].id;
-    var confirmPanel = document.getElementsByClassName("confirmation");
+    const radioOption = document.getElementsByClassName("btn btn-secondary active");
+    const radioOptionValue = radioOption[0].children[0].id;
+    const confirmPanel = document.getElementsByClassName("confirmation");
     confirmPanel[0].style.display = 'none';
 
     if (radioOptionValue === "option1") {
@@ -98,17 +96,16 @@ function backToQuestionType() {
     showQuestionTypePanel();
 }
 
-var tab1 = new Array(answer2Number);
+const tab1 = new Array(answer2Number);
 
 function addAnswer2() {
-    for (var i = 0; i <= answer2Number; i++) {
-        var tempElement = document.getElementById("2answer" + i).value;
-        tab1[i] = tempElement;
+    for (let i = 0; i <= answer2Number; i++) {
+        tab1[i] = document.getElementById("2answer" + i).value;
     }
 
-    var questionType2Answers = document.getElementsByClassName("question-type-2-answers");
-    var temp = "2answer" + answer2Number;
-    var answer2 = document.getElementById(temp).value;
+    const questionType2Answers = document.getElementsByClassName("question-type-2-answers");
+    const temp = "2answer" + answer2Number;
+    const answer2 = document.getElementById(temp).value;
 
     if (answer2 !== "" && answer2 !== null) {
         answer2Number++;
@@ -119,43 +116,60 @@ function addAnswer2() {
 }
 
 function updateContent2() {
-    for (var i = 0; i < answer2Number; i++) {
-        var tempElement1 = document.getElementById("2answer" + i);
+    for (let i = 0; i < answer2Number; i++) {
+        const tempElement1 = document.getElementById("2answer" + i);
         tempElement1.value = tab1[i];
     }
 }
 
 function nextQuestionRadio() {
-    var radioQuestion = document.getElementById("radioQuestion");
-    var responseErrorRadio = document.getElementById("radio-question-error");
-    var responseSuccessRadio = document.getElementById("radio-question-success");
+    const radioQuestion = document.getElementById("radioQuestion");
+    const responseErrorRadio = document.getElementById("radio-question-error");
+    const responseSuccessRadio = document.getElementById("radio-question-success");
+    const btnRadioBack = document.getElementById("btnRadioBack");
+    const btnRadioNext = document.getElementById("btnRadioNext");
+    const btnRadioAdd = document.getElementById("btnRadioAdd");
 
     if (radioQuestion.value !== "" && radioQuestion.value !== null) {
 
-        var obj2 = [];
-        for (var i = 0; i <= answer2Number; i++) {
-            var tempElement = document.getElementById("2answer" + i).value;
-            tab1[i] = tempElement;
-        }
+        //Display question and push it into JSON object
+        let body = "";
+        body += "<div id=question" + json.questions.length + " class='main-panel border rounded p-4'>";
+        body += "<div class='lead mb-2'>" + radioQuestion.value + "</div>";
 
-        for (var i = 0; i <= answer2Number; i++) {
+        const obj2 = [];
+        for (let i = 0; i <= answer2Number; i++) {
+            tab1[i] = document.getElementById("2answer" + i).value;
+            body += `<div>
+                      <input type="radio" id='a` + i + `' disabled>
+                      <label for='a` + i + `'>` + document.getElementById("2answer" + i).value + `</label>
+                 </div>`;
             obj2.push(tab1[i]);
         }
 
-        var obj = {};
+        const obj = {};
         obj.type = 2;
         obj.question = radioQuestion.value;
         obj.answers = obj2;
 
-        var property = "objectNumber" + objectNumber++;
+        body += '<button id="chose-type" class="btn btn-dark mb-3" onclick="hideQuestion('+json.questions.length+')">Usuń</button> </div>';
+        $('body').append(body);
+
         json.questions.push(obj);
         responseErrorRadio.style.display = 'none';
         responseSuccessRadio.style.display = 'block';
         responseSuccessRadio.innerHTML = "Result: " + "Dodano.";
+        btnRadioBack.disabled = true;
+        btnRadioNext.disabled = true;
+        btnRadioAdd.disabled = true;
+
         setTimeout(function () {
-            var questionType2Answers = document.getElementsByClassName("question-type-2-answers");
+            const questionType2Answers = document.getElementsByClassName("question-type-2-answers");
             radioQuestion.value = "";
             answer2Number = 0;
+            btnRadioBack.disabled = false;
+            btnRadioNext.disabled = false;
+            btnRadioAdd.disabled = false;
             questionType2Answers[0].innerHTML = "<input type=\"text\" class=\"form-control mb-2\" id=\"2answer0\" placeholder=\"Podaj odpowiedz\" name=\"name\">";
             hideQuestionTypes();
             showQuestionTypePanel();
@@ -168,17 +182,16 @@ function nextQuestionRadio() {
     }
 }
 
-var tab2 = new Array(answer3Number);
+const tab2 = new Array(answer3Number);
 
 function addAnswer3() {
-    for (var i = 0; i <= answer3Number; i++) {
-        var tempElement = document.getElementById("3answer" + i).value;
-        tab2[i] = tempElement;
+    for (let i = 0; i <= answer3Number; i++) {
+        tab2[i] = document.getElementById("3answer" + i).value;
     }
 
-    var questionType3Answers = document.getElementsByClassName("question-type-3-answers");
-    var temp = "3answer" + answer3Number;
-    var answer3 = document.getElementById(temp).value;
+    const questionType3Answers = document.getElementsByClassName("question-type-3-answers");
+    const temp = "3answer" + answer3Number;
+    const answer3 = document.getElementById(temp).value;
 
     if (answer3 !== "" && answer3 !== null) {
         answer3Number++;
@@ -189,43 +202,60 @@ function addAnswer3() {
 }
 
 function updateContent3() {
-    for (var i = 0; i < answer3Number; i++) {
-        var tempElement1 = document.getElementById("3answer" + i);
+    for (let i = 0; i < answer3Number; i++) {
+        const tempElement1 = document.getElementById("3answer" + i);
         tempElement1.value = tab2[i];
     }
 }
 
 function nextQuestionCheckbox() {
-    var checkboxQuestion = document.getElementById("checkboxQuestion");
-    var responseErrorCheckbox = document.getElementById("checkbox-question-error");
-    var responseSuccessCheckbox = document.getElementById("checkbox-question-success");
+    const checkboxQuestion = document.getElementById("checkboxQuestion");
+    const responseErrorCheckbox = document.getElementById("checkbox-question-error");
+    const responseSuccessCheckbox = document.getElementById("checkbox-question-success");
+    const btnCheckboxBack = document.getElementById("btnCheckboxBack");
+    const btnCheckboxNext = document.getElementById("btnCheckboxNext");
+    const btnCheckboxAdd = document.getElementById("btnCheckboxAdd");
 
     if (checkboxQuestion.value !== "" && checkboxQuestion.value !== null) {
 
-        var obj2 = [];
-        for (var i = 0; i <= answer3Number; i++) {
-            var tempElement = document.getElementById("3answer" + i).value;
-            tab2[i] = tempElement;
-        }
+        //Display question and push it into JSON object
+        let body = "";
+        body += "<div id=question" + json.questions.length + " class='main-panel border rounded p-4'>";
+        body += "<div class='lead mb-2'>" + checkboxQuestion.value + "</div>";
 
-        for (var i = 0; i <= answer3Number; i++) {
+        const obj2 = [];
+        for (let i = 0; i <= answer3Number; i++) {
+            tab2[i] = document.getElementById("3answer" + i).value;
+            body += `<div>
+                      <input type="radio" id='a` + i + `' disabled>
+                      <label for='a` + i + `'>` + document.getElementById("3answer" + i).value + `</label>
+                 </div>`;
             obj2.push(tab2[i]);
         }
 
-        var obj = {};
+        const obj = {};
         obj.type = 3;
         obj.question = checkboxQuestion.value;
         obj.answers = obj2;
 
-        var property = "objectNumber" + objectNumber++;
+        body += '<button id="chose-type" class="btn btn-dark mb-3" onclick="hideQuestion('+json.questions.length+')">Usuń</button> </div>';
+        $('body').append(body);
+
         json.questions.push(obj);
         responseErrorCheckbox.style.display = 'none';
         responseSuccessCheckbox.style.display = 'block';
         responseSuccessCheckbox.innerHTML = "Result: " + "Dodano.";
+        btnCheckboxBack.disabled = true;
+        btnCheckboxNext.disabled = true;
+        btnCheckboxAdd.disabled = true;
+
         setTimeout(function () {
-            var questionType3Answers = document.getElementsByClassName("question-type-3-answers");
+            const questionType3Answers = document.getElementsByClassName("question-type-3-answers");
             checkboxQuestion.value = "";
             answer3Number = 0;
+            btnCheckboxBack.disabled = false;
+            btnCheckboxNext.disabled = false;
+            btnCheckboxAdd.disabled = false;
             questionType3Answers[0].innerHTML = "<input type=\"text\" class=\"form-control mb-2\" id=\"3answer0\" placeholder=\"Podaj odpowiedz\" name=\"name\">";
             hideQuestionTypes();
             showQuestionTypePanel();
@@ -239,24 +269,38 @@ function nextQuestionCheckbox() {
 }
 
 function nextQuestionOpen() {
-    var openQuestion = document.getElementById("openQuestion").value;
-    var responseErrorOpen = document.getElementById("open-question-error");
-    var responseSuccessOpen = document.getElementById("open-question-success");
+    const openQuestion = document.getElementById("openQuestion").value;
+    const responseErrorOpen = document.getElementById("open-question-error");
+    const responseSuccessOpen = document.getElementById("open-question-success");
+    const btnOpenBack = document.getElementById("btnOpenBack");
+    const btnOpenNext = document.getElementById("btnOpenNext");
 
     if (openQuestion !== "" && openQuestion !== null) {
 
-        var obj = {};
+        //Display question and push it into JSON object
+        let body = "";
+        body += "<div id=question" + json.questions.length + " class='main-panel border rounded p-4'>";
+        body += "<div class='border pl-2 pt-2 pr-2 rounded' style='background-color: #eaeaea;'><p>" + openQuestion + "</p></div>";
+        body += '<button id="chose-type" class="btn btn-dark mb-1 mt-2" onclick="hideQuestion('+json.questions.length+')">Usuń</button> </div>';
+        body += "</div>";
+        $('body').append(body);
+
+        const obj = {};
         obj.type = 1;
         obj.question = openQuestion;
 
-        var property = "objectNumber" + objectNumber++;
         json.questions.push(obj);
 
         responseErrorOpen.style.display = 'none';
         responseSuccessOpen.style.display = 'block';
         responseSuccessOpen.innerHTML = "Result: " + "Dodano.";
+        btnOpenBack.disabled = true;
+        btnOpenNext.disabled = true;
+
         setTimeout(function () {
             document.getElementById("openQuestion").value = "";
+            btnOpenBack.disabled = false;
+            btnOpenNext.disabled = false;
             hideQuestionTypes();
             showQuestionTypePanel();
             responseSuccessOpen.style.display = 'none';
@@ -269,7 +313,7 @@ function nextQuestionOpen() {
 }
 
 function showConfirm() {
-    var confirmPanel = document.getElementsByClassName("confirmation");
+    const confirmPanel = document.getElementsByClassName("confirmation");
     confirmPanel[0].style.display = 'block';
 }
 
@@ -278,8 +322,8 @@ function confirm(choice, buttonId = null) {
         buttonId.disabled = true;
     }
 
-    var confirmationError = document.getElementById("confirm-question-error");
-    var confirmationSuccess = document.getElementById("confirm-success");
+    const confirmationError = document.getElementById("confirm-question-error");
+    const confirmationSuccess = document.getElementById("confirm-success");
 
     if (choice === true) {
         if (json["questions"] !== undefined && json["questions"] !== "" && json["objectNumber0"] !== null) {
@@ -292,14 +336,14 @@ function confirm(choice, buttonId = null) {
             confirmationError.innerHTML = "Error: " + "Ankieta jest pusta.";
         }
     } else {
-        var confirmPanel = document.getElementsByClassName("confirmation");
+        const confirmPanel = document.getElementsByClassName("confirmation");
         confirmPanel[0].style.display = 'none';
     }
 }
 
 function finishSurvey() {
-    var data = JSON.stringify(json);
-    var xhr = new XMLHttpRequest();
+    const data = JSON.stringify(json);
+    const xhr = new XMLHttpRequest();
 
     xhr.open('POST', 'http://localhost:8080/surveyCreator', true);
     xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
@@ -311,4 +355,11 @@ function finishSurvey() {
             }
         }
     };
+}
+
+function hideQuestion(id) {
+    delete json.questions[id];
+    const questionDiv = document.getElementById("question" + id);
+    console.log(json);
+    questionDiv.style.display = 'none';
 }

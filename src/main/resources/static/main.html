@@ -68,13 +68,13 @@
     </div>
 </div>
 
-<div class="main-panel survey-title-panel container hide border rounded p-4">
+<div class="main-panel survey-title-panel hide border rounded p-4">
     <div class="title mb-1">
-        <h2>Ankieta - tytuł</h2>
+        <h2>Nazwa ankiety - </h2>
     </div>
 
     <div class="title mb-3">
-        <h6>Ankieta - opis</h6>
+        <h6>Opis ankiety - </h6>
     </div>
 </div>
 
@@ -102,19 +102,19 @@
     <button class="btn btn-dark mb-3 float-right" onclick="showConfirm()">Zakończ</button>
 </div>
 
-<div class="main-panel question-type-1 container hide border rounded p-4">
+<div class="main-panel question-type-1 hide border rounded p-4">
     <div class="title mb-3">
         <h2>Uzupełnij dane pytania otwartego:</h2>
     </div>
 
     <div class="title mb-3">
-        <label for="name">Treść pytania:</label>
+        <label for="openQuestion">Treść pytania:</label>
         <textarea class="form-control" id="openQuestion" rows="4"
                   placeholder="Podaj treść pytania otwartego" maxlength="200"></textarea>
         <small id="small1" class="form-text text-muted">Maksymalnie 200 znaków</small>
     </div>
-    <button class="btn btn-dark mb-3" onclick="backToQuestionType()">Cofnij</button>
-    <button class="btn btn-dark mb-3 float-right" onclick="nextQuestionOpen()">Dodaj Pytanie</button>
+    <button id="btnOpenBack" class="btn btn-dark mb-3" onclick="backToQuestionType()">Cofnij</button>
+    <button id="btnOpenNext" class="btn btn-dark mb-3 float-right" onclick="nextQuestionOpen()">Dodaj Pytanie</button>
 
     <div class="request-msg-success">
         <output class="alert alert-success" role="alert" id="open-question-success" name="request-msg"></output>
@@ -125,7 +125,7 @@
     </div>
 </div>
 
-<div class="main-panel question-type-2 container hide border rounded p-4">
+<div class="main-panel question-type-2 hide border rounded p-4">
     <div class="title mb-3">
         <h2>Uzupełnij dane pytania typu Radio:</h2>
     </div>
@@ -141,9 +141,9 @@
             <input type="text" class="form-control mb-2" id="2answer0" placeholder="Podaj odpowiedz" name="name">
         </div>
     </div>
-    <button class="btn btn-dark mb-3" onclick="addAnswer2()">Dodaj Odpowiedz</button>
-    <button class="btn btn-dark mb-3" onclick="backToQuestionType()">Cofnij</button>
-    <button class="btn btn-dark mb-3 float-right" onclick="nextQuestionRadio()">Dodaj Pytanie</button>
+    <button id="btnRadioAdd" class="btn btn-dark mb-3" onclick="addAnswer2()">Dodaj Odpowiedz</button>
+    <button id="btnRadioBack" class="btn btn-dark mb-3" onclick="backToQuestionType()">Cofnij</button>
+    <button id="btnRadioNext" class="btn btn-dark mb-3 float-right" onclick="nextQuestionRadio()">Dodaj Pytanie</button>
 
     <div class="request-msg-success">
         <output class="alert alert-success" role="alert" id="radio-question-success" name="request-msg"></output>
@@ -154,7 +154,7 @@
     </div>
 </div>
 
-<div class="main-panel question-type-3 container hide border rounded p-4">
+<div class="main-panel question-type-3 hide border rounded p-4">
     <div class="title mb-3">
         <h2>Uzupełnij dane pytania typu Checkbox:</h2>
     </div>
@@ -170,9 +170,9 @@
             <input type="text" class="form-control mb-2" id="3answer0" placeholder="Podaj odpowiedz" name="name">
         </div>
     </div>
-    <button class="btn btn-dark mb-3" onclick="addAnswer3()">Dodaj Odpowiedz</button>
-    <button class="btn btn-dark mb-3" onclick="backToQuestionType()">Cofnij</button>
-    <button class="btn btn-dark mb-3 float-right" onclick="nextQuestionCheckbox()">Dodaj Pytanie</button>
+    <button id="btnCheckboxAdd" class="btn btn-dark mb-3" onclick="addAnswer3()">Dodaj Odpowiedz</button>
+    <button id="btnCheckboxBack" class="btn btn-dark mb-3" onclick="backToQuestionType()">Cofnij</button>
+    <button id="btnCheckboxNext" class="btn btn-dark mb-3 float-right" onclick="nextQuestionCheckbox()">Dodaj Pytanie</button>
 
     <div class="request-msg-success">
         <output class="alert alert-success" role="alert" id="checkbox-question-success" name="request-msg"></output>
@@ -183,7 +183,7 @@
     </div>
 </div>
 
-<div class="main-panel confirmation container hide border rounded p-4">
+<div class="main-panel confirmation hide border rounded p-4">
     <div class="title mb-3">
         <h5>Czy na pewno chcesz zakończyć i wysłać?</h5>
     </div>

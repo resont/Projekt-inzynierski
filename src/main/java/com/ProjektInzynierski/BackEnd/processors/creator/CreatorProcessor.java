@@ -43,29 +43,30 @@ public class CreatorProcessor extends ProcessInterface {
         logger.info("Start of creation process.");
         try {
 
-            if (surveyDetailsData != null) {
+            if (surveyDetailsData != null && !surveyDetailsData.getQuestions().isEmpty()) {
                 Survey survey = saveSurvey(surveyDetailsData);
                 for (QuestionData element : surveyDetailsData.getQuestions()) {
+                    if (element != null) {
+                        Questions questions = new Questions.QuestionsBuilder()
+                                .setType(element.getType())
+                                .setQuestion(element.getQuestion())
+                                .setSurvey(survey)
+                                .build();
 
-                    Questions questions = new Questions.QuestionsBuilder()
-                            .setType(element.getType())
-                            .setQuestion(element.getQuestion())
-                            .setSurvey(survey)
-                            .build();
+                        Questions question = questionRepository.save(questions);
+                        if (element.getAnswers() != null) {
 
-                    Questions question = questionRepository.save(questions);
-                    if (element.getAnswers() != null) {
+                            AnswerRep answers = new AnswerRep();
+                            answers.setAnswers(element.getAnswers());
 
-                        AnswerRep answers = new AnswerRep();
-                        answers.setAnswers(element.getAnswers());
-
-                        for (Iterator iter = answers.getIterator(); iter.hasNext(); ) {
-                            String string = (String) iter.next();
-                            if (!string.equals("") && !string.equals(" ")) {
-                                Answers answersObj = new Answers();
-                                answersObj.setAnswer(string);
-                                answersObj.setQuestion(question);
-                                answersRepository.save(answersObj);
+                            for (Iterator iter = answers.getIterator(); iter.hasNext(); ) {
+                                String string = (String) iter.next();
+                                if (!string.equals("") && !string.equals(" ")) {
+                                    Answers answersObj = new Answers();
+                                    answersObj.setAnswer(string);
+                                    answersObj.setQuestion(question);
+                                    answersRepository.save(answersObj);
+                                }
                             }
                         }
                     }

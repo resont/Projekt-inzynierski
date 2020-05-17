@@ -132,6 +132,10 @@ function sendSurvey(buttonId) {
             }
             if (key === "answer") {
                 obj[key] = document.getElementById("textInput" + idKey).value;
+                if(obj[key] === ""){
+                    textInputs.splice(i,1);
+                    i--;
+                }
             }
 
         }

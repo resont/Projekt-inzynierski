@@ -49,7 +49,7 @@ public class QuestionAndAnswerIdHandler extends ProcessInterface {
 
         logger.info("Start of answering process.");
         try {
-            if (answerDetailsData != null) {
+            if (!answerDetailsData.getOpenQuestions().isEmpty() && !answerDetailsData.getClosedQuestions().isEmpty()) {
 
                 String key = StringHashCreator.createSimpleHash(answerDetailsData.getUuid());
                 KeyEntity keyEntity = new KeyEntity();
@@ -82,10 +82,10 @@ public class QuestionAndAnswerIdHandler extends ProcessInterface {
                 return ResultMap.createSuccessMap(keyEntitySaved.getKey());
             }
             logger.error("Answering data is null.");
-            return ResultMap.createErrorMap(CreatorMsg.ANSWERING_ERROR.getErrorMsg());
+            return ResultMap.createErrorMap("Can't send empty survey.");
         } catch (Exception e) {
             logger.error("Answering went wrong.");
-            return ResultMap.createErrorMap(LoginMsg.WRONG_EMAIL_OR_PASSWORD.getErrorMsg());
+            return ResultMap.createErrorMap("Error while answering survey.");
         }
     }
 

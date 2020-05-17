@@ -153,7 +153,7 @@ function nextQuestionRadio() {
         obj.question = radioQuestion.value;
         obj.answers = obj2;
 
-        body += '<button id="chose-type" class="btn btn-dark mb-3" onclick="hideQuestion('+json.questions.length+')">Usuń</button> </div>';
+        body += '<button id="chose-type" class="btn btn-dark mb-3 deleteAnswer" onclick="hideQuestion(' + json.questions.length + ')">Usuń</button> </div>';
         $('body').append(body);
 
         json.questions.push(obj);
@@ -239,7 +239,7 @@ function nextQuestionCheckbox() {
         obj.question = checkboxQuestion.value;
         obj.answers = obj2;
 
-        body += '<button id="chose-type" class="btn btn-dark mb-3" onclick="hideQuestion('+json.questions.length+')">Usuń</button> </div>';
+        body += '<button id="chose-type" class="btn btn-dark mb-3 deleteAnswer" onclick="hideQuestion(' + json.questions.length + ')">Usuń</button> </div>';
         $('body').append(body);
 
         json.questions.push(obj);
@@ -282,7 +282,7 @@ function nextQuestionOpen() {
         let body = "";
         body += "<div id=question" + json.questions.length + " class='main-panel border rounded p-4'>";
         body += "<div class='border pl-2 pt-2 pr-2 rounded' style='background-color: #eaeaea;'><p>" + openQuestion + "</p></div>";
-        body += '<button id="chose-type" class="btn btn-dark mb-1 mt-2" onclick="hideQuestion('+json.questions.length+')">Usuń</button> </div>';
+        body += '<button id="chose-type" class="btn btn-dark mb-1 mt-2 deleteAnswer" onclick="hideQuestion(' + json.questions.length + ')">Usuń</button> </div>';
         body += "</div>";
         $('body').append(body);
 
@@ -352,6 +352,7 @@ function finishSurvey() {
     xhr.onreadystatechange = function () {
         if (xhr.readyState === XMLHttpRequest.DONE) {
             if (xhr.status === 200) {
+                $(".deleteAnswer").attr("disabled", true);
                 redirectToMain();
             }
         }

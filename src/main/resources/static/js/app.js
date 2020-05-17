@@ -1,9 +1,8 @@
 function register(buttonId) {
-    buttonId.disabled = true;
 
     var xhr = new XMLHttpRequest();
 
-    registerResult(xhr);
+    registerResult(xhr, buttonId);
 
     var email = $("#email").val();
     var password = $("#password").val();
@@ -21,7 +20,7 @@ function register(buttonId) {
     }
 }
 
-function registerResult(xhr) {
+function registerResult(xhr, buttonId) {
     xhr.onreadystatechange = function () {
         var responseError = document.getElementsByClassName("alert alert-danger");
         var responseSuccess = document.getElementsByClassName("alert alert-success");
@@ -35,6 +34,7 @@ function registerResult(xhr) {
                     responseError[0].style.display = 'block';
                     responseError[0].innerHTML = "Error: " + json.error;
                 } else if (json.result) {
+                    buttonId.disabled = true;
                     responseError[0].style.display = 'none';
                     responseSuccess[0].style.display = 'block';
                     responseSuccess[0].innerHTML = "User: " + json.email + " - " + json.result;
@@ -158,6 +158,11 @@ function deleteCookie(cookieName) {
 }
 
 function resetPasswordMenu() {
+
+    $("#oldPassword").val("");
+    $("#newPassword").val("");
+    $("#newPassword2").val("");
+
     $(".right-panel").hide();
     $(".reset-password").show();
 
@@ -192,9 +197,8 @@ function resetPassword(buttonId) {
     var responseError = $(".alert.alert-danger");
     var responseSuccess = $(".alert.alert-success");
 
-    resetResult(xhr, responseError, responseSuccess);
+    resetResult(xhr, responseError, responseSuccess, buttonId);
     if (newPassword === newPassword2) {
-        buttonId.disabled = true;
         if (oldPassword !== newPassword) {
             var data = '{"token":"' + token + '","oldPassword":"' + oldPassword + '","newPassword":"' + newPassword + '"}';
             xhr.open('POST', 'http://localhost:8080/reset', true);
@@ -213,7 +217,7 @@ function resetPassword(buttonId) {
     }
 }
 
-function resetResult(xhr, responseError, responseSuccess) {
+function resetResult(xhr, responseError, responseSuccess, buttonId) {
     xhr.onreadystatechange = function () {
         if (xhr.readyState === XMLHttpRequest.DONE) {
             if (xhr.status === 200) {
@@ -224,6 +228,7 @@ function resetResult(xhr, responseError, responseSuccess) {
                     responseError.show();
                     responseError.html("Error: " + json.error);
                 } else if (json.result) {
+                    buttonId.disabled = true;
                     responseError.hide();
                     responseSuccess.show();
                     responseSuccess.html("Success!");

@@ -59,6 +59,7 @@ function choseType() {
 
     if (radioOptionValue === "option1") {
         hideQuestionTypePanel();
+        $("#openQuestion").val("");
         questionType1[0].style.display = 'block';
 
     } else if (radioOptionValue === "option2") {

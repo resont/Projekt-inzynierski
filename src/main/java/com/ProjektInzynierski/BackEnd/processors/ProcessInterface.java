@@ -1,5 +1,6 @@
 package com.ProjektInzynierski.BackEnd.processors;
 
+import com.ProjektInzynierski.BackEnd.data.model.AnswerDetailsData;
 import com.ProjektInzynierski.BackEnd.data.model.SurveyDetailsData;
 
 import java.util.Map;
@@ -11,6 +12,10 @@ public abstract class ProcessInterface {
     }
 
     public Map<String, String> process(SurveyDetailsData surveyDetailsData) {
+        return null;
+    }
+
+    public Map<String, String> process(AnswerDetailsData answerDetailsData) {
         return null;
     }
 }

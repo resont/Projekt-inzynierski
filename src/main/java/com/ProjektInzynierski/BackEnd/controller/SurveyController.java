@@ -1,17 +1,16 @@
 package com.ProjektInzynierski.BackEnd.controller;
 
-import com.ProjektInzynierski.BackEnd.data.entity.AnswerToKeyEntity;
 import com.ProjektInzynierski.BackEnd.data.entity.Answers;
 import com.ProjektInzynierski.BackEnd.data.entity.Questions;
 import com.ProjektInzynierski.BackEnd.data.entity.Survey;
+import com.ProjektInzynierski.BackEnd.data.model.AnswerDetailsData;
 import com.ProjektInzynierski.BackEnd.data.model.SurveyDetailsData;
 import com.ProjektInzynierski.BackEnd.processors.creator.CreatorProcessor;
+import com.ProjektInzynierski.BackEnd.processors.creator.QuestionAndAnswerIdHandler;
 import com.ProjektInzynierski.BackEnd.repository.AnswersRepository;
-import com.ProjektInzynierski.BackEnd.repository.KeyToAnswerRepository;
 import com.ProjektInzynierski.BackEnd.repository.SurveyRepository;
-import com.ProjektInzynierski.BackEnd.repository.SurveyToUserRepository;
-import com.ProjektInzynierski.BackEnd.repository.UsersRepository;
 import com.ProjektInzynierski.BackEnd.util.ResultMap;
+import org.apache.logging.log4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -32,23 +31,24 @@ import java.util.Map;
 @RestController
 public class SurveyController {
 
-    private CreatorProcessor creatorProcessor;
+    private Logger logger = LoggerController.getInstance();
+
+    private final CreatorProcessor creatorProcessor;
 
     private final SurveyRepository surveyRepository;
 
     private final AnswersRepository answersRepository;
 
-    private final KeyToAnswerRepository keyToAnswerRepository;
+    private final QuestionAndAnswerIdHandler questionAndAnswerIdHandler;
 
     public SurveyController(CreatorProcessor creatorProcessor,
                             SurveyRepository surveyRepository,
                             AnswersRepository answersRepository,
-                            UsersRepository usersRepository,
-                            SurveyToUserRepository surveyToUserRepository, KeyToAnswerRepository keyToAnswerRepository) {
+                            QuestionAndAnswerIdHandler questionAndAnswerIdHandler) {
         this.creatorProcessor = creatorProcessor;
         this.surveyRepository = surveyRepository;
         this.answersRepository = answersRepository;
-        this.keyToAnswerRepository = keyToAnswerRepository;
+        this.questionAndAnswerIdHandler = questionAndAnswerIdHandler;
     }
 
     @GetMapping("/status")
@@ -96,16 +96,6 @@ public class SurveyController {
         return true;
     }
 
-    @PostMapping("/answer/{id}")
-    Map<String, String> update(@PathVariable("id") String id) {
-        int answerId = Integer.parseInt(id);
-
-        String key = updateKeyToAnswer(answerId);
-
-        this.surveyRepository.updateCount(answerId);
-        return ResultMap.createSuccessMap(key);
-    }
-
     @GetMapping("/con_us_su/{uuid}")
     int[] showCon(@PathVariable("uuid") String uuid) {
         return this.surveyRepository.findSurveysByUserUuid(uuid);
@@ -121,19 +111,6 @@ public class SurveyController {
         int id = this.surveyRepository.findIdByUuidAndSurveyId(body.get("token"), Integer.parseInt(body.get("surveyId")));
         this.surveyRepository.updateAnswer(id);
         return ResultMap.createSuccessMap("Survey answered.");
-    }
-
-    @PostMapping("/answer")
-    Map<String, String> insertAnswer(@RequestBody Map<String, String> body) {
-        Answers answers = new Answers();
-        answers.setAnswer(body.get("answer"));
-        Answers answer = this.answersRepository.save(answers);
-        String questionId = body.get("questionID");
-
-        String key = updateKeyToAnswer(answer.getId());
-
-        this.answersRepository.updateAnswer(Integer.valueOf(questionId), answer.getId());
-        return ResultMap.createSuccessMap(key);
     }
 
     @PostMapping("/surveyCreator")
@@ -163,12 +140,10 @@ public class SurveyController {
         return map;
     }
 
-    String updateKeyToAnswer(int answerId) {
-        String key = "key1"; //temp
-        int keyId = 1; //temp
-        AnswerToKeyEntity answerToKeyEntity = new AnswerToKeyEntity();
-        AnswerToKeyEntity keyToAnswerId = this.keyToAnswerRepository.save(answerToKeyEntity);
-        this.keyToAnswerRepository.addAnswerToKey(keyToAnswerId.getId(), keyId, answerId);
-        return key;
+    @PostMapping("/answers")
+    Map<String, String> updateAnswersCount(@RequestBody AnswerDetailsData body) {
+        if (body != null) {
+            return questionAndAnswerIdHandler.process(body);
+        } else return ResultMap.createNullBodyErrorMap();
     }
 }

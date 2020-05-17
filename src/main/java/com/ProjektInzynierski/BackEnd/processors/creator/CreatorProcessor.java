@@ -6,6 +6,7 @@ import com.ProjektInzynierski.BackEnd.data.entity.Questions;
 import com.ProjektInzynierski.BackEnd.data.entity.Survey;
 import com.ProjektInzynierski.BackEnd.data.model.QuestionData;
 import com.ProjektInzynierski.BackEnd.data.model.SurveyDetailsData;
+import com.ProjektInzynierski.BackEnd.enums.CreatorMsg;
 import com.ProjektInzynierski.BackEnd.enums.LoginMsg;
 import com.ProjektInzynierski.BackEnd.processors.ProcessInterface;
 import com.ProjektInzynierski.BackEnd.repository.AnswersRepository;
@@ -41,34 +42,39 @@ public class CreatorProcessor extends ProcessInterface {
 
         logger.info("Start of creation process.");
         try {
-            Survey survey = saveSurvey(surveyDetailsData);
-            for (QuestionData element : surveyDetailsData.getQuestions()) {
 
-                Questions questions = new Questions.QuestionsBuilder()
-                        .setType(element.getType())
-                        .setQuestion(element.getQuestion())
-                        .setSurvey(survey)
-                        .build();
+            if (surveyDetailsData != null) {
+                Survey survey = saveSurvey(surveyDetailsData);
+                for (QuestionData element : surveyDetailsData.getQuestions()) {
 
-                Questions question = questionRepository.save(questions);
-                if (element.getAnswers() != null) {
+                    Questions questions = new Questions.QuestionsBuilder()
+                            .setType(element.getType())
+                            .setQuestion(element.getQuestion())
+                            .setSurvey(survey)
+                            .build();
 
-                    AnswerRep answers = new AnswerRep();
-                    answers.setAnswers(element.getAnswers());
+                    Questions question = questionRepository.save(questions);
+                    if (element.getAnswers() != null) {
 
-                    for (Iterator iter = answers.getIterator(); iter.hasNext(); ) {
-                        String string = (String) iter.next();
-                        if (!string.equals("") && !string.equals(" ")) {
-                            Answers answersObj = new Answers();
-                            answersObj.setAnswer(string);
-                            answersObj.setQuestion(question);
-                            answersRepository.save(answersObj);
+                        AnswerRep answers = new AnswerRep();
+                        answers.setAnswers(element.getAnswers());
+
+                        for (Iterator iter = answers.getIterator(); iter.hasNext(); ) {
+                            String string = (String) iter.next();
+                            if (!string.equals("") && !string.equals(" ")) {
+                                Answers answersObj = new Answers();
+                                answersObj.setAnswer(string);
+                                answersObj.setQuestion(question);
+                                answersRepository.save(answersObj);
+                            }
                         }
                     }
                 }
+                logger.info("Creation successful.");
+                return ResultMap.createSuccessMap("Pomyślnie dodano ankietę.");
             }
-            logger.info("Creation successful.");
-            return ResultMap.createSuccessMap("Pomyślnie dodano ankietę.");
+            logger.error("Creation went wrong.");
+            return ResultMap.createErrorMap(CreatorMsg.CREATOR_NULL_ERROR.getErrorMsg());
         } catch (Exception e) {
             logger.error("Creation went wrong.");
             return ResultMap.createErrorMap(LoginMsg.WRONG_EMAIL_OR_PASSWORD.getErrorMsg());

@@ -8,7 +8,7 @@ let answerName = "";
 let qIdArr = [];
 
 function getAnswers() {
-    let keyId = "key1"; //temp
+    let keyId = "[B@43226111"; //temp
     let body = "";
     let xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {

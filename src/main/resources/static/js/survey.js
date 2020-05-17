@@ -123,6 +123,7 @@ function sendSurvey(buttonId) {
     }
     var idKey;
     for (var i = 0; i < textInputs.length; i++) {
+        //Todo empty value
         var obj = textInputs[i];
         for (var key in obj) {
             var attrName = key;
@@ -139,25 +140,35 @@ function sendSurvey(buttonId) {
     var responseError = $(".alert.alert-danger");
     var responseSuccess = $(".alert.alert-success");
 
+    var jsonSend = {
+        openQuestions: [],
+        closedQuestions: []
+    };
+
+    jsonSend.uuid = $.cookie("token");
+
     for (var i = 0; i < textInputs.length; i++) {
-        var obj = textInputs[i];
-        var data = '{"questionID":"' + obj["questionID"] + '","answer":"' + obj["answer"] + '"}';
-        var xhr = new XMLHttpRequest();
-        xhr.open('POST', 'http://localhost:8080/answer', false);
-        xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
-        xhr.send(data);
+        var obj = {};
+        obj.questionId = textInputs[i].questionID;
+        obj.answer = textInputs[i].answer;
+
+        jsonSend.openQuestions.push(obj);
     }
 
     for (var id in checked) {
-        buttonId.disabled = true;
-        var xhr = new XMLHttpRequest();
-        sendResult(xhr, responseError, responseSuccess);
-        xhr.open('POST', 'http://localhost:8080/answer/' + checked[id], false);
-        xhr.send(null);
+        var obj = {};
+        obj.answerId = checked[id];
 
+        jsonSend.closedQuestions.push(obj);
     }
 
-
+    var dataOut = JSON.stringify(jsonSend);
+    buttonId.disabled = true;
+    var xhr = new XMLHttpRequest();
+    sendResult(xhr, responseError, responseSuccess);
+    xhr.open('POST', 'http://localhost:8080/answers', false);
+    xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
+    xhr.send(dataOut);
 }
 
 function instantRedirectToProfile() {

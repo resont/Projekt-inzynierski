@@ -119,3 +119,10 @@ function showUnavailableSurveys() {
     xhr.send(null);
 
 }
+
+function redirectToAnswersWithKey() {
+    sessionStorage.setItem('key', $("#key").val());
+    window.setTimeout(function () {
+        location.href = "answers.html";
+    });
+}

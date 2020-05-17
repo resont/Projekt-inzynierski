@@ -174,6 +174,12 @@ function redirectToProfile() {
     }, 1000);
 }
 
+function instantRedirectToProfile() {
+    window.setTimeout(function () {
+        location.href = "profile.html";
+    });
+}
+
 function resetPassword(buttonId) {
 
     var xhr = new XMLHttpRequest();

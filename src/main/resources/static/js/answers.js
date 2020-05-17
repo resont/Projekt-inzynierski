@@ -1,5 +1,6 @@
 window.onload = function () {
     getAnswers();
+    showLogoutAndProfile();
 };
 
 
@@ -8,7 +9,8 @@ let answerName = "";
 let qIdArr = [];
 
 function getAnswers() {
-    let keyId = "[B@43226111"; //temp
+    let key = sessionStorage.getItem('key');
+    sessionStorage.removeItem('key');
     let body = "";
     let xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
@@ -48,10 +50,17 @@ function getAnswers() {
                 body = "";
 
             }
+            let button = `<div class='main-panel border rounded p-4'>
+                            <button class=\"btn btn-dark btn-block \" onclick=\"instantRedirectToProfile()\">Back</button>
+                          </div>`;
+            $("body").append(button);
         }
     };
-    xhr.open('POST', 'http://localhost:8080/answerKey/' + keyId, false);
-    xhr.send(null);
+    let json = {"key": key};
+    let data = JSON.stringify(json);
+    xhr.open('POST', 'http://localhost:8080/answerKey', false);
+    xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
+    xhr.send(data);
 }
 
 function getAnswerName(item, index) {

@@ -132,8 +132,8 @@ function sendSurvey(buttonId) {
             }
             if (key === "answer") {
                 obj[key] = document.getElementById("textInput" + idKey).value;
-                if(obj[key] === ""){
-                    textInputs.splice(i,1);
+                if (obj[key] === "") {
+                    textInputs.splice(i, 1);
                     i--;
                 }
             }
@@ -173,12 +173,6 @@ function sendSurvey(buttonId) {
     xhr.open('POST', 'http://localhost:8080/answers', false);
     xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
     xhr.send(dataOut);
-}
-
-function instantRedirectToProfile() {
-    window.setTimeout(function () {
-        location.href = "profile.html";
-    });
 }
 
 function sendResult(xhr, responseError, responseSuccess) {

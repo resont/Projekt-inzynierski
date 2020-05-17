@@ -18,5 +18,5 @@ public interface AnswersRepository extends JpaRepository<Answers, Integer> {
     void updateAnswer(int id, int aId);
 
     @Query("SELECT a.answersId FROM AnswerToKeyEntity a WHERE a.keyEntityId.key=:key")
-    List<Answers> findAnswersByKeyId(String key);
+    List<Answers> findAnswersByKey(String key);
 }

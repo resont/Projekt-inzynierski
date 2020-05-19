@@ -18,7 +18,7 @@ function checkIfValidAdmin() {
                     redirectToMain();
                 }
             } else {
-                redirectToMain();
+                redirectToIndex();
             }
         }
     };

@@ -17,6 +17,8 @@ function checkIfValidAdmin() {
                 if (json.error || json.group !== "admin") {
                     redirectToMain();
                 }
+            } else {
+                redirectToMain();
             }
         }
     };

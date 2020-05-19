@@ -1,11 +1,11 @@
-.id, .count, .type{
+.id, .count, .type {
     display: none;
 }
 
-input{
-    margin-left:1em;
+input {
+    margin-left: 1em;
 }
 
-#back{
+#back {
     margin-right: 0.3em;
 }

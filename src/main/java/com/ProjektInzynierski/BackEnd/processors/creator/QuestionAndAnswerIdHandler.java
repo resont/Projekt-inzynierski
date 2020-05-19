@@ -7,6 +7,7 @@ import com.ProjektInzynierski.BackEnd.data.entity.KeyEntity;
 import com.ProjektInzynierski.BackEnd.data.model.AnswerDetailsData;
 import com.ProjektInzynierski.BackEnd.data.model.ClosedQuestion;
 import com.ProjektInzynierski.BackEnd.data.model.OpenQuestion;
+import com.ProjektInzynierski.BackEnd.enums.AnsweringMsg;
 import com.ProjektInzynierski.BackEnd.processors.ProcessInterface;
 import com.ProjektInzynierski.BackEnd.repository.AnswersRepository;
 import com.ProjektInzynierski.BackEnd.repository.KeyRepository;
@@ -80,10 +81,10 @@ public class QuestionAndAnswerIdHandler extends ProcessInterface {
                 return ResultMap.createSuccessMap(keyEntitySaved.getKey());
             }
             logger.error("Answering data is null.");
-            return ResultMap.createErrorMap("Can't send empty survey.");
+            return ResultMap.createErrorMap(AnsweringMsg.ANSWERING_ERROR_EMPTY_SURVEY.getErrorMsg());
         } catch (Exception e) {
             logger.error("Answering went wrong.");
-            return ResultMap.createErrorMap("Error while answering survey.");
+            return ResultMap.createErrorMap(AnsweringMsg.ANSWERING_UNEXPECTED_ERROR.getErrorMsg());
         }
     }
 

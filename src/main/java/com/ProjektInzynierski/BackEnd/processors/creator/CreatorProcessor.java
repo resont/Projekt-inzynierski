@@ -7,7 +7,6 @@ import com.ProjektInzynierski.BackEnd.data.entity.Survey;
 import com.ProjektInzynierski.BackEnd.data.model.QuestionData;
 import com.ProjektInzynierski.BackEnd.data.model.SurveyDetailsData;
 import com.ProjektInzynierski.BackEnd.enums.CreatorMsg;
-import com.ProjektInzynierski.BackEnd.enums.LoginMsg;
 import com.ProjektInzynierski.BackEnd.processors.ProcessInterface;
 import com.ProjektInzynierski.BackEnd.repository.AnswersRepository;
 import com.ProjektInzynierski.BackEnd.repository.QuestionRepository;
@@ -44,6 +43,7 @@ public class CreatorProcessor extends ProcessInterface {
         try {
 
             if (surveyDetailsData != null && !surveyDetailsData.getQuestions().isEmpty()) {
+                int nullElements = 0;
                 Survey survey = saveSurvey(surveyDetailsData);
                 for (QuestionData element : surveyDetailsData.getQuestions()) {
                     if (element != null) {
@@ -69,16 +69,26 @@ public class CreatorProcessor extends ProcessInterface {
                                 }
                             }
                         }
+                    } else {
+                        nullElements++;
+                        if (nullElements == surveyDetailsData.getQuestions().size()) {
+                            surveyRepository.delete(survey);
+                            logger.error("Creation went wrong questions data is null.");
+                            return ResultMap.createErrorMap(CreatorMsg.CREATOR_NULL_QUESTIONS_DATA_ERROR.getErrorMsg());
+                        }
                     }
                 }
-                logger.info("Creation successful.");
-                return ResultMap.createSuccessMap("Pomyślnie dodano ankietę.");
+            } else {
+                logger.error("Creation went wrong survey data is null.");
+                return ResultMap.createErrorMap(CreatorMsg.CREATOR_NULL_ERROR.getErrorMsg());
             }
-            logger.error("Creation went wrong.");
-            return ResultMap.createErrorMap(CreatorMsg.CREATOR_NULL_ERROR.getErrorMsg());
+
+            logger.info("Creation successful.");
+            return ResultMap.createSuccessMap(CreatorMsg.CREATOR_SUCCESS.getErrorMsg());
+
         } catch (Exception e) {
-            logger.error("Creation went wrong.");
-            return ResultMap.createErrorMap(LoginMsg.WRONG_EMAIL_OR_PASSWORD.getErrorMsg());
+            logger.error("Creation went wrong unexpected error.");
+            return ResultMap.createErrorMap(CreatorMsg.CREATOR_UNEXPECTED_ERROR.getErrorMsg());
         }
     }
 

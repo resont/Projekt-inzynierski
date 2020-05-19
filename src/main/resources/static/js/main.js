@@ -140,12 +140,15 @@ function nextQuestionRadio() {
 
         const obj2 = [];
         for (let i = 0; i <= answer2Number; i++) {
-            tab1[i] = document.getElementById("2answer" + i).value;
-            body += `<div>
+            const inputValue = document.getElementById("2answer" + i).value;
+            if (inputValue !== null && inputValue !== "" && inputValue !== " " && inputValue !== undefined && inputValue !== "   ") {
+                tab1[i] = inputValue;
+                body += `<div>
                       <input type="radio" id='a` + i + `' disabled>
                       <label for='a` + i + `'>` + document.getElementById("2answer" + i).value + `</label>
                  </div>`;
-            obj2.push(tab1[i]);
+                obj2.push(tab1[i]);
+            }
         }
 
         const obj = {};
@@ -154,31 +157,35 @@ function nextQuestionRadio() {
         obj.answers = obj2;
 
         body += '<button id="chose-type" class="btn btn-dark mb-3 deleteAnswer" onclick="hideQuestion(' + json.questions.length + ')">Usuń</button> </div>';
-        $('body').append(body);
 
-        json.questions.push(obj);
-        responseErrorRadio.style.display = 'none';
-        responseSuccessRadio.style.display = 'block';
-        responseSuccessRadio.innerHTML = "Result: " + "Dodano.";
-        btnRadioBack.disabled = true;
-        btnRadioNext.disabled = true;
-        btnRadioAdd.disabled = true;
+        if (obj2.length !== 0) {
+            $('body').append(body);
+            json.questions.push(obj);
+            responseErrorRadio.style.display = 'none';
+            responseSuccessRadio.style.display = 'block';
+            responseSuccessRadio.innerHTML = "Result: " + "Dodano.";
+            btnRadioBack.disabled = true;
+            btnRadioNext.disabled = true;
+            btnRadioAdd.disabled = true;
 
-        setTimeout(function () {
-            const questionType2Answers = document.getElementsByClassName("question-type-2-answers");
-            radioQuestion.value = "";
-            answer2Number = 0;
-            btnRadioBack.disabled = false;
-            btnRadioNext.disabled = false;
-            btnRadioAdd.disabled = false;
-            questionType2Answers[0].innerHTML = "<input type=\"text\" class=\"form-control mb-2\" id=\"2answer0\" placeholder=\"Podaj odpowiedz\" name=\"name\">";
-            hideQuestionTypes();
-            showQuestionTypePanel();
-            responseSuccessRadio.style.display = 'none';
-        }, 2000);
-
+            setTimeout(function () {
+                const questionType2Answers = document.getElementsByClassName("question-type-2-answers");
+                radioQuestion.value = "";
+                answer2Number = 0;
+                btnRadioBack.disabled = false;
+                btnRadioNext.disabled = false;
+                btnRadioAdd.disabled = false;
+                questionType2Answers[0].innerHTML = "<input type=\"text\" class=\"form-control mb-2\" id=\"2answer0\" placeholder=\"Podaj odpowiedz\" name=\"name\">";
+                hideQuestionTypes();
+                showQuestionTypePanel();
+                responseSuccessRadio.style.display = 'none';
+            }, 2000);
+        } else {
+            responseErrorRadio.innerHTML = "Error: " + "Odpowiedzi są puste, wypełnij pola.";
+            responseErrorRadio.style.display = 'block';
+        }
     } else {
-        responseErrorRadio.innerHTML = "Error: " + "Wypełnij pola.";
+        responseErrorRadio.innerHTML = "Error: " + "Pytanie jest puste, wypełnij pole.";
         responseErrorRadio.style.display = 'block';
     }
 }
@@ -226,12 +233,15 @@ function nextQuestionCheckbox() {
 
         const obj2 = [];
         for (let i = 0; i <= answer3Number; i++) {
-            tab2[i] = document.getElementById("3answer" + i).value;
-            body += `<div>
+            const inputValue = document.getElementById("3answer" + i).value;
+            if (inputValue !== null && inputValue !== "" && inputValue !== " " && inputValue !== undefined && inputValue !== "   ") {
+                tab2[i] = inputValue;
+                body += `<div>
                       <input type="radio" id='a` + i + `' disabled>
                       <label for='a` + i + `'>` + document.getElementById("3answer" + i).value + `</label>
                  </div>`;
-            obj2.push(tab2[i]);
+                obj2.push(tab2[i]);
+            }
         }
 
         const obj = {};
@@ -240,31 +250,37 @@ function nextQuestionCheckbox() {
         obj.answers = obj2;
 
         body += '<button id="chose-type" class="btn btn-dark mb-3 deleteAnswer" onclick="hideQuestion(' + json.questions.length + ')">Usuń</button> </div>';
-        $('body').append(body);
 
-        json.questions.push(obj);
-        responseErrorCheckbox.style.display = 'none';
-        responseSuccessCheckbox.style.display = 'block';
-        responseSuccessCheckbox.innerHTML = "Result: " + "Dodano.";
-        btnCheckboxBack.disabled = true;
-        btnCheckboxNext.disabled = true;
-        btnCheckboxAdd.disabled = true;
+        if (obj2.length !== 0) {
+            $('body').append(body);
+            json.questions.push(obj);
 
-        setTimeout(function () {
-            const questionType3Answers = document.getElementsByClassName("question-type-3-answers");
-            checkboxQuestion.value = "";
-            answer3Number = 0;
-            btnCheckboxBack.disabled = false;
-            btnCheckboxNext.disabled = false;
-            btnCheckboxAdd.disabled = false;
-            questionType3Answers[0].innerHTML = "<input type=\"text\" class=\"form-control mb-2\" id=\"3answer0\" placeholder=\"Podaj odpowiedz\" name=\"name\">";
-            hideQuestionTypes();
-            showQuestionTypePanel();
-            responseSuccessCheckbox.style.display = 'none';
-        }, 2000);
+            responseErrorCheckbox.style.display = 'none';
+            responseSuccessCheckbox.style.display = 'block';
+            responseSuccessCheckbox.innerHTML = "Result: " + "Dodano.";
+            btnCheckboxBack.disabled = true;
+            btnCheckboxNext.disabled = true;
+            btnCheckboxAdd.disabled = true;
 
+            setTimeout(function () {
+                const questionType3Answers = document.getElementsByClassName("question-type-3-answers");
+                checkboxQuestion.value = "";
+                answer3Number = 0;
+                btnCheckboxBack.disabled = false;
+                btnCheckboxNext.disabled = false;
+                btnCheckboxAdd.disabled = false;
+                questionType3Answers[0].innerHTML = "<input type=\"text\" class=\"form-control mb-2\" id=\"3answer0\" placeholder=\"Podaj odpowiedz\" name=\"name\">";
+                hideQuestionTypes();
+                showQuestionTypePanel();
+                responseSuccessCheckbox.style.display = 'none';
+            }, 2000);
+
+        } else {
+            responseErrorCheckbox.innerHTML = "Error: " + "Odpowiedzi są puste, wypełnij pola.";
+            responseErrorCheckbox.style.display = 'block';
+        }
     } else {
-        responseErrorCheckbox.innerHTML = "Error: " + "Wypełnij pola.";
+        responseErrorCheckbox.innerHTML = "Error: " + "Pytanie jest puste, wypełnij pole.";
         responseErrorCheckbox.style.display = 'block';
     }
 }
@@ -318,6 +334,11 @@ function showConfirm() {
     confirmPanel[0].style.display = 'block';
 }
 
+function hideConfirm() {
+    const confirmPanel = document.getElementsByClassName("confirmation");
+    confirmPanel[0].style.display = 'none';
+}
+
 function confirm(choice, buttonId = null) {
     if (buttonId !== null) {
         buttonId.disabled = true;
@@ -327,14 +348,21 @@ function confirm(choice, buttonId = null) {
     const confirmationSuccess = document.getElementById("confirm-success");
 
     if (choice === true) {
-        if (json["questions"] !== undefined && json["questions"] !== "" && json["objectNumber0"] !== null) {
+        if (json["questions"] !== undefined && json["questions"] !== "" && json["questions"].length !== 0 && json["objectNumber0"] !== null) {
             confirmationError.style.display = 'none';
             confirmationSuccess.style.display = 'block';
             confirmationSuccess.innerHTML = "Result: " + "Wysłano.";
-            finishSurvey();
+            window.setTimeout(function () {
+                finishSurvey(buttonId);
+            }, 2000);
         } else {
             confirmationError.style.display = 'block';
             confirmationError.innerHTML = "Error: " + "Ankieta jest pusta.";
+            window.setTimeout(function () {
+                confirmationError.style.display = 'none';
+                buttonId.disabled = false;
+                hideConfirm();
+            }, 3000);
         }
     } else {
         const confirmPanel = document.getElementsByClassName("confirmation");
@@ -342,9 +370,13 @@ function confirm(choice, buttonId = null) {
     }
 }
 
-function finishSurvey() {
+function finishSurvey(buttonId) {
     const data = JSON.stringify(json);
+    console.log(json);
     const xhr = new XMLHttpRequest();
+
+    const confirmationError = document.getElementById("confirm-question-error");
+    const confirmationSuccess = document.getElementById("confirm-success");
 
     xhr.open('POST', 'http://localhost:8080/surveyCreator', true);
     xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
@@ -352,8 +384,27 @@ function finishSurvey() {
     xhr.onreadystatechange = function () {
         if (xhr.readyState === XMLHttpRequest.DONE) {
             if (xhr.status === 200) {
-                $(".deleteAnswer").attr("disabled", true);
-                redirectToMain();
+                const deleteAnswer = $(".deleteAnswer");
+                deleteAnswer.attr("disabled", true);
+
+                const jsonResult = JSON.parse(xhr.responseText);
+
+                if (jsonResult.error) {
+                    confirmationSuccess.style.display = 'none';
+                    confirmationError.style.display = 'block';
+                    confirmationError.innerHTML = "Error: " + jsonResult.error;
+                    deleteAnswer.attr("disabled", false);
+                    window.setTimeout(function () {
+                        confirmationError.style.display = 'none';
+                        buttonId.disabled = false;
+                        hideConfirm();
+                    }, 3000);
+                } else if (jsonResult.result) {
+                    confirmationError.style.display = 'none';
+                    confirmationSuccess.style.display = 'block';
+                    confirmationSuccess.innerHTML = "Result: " + jsonResult.result;
+                    waitAndRedirectToMain();
+                }
             }
         }
     };
@@ -362,6 +413,11 @@ function finishSurvey() {
 function hideQuestion(id) {
     delete json.questions[id];
     const questionDiv = document.getElementById("question" + id);
-    console.log(json);
     questionDiv.style.display = 'none';
+}
+
+function waitAndRedirectToMain() {
+    window.setTimeout(function () {
+        location.href = "main.html";
+    }, 3000);
 }

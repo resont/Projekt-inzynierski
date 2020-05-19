@@ -114,8 +114,8 @@ a.disabled {
         border-right: 0;
         border-bottom: 3px solid #343a40;
         padding-bottom: 10px;
-        justify-content:center;
-        align-items:center;
+        justify-content: center;
+        align-items: center;
         float: left;
     }
 

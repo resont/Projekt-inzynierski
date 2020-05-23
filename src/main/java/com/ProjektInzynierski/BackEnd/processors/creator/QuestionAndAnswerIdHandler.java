@@ -4,6 +4,7 @@ import com.ProjektInzynierski.BackEnd.controller.LoggerController;
 import com.ProjektInzynierski.BackEnd.data.entity.AnswerToKeyEntity;
 import com.ProjektInzynierski.BackEnd.data.entity.Answers;
 import com.ProjektInzynierski.BackEnd.data.entity.KeyEntity;
+import com.ProjektInzynierski.BackEnd.data.entity.UserEntity;
 import com.ProjektInzynierski.BackEnd.data.model.AnswerDetailsData;
 import com.ProjektInzynierski.BackEnd.data.model.ClosedQuestion;
 import com.ProjektInzynierski.BackEnd.data.model.OpenQuestion;
@@ -13,6 +14,7 @@ import com.ProjektInzynierski.BackEnd.repository.AnswersRepository;
 import com.ProjektInzynierski.BackEnd.repository.KeyRepository;
 import com.ProjektInzynierski.BackEnd.repository.KeyToAnswerRepository;
 import com.ProjektInzynierski.BackEnd.repository.SurveyRepository;
+import com.ProjektInzynierski.BackEnd.repository.UsersRepository;
 import com.ProjektInzynierski.BackEnd.util.ResultMap;
 import com.ProjektInzynierski.BackEnd.util.StringHashCreator;
 import org.apache.logging.log4j.Logger;
@@ -33,14 +35,17 @@ public class QuestionAndAnswerIdHandler extends ProcessInterface {
 
     private final KeyRepository keyRepository;
 
+    private final UsersRepository usersRepository;
+
     public QuestionAndAnswerIdHandler(SurveyRepository surveyRepository,
                                       AnswersRepository answersRepository,
                                       KeyToAnswerRepository keyToAnswerRepository,
-                                      KeyRepository keyRepository) {
+                                      KeyRepository keyRepository, UsersRepository usersRepository) {
         this.surveyRepository = surveyRepository;
         this.answersRepository = answersRepository;
         this.keyToAnswerRepository = keyToAnswerRepository;
         this.keyRepository = keyRepository;
+        this.usersRepository = usersRepository;
     }
 
     @Override
@@ -48,11 +53,9 @@ public class QuestionAndAnswerIdHandler extends ProcessInterface {
 
         logger.info("Start of answering process.");
         try {
-            if (!answerDetailsData.getOpenQuestions().isEmpty() && !answerDetailsData.getClosedQuestions().isEmpty()) {
+            if (!answerDetailsData.getOpenQuestions().isEmpty() || !answerDetailsData.getClosedQuestions().isEmpty()) {
 
-                String key = StringHashCreator.createSimpleHash(answerDetailsData.getUuid());
                 KeyEntity keyEntity = new KeyEntity();
-                keyEntity.setKey(key);
                 KeyEntity keyEntitySaved = keyRepository.save(keyEntity);
 
                 if (answerDetailsData.getOpenQuestions() != null) {
@@ -76,6 +79,13 @@ public class QuestionAndAnswerIdHandler extends ProcessInterface {
                         updateKeyToAnswer(answerId, keyEntitySaved);
                     }
                 }
+
+                UserEntity userEntity = usersRepository.findByUuid(answerDetailsData.getUuid());
+
+                int[] answerToKeyEntities = keyToAnswerRepository.findAnswerIdWithKeyEntityId(keyEntitySaved.getId());
+                String key = StringHashCreator.createSimpleHash(answerToKeyEntities, userEntity.getEmail());
+                keyEntitySaved.setKey(key);
+                keyRepository.updateKey(keyEntitySaved.getKey(), keyEntitySaved.getId());
 
                 logger.info("Answering successful.");
                 return ResultMap.createSuccessMap(keyEntitySaved.getKey());

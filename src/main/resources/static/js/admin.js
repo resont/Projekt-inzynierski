@@ -81,7 +81,6 @@ function attachSurveys() {
     $("#pick").hide();
     $("#results").hide();
 
-
 }
 
 let users = [];
@@ -315,7 +314,7 @@ function showResults(selectObj) {
 var answersTotal = 0;
 var type = 0;
 
-function showQuestions(item, index) {
+function showQuestions(item) {
     answersTotal = 0;
     type = 0;
     resultBody += '<div class="lead">' + item["question"] + '</div>';
@@ -327,7 +326,7 @@ function showQuestions(item, index) {
     item["answers"].forEach(showAnswers);
 }
 
-function showAnswers(item, index) {
+function showAnswers(item) {
     var percent = Math.round(parseInt(item["count"]) / answersTotal * 100);
     resultBody += "<div class='font-weight-normal ml-4 mb-2'>";
 
@@ -347,6 +346,6 @@ function showAnswers(item, index) {
     resultBody += "</div>";
 }
 
-function calcAnswersTotal(item, index) {
+function calcAnswersTotal(item) {
     answersTotal += item["count"];
 }

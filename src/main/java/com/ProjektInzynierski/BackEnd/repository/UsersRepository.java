@@ -27,7 +27,7 @@ public interface UsersRepository extends JpaRepository<UserEntity, Integer> {
     @Query("UPDATE UserEntity u\n" +
             "SET u.uuid=:uuid, u.validTo=:date\n" +
             "WHERE u.email=:email AND u.password=:password")
-    int setUuidAndValidToWithPassword(String email, String password, String uuid, Date date);
+    void setUuidAndValidToWithPassword(String email, String password, String uuid, Date date);
 
     @Transactional
     @Modifying

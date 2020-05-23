@@ -28,10 +28,10 @@ public interface SurveyRepository extends JpaRepository<Survey, Integer> {
     void updateCount(int id);
 
     @Query("SELECT con_u_s.surveyId.id FROM SurveyToUser con_u_s WHERE con_u_s.userId.uuid=:uuid AND con_u_s.surveyAnswer = FALSE")
-    int[] findSurveysByUserUuid(String uuid);
+    int[] findSurveysWithUserUuid(String uuid);
 
     @Query("SELECT con_u_s.surveyId.id FROM SurveyToUser con_u_s WHERE con_u_s.userId.uuid=:uuid AND con_u_s.surveyAnswer = TRUE")
-    int[] findAnsweredSurveysByUserUuid(String uuid);
+    int[] findAnsweredSurveysWithUserUuid(String uuid);
 
     @Transactional
     @Modifying

@@ -1,6 +1,7 @@
 package com.ProjektInzynierski.BackEnd.controller;
 
 import com.ProjektInzynierski.BackEnd.data.entity.Answers;
+import com.ProjektInzynierski.BackEnd.data.entity.KeyEntity;
 import com.ProjektInzynierski.BackEnd.data.entity.Questions;
 import com.ProjektInzynierski.BackEnd.data.entity.Survey;
 import com.ProjektInzynierski.BackEnd.data.entity.SurveyToUser;
@@ -12,10 +13,13 @@ import com.ProjektInzynierski.BackEnd.processors.creator.CreatorProcessor;
 import com.ProjektInzynierski.BackEnd.processors.creator.QuestionAndAnswerIdHandler;
 import com.ProjektInzynierski.BackEnd.processors.survey.UsersAndSurveyHandler;
 import com.ProjektInzynierski.BackEnd.repository.AnswersRepository;
+import com.ProjektInzynierski.BackEnd.repository.KeyRepository;
+import com.ProjektInzynierski.BackEnd.repository.KeyToAnswerRepository;
 import com.ProjektInzynierski.BackEnd.repository.SurveyRepository;
 import com.ProjektInzynierski.BackEnd.repository.SurveyToUserRepository;
 import com.ProjektInzynierski.BackEnd.repository.UsersRepository;
 import com.ProjektInzynierski.BackEnd.util.ResultMap;
+import com.ProjektInzynierski.BackEnd.util.StringHashCreator;
 import org.apache.logging.log4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,12 +35,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 @CrossOrigin
 @RestController
 public class SurveyController {
+
+    public static final String NO_DATA_MSG = "no data";
 
     private Logger logger = LoggerController.getInstance();
 
@@ -47,6 +55,10 @@ public class SurveyController {
     private final AnswersRepository answersRepository;
 
     private final QuestionAndAnswerIdHandler questionAndAnswerIdHandler;
+
+    private final KeyRepository keyRepository;
+
+    private final KeyToAnswerRepository keyToAnswerRepository;
 
     private final UsersRepository usersRepository;
 
@@ -60,11 +72,15 @@ public class SurveyController {
                             QuestionAndAnswerIdHandler questionAndAnswerIdHandler,
                             UsersRepository usersRepository,
                             SurveyToUserRepository surveyToUserRepository,
-                            UsersAndSurveyHandler usersAndSurveyHandler) {
+                            UsersAndSurveyHandler usersAndSurveyHandler,
+                            KeyRepository keyRepository,
+                            KeyToAnswerRepository keyToAnswerRepository) {
         this.creatorProcessor = creatorProcessor;
         this.surveyRepository = surveyRepository;
         this.answersRepository = answersRepository;
         this.questionAndAnswerIdHandler = questionAndAnswerIdHandler;
+        this.keyRepository = keyRepository;
+        this.keyToAnswerRepository = keyToAnswerRepository;
         this.usersRepository = usersRepository;
         this.surveyToUserRepository = surveyToUserRepository;
         this.usersAndSurveyHandler = usersAndSurveyHandler;
@@ -117,12 +133,12 @@ public class SurveyController {
 
     @GetMapping("/con_us_su/{uuid}")
     int[] showCon(@PathVariable("uuid") String uuid) {
-        return this.surveyRepository.findSurveysByUserUuid(uuid);
+        return this.surveyRepository.findSurveysWithUserUuid(uuid);
     }
 
     @GetMapping("/answered/{uuid}")
     int[] showConAns(@PathVariable("uuid") String uuid) {
-        return this.surveyRepository.findAnsweredSurveysByUserUuid(uuid);
+        return this.surveyRepository.findAnsweredSurveysWithUserUuid(uuid);
     }
 
     @PostMapping("/con_us_su")
@@ -143,6 +159,24 @@ public class SurveyController {
     Map<Integer, Questions> getAnswersByKey(@RequestBody Map<String, String> body) {
         List<Answers> answers = answersRepository.findAnswersByKey(body.get("key"));
         Map<Integer, Questions> map = new HashMap<>();
+
+        UserEntity userEntity = usersRepository.findByUuid(body.get("uuid"));
+        KeyEntity keyEntity = keyRepository.findByKey(body.get("key"));
+        int[] answerToKeyEntities = keyToAnswerRepository.findAnswerIdWithKeyEntityId(keyEntity.getId());
+        String key = StringHashCreator.createSimpleHash(answerToKeyEntities, userEntity.getEmail());
+
+        Answers answers1 = new Answers();
+        answers1.setAnswer("");
+
+        Set<Answers> answersSet = new HashSet<>();
+        answersSet.add(answers1);
+
+        Questions question = new Questions();
+        question.setQuestion(key);
+        question.setType(4);
+        question.setAnswers(answersSet);
+        map.put(0, question);
+
         for (Answers a : answers) {
             map.put(a.getId(), a.getQuestion());
         }
@@ -169,12 +203,12 @@ public class SurveyController {
             if (surveyToUser != null) {
                 answer = String.valueOf(surveyToUser.isSurveyAnswer());
             } else {
-                answer = "no data";
+                answer = NO_DATA_MSG;
             }
 
             map.put("id", Integer.toString(u.getId()));
             map.put("email", u.getEmail());
-            map.put("answer", String.valueOf(answer));
+            map.put("answer", answer);
             list.add(map);
         }
 

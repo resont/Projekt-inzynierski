@@ -15,4 +15,7 @@ public interface KeyToAnswerRepository extends JpaRepository<AnswerToKeyEntity, 
     @Modifying
     @Query("UPDATE AnswerToKeyEntity a SET a.keyEntityId.id=:kId, a.answersId.id=:aId WHERE a.id=:id")
     void addAnswerToKey(int id, int kId, int aId);
+
+    @Query("SELECT a.answersId.id FROM AnswerToKeyEntity a WHERE a.keyEntityId.id=:keyId")
+    int[] findAnswerIdWithKeyEntityId(int keyId);
 }

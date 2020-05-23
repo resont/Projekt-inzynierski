@@ -20,6 +20,8 @@ public interface UsersRepository extends JpaRepository<UserEntity, Integer> {
 
     UserEntity findByUuid(String uuid);
 
+    UserEntity findById(int id);
+
     @Transactional
     @Modifying
     @Query("UPDATE UserEntity u\n" +
@@ -45,6 +47,4 @@ public interface UsersRepository extends JpaRepository<UserEntity, Integer> {
     @Modifying
     @Query("UPDATE UserEntity u SET u.group=:group WHERE u.id=:id")
     void setAdmin(int id, String group);
-
-
 }

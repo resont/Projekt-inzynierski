@@ -123,7 +123,6 @@ function sendSurvey(buttonId) {
     }
     var idKey;
     for (var i = 0; i < textInputs.length; i++) {
-        //Todo empty value
         var obj = textInputs[i];
         for (var key in obj) {
             var attrName = key;

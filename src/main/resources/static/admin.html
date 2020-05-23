@@ -48,9 +48,16 @@
         </div>
     </nav>
 </div>
-<div class="main-panel border rounded p-4">
 
+<div id="menu" class="main-panel border rounded p-4">
+    <button type="button" class="btn btn-dark" onclick="showUsers()">Set groups</button>
+    <button type="button" class="btn btn-dark" onclick="attachSurveys()">Add survey to users</button>
+    <button type="button" class="btn btn-dark" onclick="showPick()">Survey results</button>
 </div>
+
+<div id="usersTable" class="main-panel border rounded p-4 hide"></div>
+<div id="resultsSurveyToUsers" class="main-panel border rounded p-4 hide"></div>
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"

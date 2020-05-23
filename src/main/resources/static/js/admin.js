@@ -1,5 +1,4 @@
 window.onload = function () {
-    showUsers();
     pickSurvey();
     showLogoutAndProfile();
 };
@@ -11,53 +10,196 @@ function showUsers() {
             var json = JSON.parse(xhr.responseText);
 
             for (var j = 0; j < json.length; j++) {
-                if (json[j].token === $.cookie("token") && json[j].group !== "admin") {
-                    window.location.href = "main.html";
-                } else {
-                    var body = "<table class=\"table\">\n" +
-                        "  <thead class = \"thead-dark\">\n" +
-                        "    <tr>\n" +
-                        "      <th scope=\"col\">#</th>\n" +
-                        "      <th scope=\"col\">Email</th>\n" +
-                        "      <th scope=\"col\">Survey</th>\n" +
-                        "      <th scope=\"col\">Admin</th>\n" +
-                        "      <th scope=\"col\">Send</th>\n" +
-                        "    </tr>\n" +
-                        "  </thead><tbody>";
 
-                    for (var i = 0; i < json.length; i++) {
-                        var iter = i + 1;
-                        body += "<tr>\n" +
-                            "<th scope=\"row\">" + iter + "</th>";
-                        var obj = json[i];
-                        body += "<td>" + obj["email"] + "</td><td>";
-                        body += getAllSurveys(i);
-                        body += "</td>";
-                        body += "<td><div class=\"form-check d-flex justify-content-center\">";
-                        if (obj["group"] === "admin") {
-                            if (obj["uuid"] === $.cookie("token")) {
-                                body += "<input id='input" + i + "' class=\"form-check-input\" type=\"checkbox\" value=\"\" checked disabled>";
-                            } else {
-                                body += "<input id='input" + i + "' class=\"form-check-input\" type=\"checkbox\" value=\"\" checked>";
-                            }
+                var body = "<table class=\"table\">\n" +
+                    "  <thead class = \"thead-dark\">\n" +
+                    "    <tr>\n" +
+                    "      <th scope=\"col\">#</th>\n" +
+                    "      <th scope=\"col\">Email</th>\n" +
+                    "      <th scope=\"col\">Admin</th>\n" +
+                    "      <th scope=\"col\">Send</th>\n" +
+                    "    </tr>\n" +
+                    "  </thead><tbody>";
 
+                for (var i = 0; i < json.length; i++) {
+                    var iter = i + 1;
+                    body += "<tr>\n" +
+                        "<th scope=\"row\">" + iter + "</th>";
+                    var obj = json[i];
+                    body += "<td>" + obj["email"] + "</td>";
+
+                    body += "<td><div class=\"form-check d-flex justify-content-center\">";
+                    if (obj["group"] === "admin") {
+                        if (obj["uuid"] === $.cookie("token")) {
+                            body += "<input id='input" + i + "' class=\"form-check-input\" type=\"checkbox\" value=\"\" checked disabled>";
                         } else {
-                            body += "<input id='input" + i + "' class=\"form-check-input\" type=\"checkbox\" value=\"\">";
+                            body += "<input id='input" + i + "' class=\"form-check-input\" type=\"checkbox\" value=\"\" checked>";
                         }
-                        body += "</div></td>";
-                        body += "<td><button id=\"send\" class=\"btn btn-dark btn-block\" onclick=\"sendForm(" + i + "," + obj["id"] + ")\">Update</button></td>";
 
-                        body += "</tr>";
-
+                    } else {
+                        body += "<input id='input" + i + "' class=\"form-check-input\" type=\"checkbox\" value=\"\">";
                     }
-                    body += "</tbody></table>";
-                    $(".main-panel").html(body);
+                    body += "</div></td>";
+                    body += "<td><button id=\"send\" class=\"btn btn-dark btn-block\" onclick=\"sendForm(" + i + "," + obj["id"] + ")\">Update</button></td>";
+
+                    body += "</tr>";
+
                 }
+                body += "</tbody></table>";
+                body += `<div class="request-msg-success mt-2">
+                        <output class="alert alert-success" role="alert" id="msg-success" name="request-msg"></output>
+                    </div>
+
+                    <div class="request-msg-error mt-2">
+                        <output class="alert alert-danger" role="alert" id="msg-error" name="request-msg"></output>
+                    </div>`;
+
+                const divGroup = $("#usersTable");
+                divGroup.html(body);
+                $("#resultsSurveyToUsers").hide();
+                $("#pick").hide();
+                $("#results").hide();
+
+                divGroup.show();
+
             }
         }
     };
     xhr.open('GET', 'http://localhost:8080/users/all', false);
     xhr.send(null);
+}
+
+function attachSurveys() {
+    let body = "<label class=\"lead\" for=\"selSurvey\">Select survey</label>";
+    body += getAllSurveys("usersSurvey", "showSurveyToUsers(this)");
+
+
+    const divGroup = $("#usersTable");
+    divGroup.html(body);
+    divGroup.show();
+    $("#resultsSurveyToUsers").hide();
+    $("#pick").hide();
+    $("#results").hide();
+
+
+}
+
+let users = [];
+
+function showSurveyToUsers(obj) {
+    const id = obj.value;
+
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+            var json = JSON.parse(xhr.responseText);
+
+            var body = "<table class=\"table mt-2\">\n" +
+                "  <thead class = \"thead-dark\">\n" +
+                "    <tr>\n" +
+                "      <th scope=\"col\">#</th>\n" +
+                "      <th scope=\"col\">Email</th>\n" +
+                "      <th scope=\"col\">Added to user</th>\n" +
+                "    </tr>\n" +
+                "  </thead><tbody>";
+
+            for (var i = 0; i < json.length; i++) {
+                var iter = i + 1;
+                body += "<tr>\n" +
+                    "<th scope=\"row\">" + iter + "</th>";
+                var obj = json[i];
+                body += "<td>" + obj["email"] + "</td>";
+
+                body += "<td><div class=\"form-check d-flex justify-content-center\">";
+
+                if (obj["answer"] === "true") {
+                    body += "<input id='input" + obj["id"] + "' class=\"form-check-input\" type=\"checkbox\" checked disabled>";
+                } else if (obj["answer"] === "false") {
+                    body += "<input id='input" + obj["id"] + "' class=\"form-check-input\" type=\"checkbox\" checked>";
+                } else {
+                    body += "<input id='input" + obj["id"] + "' class=\"form-check-input\" type=\"checkbox\">";
+                }
+                users.push(parseInt(obj["id"]));
+                body += "</div></td>";
+
+                body += "</tr>";
+
+            }
+            body += "</tbody></table>";
+
+            body += "<button id=\"sendSurveyToUsers\" class=\"btn btn-dark\" onclick=\"sendSurveyToUsers(" + id + ")\">Update</button></td>";
+
+            body += `<div class="request-msg-success mt-2">
+                        <output class="alert alert-success" role="alert" id="msg-success" name="request-msg"></output>
+                    </div>
+
+                    <div class="request-msg-error mt-2">
+                        <output class="alert alert-danger" role="alert" id="msg-error" name="request-msg"></output>
+                    </div>`;
+
+            const divGroup = $("#resultsSurveyToUsers");
+            divGroup.html(body);
+            divGroup.show();
+
+        }
+
+    };
+    xhr.open('GET', 'http://localhost:8080/surveyToUser/' + id, false);
+    xhr.send(null);
+
+}
+
+function sendSurveyToUsers(id) {
+    let obj = {data: []};
+    for (var i = 0; i < users.length; i++) {
+        let answered;
+        const checkbox = document.getElementById('input' + users[i]);
+
+        if (checkbox.checked) {
+            if (checkbox.disabled) {
+                answered = "true";
+            } else {
+                answered = "false";
+            }
+        } else {
+            answered = "no data";
+        }
+
+        obj.data.push({
+            "userId": users[i],
+            "surveyId": id,
+            "answered": answered
+        });
+    }
+
+    const responseError = $(".alert.alert-danger");
+    const responseSuccess = $(".alert.alert-success");
+
+    let xhr = new XMLHttpRequest();
+
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+                var json = JSON.parse(xhr.responseText);
+
+                if (json.error) {
+                    responseSuccess.hide();
+                    responseError.show();
+                    responseError.html("Error: " + json.error);
+                } else if (json.result) {
+                    responseError.hide();
+                    responseSuccess.show();
+                    responseSuccess.html(json.result);
+                }
+            }
+        }
+    };
+
+    let body = JSON.stringify(obj);
+    xhr.open('POST', 'http://localhost:8080/updateSurveyToUser', false);
+    xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
+    xhr.send(body);
+
 }
 
 function getAllSurveys(i, action = "") {
@@ -81,12 +223,6 @@ function getAllSurveys(i, action = "") {
 }
 
 function sendForm(i, id) {
-    var surveyId = $("#sel" + i).children("option:selected").val();
-
-    if (surveyId !== "") {
-        addSurveyToUser(id, surveyId);
-    }
-
     var group;
     if ($("#input" + i).prop("checked")) {
         group = "admin";
@@ -99,49 +235,58 @@ function sendForm(i, id) {
 
 function updateAdmin(body) {
     var xhr = new XMLHttpRequest();
+
+    const responseError = $(".alert.alert-danger");
+    const responseSuccess = $(".alert.alert-success");
+
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+                var json = JSON.parse(xhr.responseText);
+
+                if (json.error) {
+                    responseSuccess.hide();
+                    responseError.show();
+                    responseError.html("Error: " + json.error);
+                } else if (json.result) {
+                    responseError.hide();
+                    responseSuccess.show();
+                    responseSuccess.html(json.result);
+                }
+            }
+        }
+    };
+
     xhr.open('POST', 'http://localhost:8080/admin', false);
     xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
     xhr.send(body);
 
 }
 
-function addSurveyToUser(uId, sId) {
-    var body = '{"uId":"' + uId + '", "sId":"' + sId + '"}';
-    var xhr = new XMLHttpRequest();
-
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-            redirectToAdminPanel();
-        }
-    };
-
-    xhr.open('POST', 'http://localhost:8080/surveyToUser', false);
-    xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
-    xhr.send(body);
-}
-
-function redirectToAdminPanel() {
-    window.setTimeout(function () {
-        location.href = "admin.html";
-    }, 1000);
-}
-
 function pickSurvey() {
-    var body = `<div class="main-panel border rounded p-4">
+    var body = `<div id="pick" class="main-panel border rounded p-4 hide">
                 <label class="lead" for="selSurvey">Select survey</label>`;
     body += getAllSurveys("Survey", "showResults(this)");
     body += "</div>";
     $("body").append(body);
 }
 
+function showPick() {
+    $("#usersTable").hide();
+    $("#resultsSurveyToUsers").hide();
+    $("#pick").show();
+    $("#results").show();
+}
+
 var resultBody = "";
 
 function showResults(selectObj) {
+
     resultBody = "";
     var id = selectObj.value;
     var exists = true;
     if (!$('#results').length) {
-        resultBody += `<div id="results" class="main-panel border rounded p-4">`;
+        resultBody += `<div id="results" class="main-panel border rounded p-4 hide">`;
         exists = false;
     }
     var xhr = new XMLHttpRequest();
@@ -155,7 +300,11 @@ function showResults(selectObj) {
                 $("body").append(resultBody);
             } else {
                 $("#results").html(resultBody);
+
             }
+            $("#usersTable").hide();
+            $("#resultsSurveyToUsers").hide();
+            $("#results").show();
 
         }
     };
@@ -185,7 +334,7 @@ function showAnswers(item, index) {
     if (answersTotal === 0) {
         if (type !== 1) {
             resultBody += item["answer"];
-            resultBody += "&emsp; NO ANSWERS";
+            resultBody += "&emsp; <div style='color: red;'>NO ANSWERS</div>";
         } else {
             resultBody += "<div class='border pl-2 pt-2 pr-2 rounded' style='background-color: #eaeaea;'><p>" + item["answer"] + "</p></div>";
         }

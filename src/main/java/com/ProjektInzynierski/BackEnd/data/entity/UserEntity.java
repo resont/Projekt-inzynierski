@@ -38,7 +38,7 @@ public class UserEntity {
     private Date validTo;
 
     @Column(name = "u_group")
-    private String group;
+    private String group = "user";
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "userId")
     private Set<SurveyToUser> surveyToUser;

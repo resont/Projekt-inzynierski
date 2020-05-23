@@ -3,12 +3,18 @@ package com.ProjektInzynierski.BackEnd.controller;
 import com.ProjektInzynierski.BackEnd.data.entity.Answers;
 import com.ProjektInzynierski.BackEnd.data.entity.Questions;
 import com.ProjektInzynierski.BackEnd.data.entity.Survey;
+import com.ProjektInzynierski.BackEnd.data.entity.SurveyToUser;
+import com.ProjektInzynierski.BackEnd.data.entity.UserEntity;
 import com.ProjektInzynierski.BackEnd.data.model.AnswerDetailsData;
 import com.ProjektInzynierski.BackEnd.data.model.SurveyDetailsData;
+import com.ProjektInzynierski.BackEnd.data.model.SurveyToUserData;
 import com.ProjektInzynierski.BackEnd.processors.creator.CreatorProcessor;
 import com.ProjektInzynierski.BackEnd.processors.creator.QuestionAndAnswerIdHandler;
+import com.ProjektInzynierski.BackEnd.processors.survey.UsersAndSurveyHandler;
 import com.ProjektInzynierski.BackEnd.repository.AnswersRepository;
 import com.ProjektInzynierski.BackEnd.repository.SurveyRepository;
+import com.ProjektInzynierski.BackEnd.repository.SurveyToUserRepository;
+import com.ProjektInzynierski.BackEnd.repository.UsersRepository;
 import com.ProjektInzynierski.BackEnd.util.ResultMap;
 import org.apache.logging.log4j.Logger;
 import org.springframework.http.HttpStatus;
@@ -23,6 +29,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -41,14 +48,26 @@ public class SurveyController {
 
     private final QuestionAndAnswerIdHandler questionAndAnswerIdHandler;
 
+    private final UsersRepository usersRepository;
+
+    private final SurveyToUserRepository surveyToUserRepository;
+
+    private final UsersAndSurveyHandler usersAndSurveyHandler;
+
     public SurveyController(CreatorProcessor creatorProcessor,
                             SurveyRepository surveyRepository,
                             AnswersRepository answersRepository,
-                            QuestionAndAnswerIdHandler questionAndAnswerIdHandler) {
+                            QuestionAndAnswerIdHandler questionAndAnswerIdHandler,
+                            UsersRepository usersRepository,
+                            SurveyToUserRepository surveyToUserRepository,
+                            UsersAndSurveyHandler usersAndSurveyHandler) {
         this.creatorProcessor = creatorProcessor;
         this.surveyRepository = surveyRepository;
         this.answersRepository = answersRepository;
         this.questionAndAnswerIdHandler = questionAndAnswerIdHandler;
+        this.usersRepository = usersRepository;
+        this.surveyToUserRepository = surveyToUserRepository;
+        this.usersAndSurveyHandler = usersAndSurveyHandler;
     }
 
     @GetMapping("/status")
@@ -120,16 +139,6 @@ public class SurveyController {
         } else return ResultMap.createNullBodyErrorMap();
     }
 
-//    @GetMapping("/unansweredSurveys/{id}")
-//    Set<Survey> getAllUnasweredSurveys(@PathVariable("id") String id){
-//        int[] ids = this.surveyToUserRepository.findAllAnsweredSurveys(Integer.parseInt(id));
-//        Set<Survey> surveys = new HashSet<>();
-//        for(int i: ids){
-//            surveys.add(this.surveyRepository.findSurveyForUser(i));
-//        }
-//        return surveys;
-//    }
-
     @PostMapping("/answerKey")
     Map<Integer, Questions> getAnswersByKey(@RequestBody Map<String, String> body) {
         List<Answers> answers = answersRepository.findAnswersByKey(body.get("key"));
@@ -145,5 +154,39 @@ public class SurveyController {
         if (body != null) {
             return questionAndAnswerIdHandler.process(body);
         } else return ResultMap.createNullBodyErrorMap();
+    }
+
+    @GetMapping("/surveyToUser/{id}")
+    List<Map<String, String>> getSurveyToUser(@PathVariable("id") String id) {
+        int surveyId = Integer.valueOf(id);
+        List<UserEntity> users = usersRepository.findAll();
+        List<Map<String, String>> list = new ArrayList<>();
+
+        for (UserEntity u : users) {
+            Map<String, String> map = new HashMap<>();
+            String answer;
+            SurveyToUser surveyToUser = surveyToUserRepository.findAnsweredValue(u.getId(), surveyId);
+            if (surveyToUser != null) {
+                answer = String.valueOf(surveyToUser.isSurveyAnswer());
+            } else {
+                answer = "no data";
+            }
+
+            map.put("id", Integer.toString(u.getId()));
+            map.put("email", u.getEmail());
+            map.put("answer", String.valueOf(answer));
+            list.add(map);
+        }
+
+        return list;
+    }
+
+    @PostMapping("/updateSurveyToUser")
+    Map<String, String> updateSurveyToUser(@RequestBody SurveyToUserData body) {
+        if (body != null) {
+            return usersAndSurveyHandler.process(body);
+        } else {
+            return ResultMap.createNullBodyErrorMap();
+        }
     }
 }

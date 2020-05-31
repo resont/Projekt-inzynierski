@@ -95,6 +95,14 @@ a.disabled {
     display: none;
 }
 
+.res-menu{
+    display: none;
+}
+
+.adm-menu{
+    display: inline;
+}
+
 @media only screen and (max-width: 1200px) {
     .main-panel {
         background-color: white;
@@ -104,6 +112,16 @@ a.disabled {
         margin-left: 5%;
         margin-right: 5%;
         margin-top: 1%;
+    }
+}
+
+@media only screen and (max-width: 510px) {
+    .res-menu{
+        display: block;
+    }
+
+    .adm-menu{
+        display: none;
     }
 }
 
@@ -124,6 +142,7 @@ a.disabled {
         display: block;
         width: 100%;
         float: left;
+        padding-left: 0;
     }
 
     .profile {

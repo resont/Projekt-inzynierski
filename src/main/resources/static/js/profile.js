@@ -71,7 +71,8 @@ function getUser() {
             user = JSON.parse(xhr.responseText);
             $("#email-profile").text(user["email"]);
             if (user["group"] === "admin") {
-                $(".right-panel").append("<button type=\"button\" class=\"btn btn-outline-secondary\" onclick=\"redirectToAdminPanel()\">Admin Panel</button>")
+                $(".right-panel").append(`<button type=\"button\" class=\"adm-menu btn btn-outline-secondary\" onclick=\"redirectToAdminPanel()\">Admin Panel</button>
+                                          <button type=\"button\" class=\"res-menu btn btn-outline-secondary btn-block mt-1\" onclick=\"redirectToAdminPanel()\">Admin Panel</button>`);
             }
         }
     };

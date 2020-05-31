@@ -29,6 +29,10 @@ function getAnswers() {
                     if (parseInt(aId) === 0) {
                         const keyElement = $(".key");
                         keyElement.show();
+                        const reg = new RegExp("\\w*Klucze nie pokrywają się!\\w*");
+                        if (reg.test(answers[aId].question)) {
+                            keyElement.toggleClass("alert-danger alert-success");
+                        }
                         keyElement.html("Verification Key: " + answers[aId].question);
                     } else {
 

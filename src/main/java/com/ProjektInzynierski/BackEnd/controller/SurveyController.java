@@ -45,6 +45,8 @@ import java.util.Set;
 public class SurveyController {
 
     public static final String NO_DATA_MSG = "no data";
+    public static final String KEY_ERROR_MSG = "Klucze nie pokrywają się! Nastąpiła manipulacja odpowiedziami!";
+    public static final String KEY_SUCCESS_MSG = "Twoje odpowiedzi zgadzają się z danymi w bazie danych.";
 
     private Logger logger = LoggerController.getInstance();
 
@@ -164,6 +166,11 @@ public class SurveyController {
         KeyEntity keyEntity = keyRepository.findByKey(body.get("key"));
         int[] answerToKeyEntities = keyToAnswerRepository.findAnswerIdWithKeyEntityId(keyEntity.getId());
         String key = StringHashCreator.createSimpleHash(answerToKeyEntities, userEntity.getEmail());
+        if (body.get("key").compareTo(key) < 0) {
+            key = KEY_ERROR_MSG;
+        } else {
+            key = KEY_SUCCESS_MSG;
+        }
 
         Answers answers1 = new Answers();
         answers1.setAnswer("");

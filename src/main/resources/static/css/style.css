@@ -95,11 +95,11 @@ a.disabled {
     display: none;
 }
 
-.res-menu{
+.res-menu {
     display: none;
 }
 
-.adm-menu{
+.adm-menu {
     display: inline;
 }
 
@@ -116,11 +116,11 @@ a.disabled {
 }
 
 @media only screen and (max-width: 510px) {
-    .res-menu{
+    .res-menu {
         display: block;
     }
 
-    .adm-menu{
+    .adm-menu {
         display: none;
     }
 }

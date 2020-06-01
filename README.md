@@ -9,4 +9,4 @@ Implementacja powinna uwzględniać responsywny interfejs. Do zapewnienia anonim
 
 ## Dokumentacja
 
-[https://resont.github.io/Projekt-inzynierski/]()
+[https://resont.github.io/Projekt-inzynierski/](https://resont.github.io/Projekt-inzynierski/)

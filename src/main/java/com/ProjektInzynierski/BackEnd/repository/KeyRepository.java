@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
 
+//This class is responsible for providing queries to database regarding key data
 @Repository
 public interface KeyRepository extends JpaRepository<KeyEntity, Integer> {
 

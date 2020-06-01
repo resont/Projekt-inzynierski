@@ -5,6 +5,7 @@ import com.ProjektInzynierski.BackEnd.enums.LoginMsg;
 import java.util.HashMap;
 import java.util.Map;
 
+//This class is responsible for validating email data
 public class EmailIsPresentValidation extends LoginValidationProcessor {
 
     public EmailIsPresentValidation(LoginValidationProcessor nextProcessor) {

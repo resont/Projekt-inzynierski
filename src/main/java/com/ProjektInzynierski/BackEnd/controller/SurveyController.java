@@ -40,6 +40,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+//This class is responsible for handling every http request regarding survey data
 @CrossOrigin
 @RestController
 public class SurveyController {

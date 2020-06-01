@@ -1,5 +1,6 @@
 package com.ProjektInzynierski.BackEnd.processors.validation;
 
+//This class is responsible for setting up validator chain
 public class LoginValidationChain {
 
     public static LoginValidationProcessor getValidationChainProcessor() {

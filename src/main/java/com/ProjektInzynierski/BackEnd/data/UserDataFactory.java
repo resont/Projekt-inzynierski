@@ -4,6 +4,7 @@ import com.ProjektInzynierski.BackEnd.data.model.UserData;
 import org.bouncycastle.jcajce.provider.digest.SHA3;
 import org.bouncycastle.util.encoders.Hex;
 
+//This class is responsible for creating new userData object with hashed password and lower case email
 public class UserDataFactory {
 
     public static UserData create(String email, String password) {

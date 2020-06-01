@@ -3,6 +3,7 @@ package com.ProjektInzynierski.BackEnd.util;
 import org.bouncycastle.jcajce.provider.digest.SHA3;
 import org.bouncycastle.util.encoders.Hex;
 
+//This class is responsible for creating hash to identify particular answer
 public class StringHashCreator {
 
     public static String createSimpleHash(int[] ids, String email) {

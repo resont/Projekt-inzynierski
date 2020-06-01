@@ -20,6 +20,7 @@ import java.util.Date;
 import java.util.Map;
 import java.util.UUID;
 
+//This class is responsible for handling login process
 @Component
 public class LoginProcessor extends ProcessInterface {
 

@@ -22,6 +22,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.Map;
 
+//This class is responsible for handling answering process
 @Component
 public class QuestionAndAnswerIdHandler extends ProcessInterface {
 

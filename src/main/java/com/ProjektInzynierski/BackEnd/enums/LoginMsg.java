@@ -2,6 +2,7 @@ package com.ProjektInzynierski.BackEnd.enums;
 
 import lombok.Getter;
 
+//This class is responsible for providing outcome messages regarding login process
 @Getter
 public enum LoginMsg {
     WRONG_EMAIL_OR_PASSWORD("Wrong Email address or password. Please try again."),

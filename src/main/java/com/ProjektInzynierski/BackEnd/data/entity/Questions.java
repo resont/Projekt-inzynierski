@@ -16,6 +16,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.Set;
 
+//This class is responsible for mapping data from database about question data
 @Entity
 @Table(name = "Questions")
 @Getter

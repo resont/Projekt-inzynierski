@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import javax.transaction.Transactional;
 import java.util.List;
 
+//This class is responsible for providing queries to database regarding survey data
 @Repository
 public interface SurveyRepository extends JpaRepository<Survey, Integer> {
 

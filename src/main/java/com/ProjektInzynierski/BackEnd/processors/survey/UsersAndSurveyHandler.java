@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.Map;
 
+//This class is responsible for handling updating connection between user and survey
 @Component
 public class UsersAndSurveyHandler extends ProcessInterface {
 

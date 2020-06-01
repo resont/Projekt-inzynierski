@@ -7,3 +7,6 @@ Projekt i implementacja systemu webowego umożliwiającego głosowanie (lub anki
 
 Implementacja powinna uwzględniać responsywny interfejs. Do zapewnienia anonimowości należy wykorzystać techniki kryptograficzne (funkcje skrótu) oraz metody generowania tokenów. Rekomendowane jest wykorzystanie ogólnodostępnych bibliotek programistycznych.
 
+## Dokumentacja
+
+[https://resont.github.io/Projekt-inzynierski/]()

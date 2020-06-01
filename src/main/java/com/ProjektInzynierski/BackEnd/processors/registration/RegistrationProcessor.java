@@ -27,6 +27,12 @@ public class RegistrationProcessor {
         this.usersRepository = usersRepository;
     }
 
+    /**
+     * This method validate input data and persist (register) data provided by body parameter.
+     *
+     * @param body contains login and password to be persisted.
+     * @return Map<String, String> contains data to be returned respectively success or error message.
+     */
     public Map<String, String> process(Map<String, String> body) {
 
         logger.info("Start of registration validation.");

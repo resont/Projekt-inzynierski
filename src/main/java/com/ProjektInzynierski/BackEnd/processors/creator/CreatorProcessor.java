@@ -39,6 +39,12 @@ public class CreatorProcessor extends ProcessInterface {
         this.answersRepository = answersRepository;
     }
 
+    /**
+     * This method persist into database survey, question and answer data created out of json mapped into surveyDetailsData.
+     *
+     * @param surveyDetailsData contains data of survey to be created.
+     * @return Map<String, String> contains data to be returned respectively success or error message.
+     */
     @Override
     public Map<String, String> process(SurveyDetailsData surveyDetailsData) {
 
@@ -95,6 +101,12 @@ public class CreatorProcessor extends ProcessInterface {
         }
     }
 
+    /**
+     * This method persist survey (topic, description) created out of surveyDetailsData into database.
+     *
+     * @param surveyDetailsData contains data to be persisted.
+     * @return Survey contains data of saved Survey entity.
+     */
     private Survey saveSurvey(SurveyDetailsData surveyDetailsData) {
         Survey survey = new Survey();
         survey.setTopic(surveyDetailsData.getTitle());

@@ -51,6 +51,12 @@ public class QuestionAndAnswerIdHandler extends ProcessInterface {
         this.usersRepository = usersRepository;
     }
 
+    /**
+     * This method persist into database answer data created out of json mapped into answerDetailsData.
+     *
+     * @param answerDetailsData contains data of answers to be persisted.
+     * @return Map<String, String> contains data to be returned respectively success or error message.
+     */
     @Override
     public Map<String, String> process(AnswerDetailsData answerDetailsData) {
 
@@ -101,6 +107,12 @@ public class QuestionAndAnswerIdHandler extends ProcessInterface {
         }
     }
 
+    /**
+     * This method persist AnswerToKeyEntity (ids) into database to the Conn_an_key table.
+     *
+     * @param answerId  contains answer id to be persisted.
+     * @param keyEntity contains key id to be persisted.
+     */
     private void updateKeyToAnswer(int answerId, KeyEntity keyEntity) {
         AnswerToKeyEntity answerToKeyEntity = new AnswerToKeyEntity();
         AnswerToKeyEntity keyToAnswerId = this.keyToAnswerRepository.save(answerToKeyEntity);

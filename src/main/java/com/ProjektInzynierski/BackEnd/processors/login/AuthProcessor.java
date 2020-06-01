@@ -28,6 +28,12 @@ public class AuthProcessor extends ProcessInterface {
         this.usersRepository = usersRepository;
     }
 
+    /**
+     * This method validate input data and authenticate user by provided token (body).
+     *
+     * @param body contains token.
+     * @return Map<String, String> contains data to be returned respectively success or error message.
+     */
     @Override
     public Map<String, String> process(Map<String, String> body) {
 

@@ -36,6 +36,12 @@ public class LoginProcessor extends ProcessInterface {
         this.usersRepository = usersRepository;
     }
 
+    /**
+     * This method validate input data and login user to the system by provided token (body).
+     *
+     * @param body contains token.
+     * @return Map<String, String> contains data to be returned respectively success or error message.
+     */
     @Override
     public Map<String, String> process(Map<String, String> body) {
 
@@ -69,6 +75,11 @@ public class LoginProcessor extends ProcessInterface {
         return result;
     }
 
+    /**
+     * This method log respectively success or error message.
+     *
+     * @param result contains map with or without error data.
+     */
     private void checkIfError(Map<String, String> result) {
         if (result.get(ERROR) != null) {
             logger.error("Authentication went wrong.");
@@ -77,6 +88,12 @@ public class LoginProcessor extends ProcessInterface {
         }
     }
 
+    /**
+     * This method validate input data and change password value in database for new one.
+     *
+     * @param body contains old and new password.
+     * @return Map<String, String> contains respectively success or error message
+     */
     public Map<String, String> resetPassword(Map<String, String> body) {
         body = new PasswordsArePresentValidation().process(body);
         if (body.get("error") != null) {

@@ -14,6 +14,12 @@ public class EmailIsPresentValidation extends LoginValidationProcessor {
         super(nextProcessor);
     }
 
+    /**
+     * This method validate if email data is present.
+     *
+     * @param map contains data to be validated.
+     * @return Map<String, String> contains error or input data itself.
+     */
     @Override
     public Map<String, String> process(Map<String, String> map) {
 

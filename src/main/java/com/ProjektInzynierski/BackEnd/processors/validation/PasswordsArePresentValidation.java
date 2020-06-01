@@ -10,6 +10,12 @@ import java.util.Map;
  */
 public class PasswordsArePresentValidation {
 
+    /**
+     * This method validate if two passwords data is present.
+     *
+     * @param map contains data to be validated.
+     * @return Map<String, String> contains error or input data itself.
+     */
     public Map<String, String> process(Map<String, String> map) {
 
         String newPassword = map.get("newPassword");

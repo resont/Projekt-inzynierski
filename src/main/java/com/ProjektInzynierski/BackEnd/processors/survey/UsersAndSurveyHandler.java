@@ -27,6 +27,12 @@ public class UsersAndSurveyHandler extends ProcessInterface {
         this.surveyToUserRepository = surveyToUserRepository;
     }
 
+    /**
+     * This method persist connection between user and survey into database out of json mapped into surveyToUserData.
+     *
+     * @param surveyToUserData contains connection data to be persisted.
+     * @return Map<String, String> contains data to be returned respectively success or error message.
+     */
     @Override
     public Map<String, String> process(SurveyToUserData surveyToUserData) {
 

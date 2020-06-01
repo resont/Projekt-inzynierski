@@ -19,7 +19,9 @@ import org.springframework.stereotype.Component;
 
 import java.util.Map;
 
-//This class is responsible for handling creator process
+/**
+ * This class is responsible for handling creator process
+ */
 @Component
 public class CreatorProcessor extends ProcessInterface {
 

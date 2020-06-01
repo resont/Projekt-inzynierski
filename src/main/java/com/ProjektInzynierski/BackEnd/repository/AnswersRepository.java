@@ -9,7 +9,9 @@ import org.springframework.stereotype.Repository;
 import javax.transaction.Transactional;
 import java.util.List;
 
-//This class is responsible for providing queries to database regarding answer data
+/**
+ * This class is responsible for providing queries to database regarding answer data
+ */
 @Repository
 public interface AnswersRepository extends JpaRepository<Answers, Integer> {
 

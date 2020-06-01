@@ -13,7 +13,9 @@ import org.springframework.stereotype.Component;
 
 import java.util.Map;
 
-//This class is responsible for handling registration process
+/**
+ * This class is responsible for handling registration process
+ */
 @Component
 public class RegistrationProcessor {
 

@@ -9,7 +9,9 @@ import org.springframework.stereotype.Repository;
 import javax.transaction.Transactional;
 import java.util.Date;
 
-//This class is responsible for providing queries to database regarding user data
+/**
+ * This class is responsible for providing queries to database regarding user data
+ */
 @Repository
 public interface UsersRepository extends JpaRepository<UserEntity, Integer> {
 

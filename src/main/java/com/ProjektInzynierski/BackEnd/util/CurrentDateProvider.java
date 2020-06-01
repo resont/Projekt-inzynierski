@@ -2,7 +2,9 @@ package com.ProjektInzynierski.BackEnd.util;
 
 import java.util.Date;
 
-//This class is responsible for providing current date
+/**
+ * This class is responsible for providing current date
+ */
 public class CurrentDateProvider {
 
     public static Date getCurrentDate() {

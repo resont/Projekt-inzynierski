@@ -2,7 +2,9 @@ package com.ProjektInzynierski.BackEnd.enums;
 
 import lombok.Getter;
 
-//This class is responsible for providing outcome messages regarding password reset process
+/**
+ * This class is responsible for providing outcome messages regarding password reset process
+ */
 @Getter
 public enum PasswordResetMsg {
     RESET_SUCCESSFUL("Password reset."),

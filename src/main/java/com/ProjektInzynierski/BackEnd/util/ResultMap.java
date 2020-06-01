@@ -5,7 +5,9 @@ import com.ProjektInzynierski.BackEnd.enums.LoginMsg;
 import java.util.HashMap;
 import java.util.Map;
 
-//This class is responsible for creating result map with provided message
+/**
+ * This class is responsible for creating result map with provided message
+ */
 public class ResultMap {
 
     private static final String EMAIL = "email";

@@ -10,7 +10,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-//This class is responsible for mapping data from database about key data
+/**
+ * This class is responsible for mapping data from database about key data
+ */
 @Entity
 @Table(name = "Keys")
 @Getter

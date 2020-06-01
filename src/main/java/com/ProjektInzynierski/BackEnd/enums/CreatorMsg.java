@@ -2,7 +2,9 @@ package com.ProjektInzynierski.BackEnd.enums;
 
 import lombok.Getter;
 
-//This class is responsible for providing outcome messages regarding creator process
+/**
+ * This class is responsible for providing outcome messages regarding creator process
+ */
 @Getter
 public enum CreatorMsg {
     CREATOR_ERROR("Error while creating survey."),

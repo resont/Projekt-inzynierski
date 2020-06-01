@@ -12,7 +12,9 @@ import org.springframework.stereotype.Component;
 
 import java.util.Map;
 
-//This class is responsible for handling logout process
+/**
+ * This class is responsible for handling logout process
+ */
 @Component
 public class LogoutProcessor extends ProcessInterface {
 

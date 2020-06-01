@@ -14,7 +14,9 @@ import javax.persistence.Table;
 import java.util.Date;
 import java.util.Set;
 
-//This class is responsible for mapping data from database about user data
+/**
+ * This class is responsible for mapping data from database about user data
+ */
 @Entity
 @Table(name = "Users")
 @Getter

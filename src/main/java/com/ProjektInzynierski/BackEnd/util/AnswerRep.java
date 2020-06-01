@@ -2,6 +2,9 @@ package com.ProjektInzynierski.BackEnd.util;
 
 import java.util.List;
 
+/**
+ * This class is responsible for iterating through answers
+ */
 public class AnswerRep implements Container {
 
     public List<String> answers;

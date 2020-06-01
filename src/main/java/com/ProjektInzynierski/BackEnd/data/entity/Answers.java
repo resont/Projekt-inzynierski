@@ -14,7 +14,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-//This class is responsible for mapping data from database about answer data
+/**
+ * This class is responsible for mapping data from database about answer data
+ */
 @Entity
 @Table(name = "Answers")
 @Getter

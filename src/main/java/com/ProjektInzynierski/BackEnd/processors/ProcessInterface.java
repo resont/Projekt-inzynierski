@@ -6,6 +6,9 @@ import com.ProjektInzynierski.BackEnd.data.model.SurveyToUserData;
 
 import java.util.Map;
 
+/**
+ * This is a process template
+ */
 public abstract class ProcessInterface {
 
     public Map<String, String> process(Map<String, String> body) {

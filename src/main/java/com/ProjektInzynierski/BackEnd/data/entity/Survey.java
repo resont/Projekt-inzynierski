@@ -13,7 +13,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.Set;
 
-//This class is responsible for mapping data from database about survey data
+/**
+ * This class is responsible for mapping data from database about survey data
+ */
 @Entity
 @Table(name = "Survey")
 @Getter

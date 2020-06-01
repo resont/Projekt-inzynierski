@@ -5,7 +5,9 @@ import com.ProjektInzynierski.BackEnd.enums.LoginMsg;
 import java.util.HashMap;
 import java.util.Map;
 
-//This class is responsible for validating password data
+/**
+ * This class is responsible for validating password data
+ */
 public class PasswordIsPresentValidation extends LoginValidationProcessor {
 
     public PasswordIsPresentValidation(LoginValidationProcessor nextProcessor) {

@@ -2,7 +2,9 @@ package com.ProjektInzynierski.BackEnd.processors.validation;
 
 import java.util.Map;
 
-//This class is responsible for creating validator processor
+/**
+ * This class is responsible for creating validator processor
+ */
 public abstract class LoginValidationProcessor {
 
     public LoginValidationProcessor nextProcessor;

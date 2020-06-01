@@ -8,7 +8,9 @@ import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
 
-//This class is responsible for providing queries to database regarding surveyToUser data
+/**
+ * This class is responsible for providing queries to database regarding surveyToUser data
+ */
 @Repository
 public interface SurveyToUserRepository extends JpaRepository<SurveyToUser, Integer> {
 

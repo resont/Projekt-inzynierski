@@ -14,7 +14,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.Table;
 
-//This class is responsible for mapping data from database about connection between survey and user
+/**
+ * This class is responsible for mapping data from database about connection between survey and user
+ */
 @Entity
 @Table(name = "Conn_us_su")
 @Getter

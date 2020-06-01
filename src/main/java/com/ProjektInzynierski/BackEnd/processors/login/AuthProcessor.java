@@ -12,7 +12,9 @@ import org.springframework.stereotype.Component;
 
 import java.util.Map;
 
-//This class is responsible for handling authorisation process
+/**
+ * This class is responsible for handling authorisation process
+ */
 @Component
 public class AuthProcessor extends ProcessInterface {
 

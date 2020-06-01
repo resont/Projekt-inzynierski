@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Map;
 
-//This class is responsible for handling every http request regarding login process
+/**
+ * This class is responsible for handling every http request regarding login process
+ */
 @CrossOrigin
 @RestController
 public class LoginController {

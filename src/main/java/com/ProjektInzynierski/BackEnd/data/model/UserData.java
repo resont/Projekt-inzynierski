@@ -4,7 +4,9 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 
-//This class is responsible for mapping json data from http request about user data
+/**
+ * This class is responsible for mapping json data from http request about user data
+ */
 @Setter
 @Getter
 public class UserData {

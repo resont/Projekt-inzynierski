@@ -17,7 +17,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-//This class is responsible for handling every http request regarding user data
+/**
+ * This class is responsible for handling every http request regarding user data
+ */
 @CrossOrigin
 @RestController
 public class UsersController {

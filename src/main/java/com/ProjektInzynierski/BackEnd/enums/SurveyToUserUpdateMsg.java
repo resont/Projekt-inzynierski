@@ -2,7 +2,9 @@ package com.ProjektInzynierski.BackEnd.enums;
 
 import lombok.Getter;
 
-//This class is responsible for providing outcome messages regarding update of survey and user connection
+/**
+ * This class is responsible for providing outcome messages regarding update of survey and user connection
+ */
 @Getter
 public enum SurveyToUserUpdateMsg {
 

@@ -2,7 +2,9 @@ package com.ProjektInzynierski.BackEnd.enums;
 
 import lombok.Getter;
 
-//This class is responsible for providing outcome messages regarding registration process
+/**
+ * This class is responsible for providing outcome messages regarding registration process
+ */
 @Getter
 public enum RegistrationMsg {
     REGISTRY_SUCCESSFUL("Registered."),

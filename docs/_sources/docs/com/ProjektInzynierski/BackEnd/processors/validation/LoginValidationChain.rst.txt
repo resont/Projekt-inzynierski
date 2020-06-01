@@ -1,0 +1,18 @@
+LoginValidationChain
+====================
+
+.. java:package:: com.ProjektInzynierski.BackEnd.processors.validation
+   :noindex:
+
+.. java:type:: public class LoginValidationChain
+
+   This class is responsible for setting up validator chain
+
+Methods
+-------
+getValidationChainProcessor
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public static LoginValidationProcessor getValidationChainProcessor()
+   :outertype: LoginValidationChain
+

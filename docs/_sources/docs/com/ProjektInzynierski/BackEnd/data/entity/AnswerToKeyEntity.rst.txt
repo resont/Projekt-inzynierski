@@ -1,0 +1,48 @@
+.. java:import:: com.fasterxml.jackson.annotation JsonBackReference
+
+.. java:import:: lombok Getter
+
+.. java:import:: lombok Setter
+
+.. java:import:: javax.persistence Column
+
+.. java:import:: javax.persistence Entity
+
+.. java:import:: javax.persistence GeneratedValue
+
+.. java:import:: javax.persistence GenerationType
+
+.. java:import:: javax.persistence Id
+
+.. java:import:: javax.persistence JoinColumn
+
+.. java:import:: javax.persistence ManyToOne
+
+.. java:import:: javax.persistence MapsId
+
+.. java:import:: javax.persistence Table
+
+AnswerToKeyEntity
+=================
+
+.. java:package:: com.ProjektInzynierski.BackEnd.data.entity
+   :noindex:
+
+.. java:type:: @Entity @Table @Getter @Setter public class AnswerToKeyEntity
+
+   This class is responsible for mapping data from database about connection between answers and keys
+
+Fields
+------
+answersId
+^^^^^^^^^
+
+.. java:field:: @JsonBackReference @ManyToOne @MapsId @JoinColumn  Answers answersId
+   :outertype: AnswerToKeyEntity
+
+keyEntityId
+^^^^^^^^^^^
+
+.. java:field:: @JsonBackReference @ManyToOne @MapsId @JoinColumn  KeyEntity keyEntityId
+   :outertype: AnswerToKeyEntity
+

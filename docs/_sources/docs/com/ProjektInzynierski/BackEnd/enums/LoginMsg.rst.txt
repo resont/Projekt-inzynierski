@@ -1,0 +1,46 @@
+.. java:import:: lombok Getter
+
+LoginMsg
+========
+
+.. java:package:: com.ProjektInzynierski.BackEnd.enums
+   :noindex:
+
+.. java:type:: @Getter public enum LoginMsg
+
+   This class is responsible for providing outcome messages regarding login process
+
+Enum Constants
+--------------
+EMPTY_EMAIL
+^^^^^^^^^^^
+
+.. java:field:: public static final LoginMsg EMPTY_EMAIL
+   :outertype: LoginMsg
+
+EMPTY_PASSWORD
+^^^^^^^^^^^^^^
+
+.. java:field:: public static final LoginMsg EMPTY_PASSWORD
+   :outertype: LoginMsg
+
+IS_STILL_VALID
+^^^^^^^^^^^^^^
+
+.. java:field:: public static final LoginMsg IS_STILL_VALID
+   :outertype: LoginMsg
+
+WRONG_EMAIL_OR_PASSWORD
+^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:field:: public static final LoginMsg WRONG_EMAIL_OR_PASSWORD
+   :outertype: LoginMsg
+
+Fields
+------
+errorMsg
+^^^^^^^^
+
+.. java:field:: public final String errorMsg
+   :outertype: LoginMsg
+

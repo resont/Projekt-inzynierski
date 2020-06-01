@@ -1,0 +1,36 @@
+.. java:import:: com ProjektInzynierski.BackEnd.data.entity.KeyEntity
+
+.. java:import:: org.springframework.data.jpa.repository JpaRepository
+
+.. java:import:: org.springframework.data.jpa.repository Modifying
+
+.. java:import:: org.springframework.data.jpa.repository Query
+
+.. java:import:: org.springframework.stereotype Repository
+
+.. java:import:: javax.transaction Transactional
+
+KeyRepository
+=============
+
+.. java:package:: com.ProjektInzynierski.BackEnd.repository
+   :noindex:
+
+.. java:type:: @Repository public interface KeyRepository extends JpaRepository<KeyEntity, Integer>
+
+   This class is responsible for providing queries to database regarding key data
+
+Methods
+-------
+findByKey
+^^^^^^^^^
+
+.. java:method::  KeyEntity findByKey(String key)
+   :outertype: KeyRepository
+
+updateKey
+^^^^^^^^^
+
+.. java:method:: @Transactional @Modifying @Query  void updateKey(String key, int id)
+   :outertype: KeyRepository
+

@@ -1,0 +1,16 @@
+.. java:import:: com ProjektInzynierski.BackEnd.data.entity.Questions
+
+.. java:import:: org.springframework.data.jpa.repository JpaRepository
+
+.. java:import:: org.springframework.stereotype Repository
+
+QuestionRepository
+==================
+
+.. java:package:: com.ProjektInzynierski.BackEnd.repository
+   :noindex:
+
+.. java:type:: @Repository public interface QuestionRepository extends JpaRepository<Questions, Integer>
+
+   This class is responsible for providing queries to database regarding questions data
+

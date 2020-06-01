@@ -1,0 +1,65 @@
+.. java:import:: com ProjektInzynierski.BackEnd.controller.LoggerController
+
+.. java:import:: com ProjektInzynierski.BackEnd.data.entity.Answers
+
+.. java:import:: com ProjektInzynierski.BackEnd.data.entity.Questions
+
+.. java:import:: com ProjektInzynierski.BackEnd.data.entity.Survey
+
+.. java:import:: com ProjektInzynierski.BackEnd.data.model.QuestionData
+
+.. java:import:: com ProjektInzynierski.BackEnd.data.model.SurveyDetailsData
+
+.. java:import:: com ProjektInzynierski.BackEnd.enums.CreatorMsg
+
+.. java:import:: com ProjektInzynierski.BackEnd.processors.ProcessInterface
+
+.. java:import:: com ProjektInzynierski.BackEnd.repository.AnswersRepository
+
+.. java:import:: com ProjektInzynierski.BackEnd.repository.QuestionRepository
+
+.. java:import:: com ProjektInzynierski.BackEnd.repository.SurveyRepository
+
+.. java:import:: com ProjektInzynierski.BackEnd.util.AnswerRep
+
+.. java:import:: com ProjektInzynierski.BackEnd.util.Iterator
+
+.. java:import:: com ProjektInzynierski.BackEnd.util.ResultMap
+
+.. java:import:: org.apache.logging.log4j Logger
+
+.. java:import:: org.springframework.stereotype Component
+
+.. java:import:: java.util Map
+
+CreatorProcessor
+================
+
+.. java:package:: com.ProjektInzynierski.BackEnd.processors.creator
+   :noindex:
+
+.. java:type:: @Component public class CreatorProcessor extends ProcessInterface
+
+   This class is responsible for handling creator process
+
+Constructors
+------------
+CreatorProcessor
+^^^^^^^^^^^^^^^^
+
+.. java:constructor:: public CreatorProcessor(SurveyRepository surveyRepository, QuestionRepository questionRepository, AnswersRepository answersRepository)
+   :outertype: CreatorProcessor
+
+Methods
+-------
+process
+^^^^^^^
+
+.. java:method:: @Override public Map<String, String> process(SurveyDetailsData surveyDetailsData)
+   :outertype: CreatorProcessor
+
+   This method persist into database survey, question and answer data created out of json mapped into surveyDetailsData.
+
+   :param surveyDetailsData: contains data of survey to be created.
+   :return: Map contains data to be returned respectively success or error message.
+

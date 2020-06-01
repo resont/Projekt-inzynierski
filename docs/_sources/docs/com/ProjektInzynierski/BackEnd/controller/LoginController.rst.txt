@@ -1,0 +1,62 @@
+.. java:import:: com ProjektInzynierski.BackEnd.processors.login.LoginProcessor
+
+.. java:import:: com ProjektInzynierski.BackEnd.processors.login.LogoutProcessor
+
+.. java:import:: com ProjektInzynierski.BackEnd.processors.registration.RegistrationProcessor
+
+.. java:import:: com ProjektInzynierski.BackEnd.util.ResultMap
+
+.. java:import:: org.springframework.web.bind.annotation CrossOrigin
+
+.. java:import:: org.springframework.web.bind.annotation PostMapping
+
+.. java:import:: org.springframework.web.bind.annotation RequestBody
+
+.. java:import:: org.springframework.web.bind.annotation RestController
+
+.. java:import:: java.util Map
+
+LoginController
+===============
+
+.. java:package:: com.ProjektInzynierski.BackEnd.controller
+   :noindex:
+
+.. java:type:: @CrossOrigin @RestController public class LoginController
+
+   This class is responsible for handling every http request regarding login process
+
+Constructors
+------------
+LoginController
+^^^^^^^^^^^^^^^
+
+.. java:constructor:: public LoginController(LoginProcessor loginProcessor, RegistrationProcessor registrationProcessor, LogoutProcessor logoutProcessor)
+   :outertype: LoginController
+
+Methods
+-------
+logout
+^^^^^^
+
+.. java:method:: @PostMapping  Map<String, String> logout(Map<String, String> body)
+   :outertype: LoginController
+
+registerAccount
+^^^^^^^^^^^^^^^
+
+.. java:method:: @PostMapping  Map<String, String> registerAccount(Map<String, String> body)
+   :outertype: LoginController
+
+resetPassword
+^^^^^^^^^^^^^
+
+.. java:method:: @PostMapping  Map<String, String> resetPassword(Map<String, String> body)
+   :outertype: LoginController
+
+tryToLogInto
+^^^^^^^^^^^^
+
+.. java:method:: @PostMapping  Map<String, String> tryToLogInto(Map<String, String> body)
+   :outertype: LoginController
+

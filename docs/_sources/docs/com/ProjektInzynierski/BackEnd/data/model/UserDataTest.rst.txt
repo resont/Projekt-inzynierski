@@ -1,0 +1,22 @@
+.. java:import:: org.bouncycastle.jcajce.provider.digest SHA3
+
+.. java:import:: org.bouncycastle.util.encoders Hex
+
+.. java:import:: org.junit.jupiter.api Test
+
+UserDataTest
+============
+
+.. java:package:: com.ProjektInzynierski.BackEnd.data.model
+   :noindex:
+
+.. java:type::  class UserDataTest
+
+Methods
+-------
+shouldSetLoginToLowerCaseAndHashPassword
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: @Test  void shouldSetLoginToLowerCaseAndHashPassword()
+   :outertype: UserDataTest
+

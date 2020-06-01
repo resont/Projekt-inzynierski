@@ -1,0 +1,78 @@
+.. java:import:: com ProjektInzynierski.BackEnd.controller.LoggerController
+
+.. java:import:: com ProjektInzynierski.BackEnd.data.UserDataFactory
+
+.. java:import:: com ProjektInzynierski.BackEnd.data.entity.UserEntity
+
+.. java:import:: com ProjektInzynierski.BackEnd.data.model.UserData
+
+.. java:import:: com ProjektInzynierski.BackEnd.enums.LoginMsg
+
+.. java:import:: com ProjektInzynierski.BackEnd.enums.PasswordResetMsg
+
+.. java:import:: com ProjektInzynierski.BackEnd.processors.ProcessInterface
+
+.. java:import:: com ProjektInzynierski.BackEnd.processors.validation.LoginValidationChain
+
+.. java:import:: com ProjektInzynierski.BackEnd.processors.validation.PasswordsArePresentValidation
+
+.. java:import:: com ProjektInzynierski.BackEnd.repository.UsersRepository
+
+.. java:import:: com ProjektInzynierski.BackEnd.util.CurrentDateProvider
+
+.. java:import:: com ProjektInzynierski.BackEnd.util.ResultMap
+
+.. java:import:: org.apache.logging.log4j Logger
+
+.. java:import:: org.springframework.stereotype Component
+
+.. java:import:: java.time Instant
+
+.. java:import:: java.util Date
+
+.. java:import:: java.util Map
+
+.. java:import:: java.util UUID
+
+LoginProcessor
+==============
+
+.. java:package:: com.ProjektInzynierski.BackEnd.processors.login
+   :noindex:
+
+.. java:type:: @Component public class LoginProcessor extends ProcessInterface
+
+   This class is responsible for handling login process
+
+Constructors
+------------
+LoginProcessor
+^^^^^^^^^^^^^^
+
+.. java:constructor::  LoginProcessor(UsersRepository usersRepository)
+   :outertype: LoginProcessor
+
+Methods
+-------
+process
+^^^^^^^
+
+.. java:method:: @Override public Map<String, String> process(Map<String, String> body)
+   :outertype: LoginProcessor
+
+   This method validate input data and login user to the system by provided token (body).
+
+   :param body: contains token.
+   :return: Map contains data to be returned respectively success or error message.
+
+resetPassword
+^^^^^^^^^^^^^
+
+.. java:method:: public Map<String, String> resetPassword(Map<String, String> body)
+   :outertype: LoginProcessor
+
+   This method validate input data and change password value in database for new one.
+
+   :param body: contains old and new password.
+   :return: Map contains respectively success or error message
+

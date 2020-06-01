@@ -1,0 +1,36 @@
+.. java:import:: java.util Map
+
+LoginValidationProcessor
+========================
+
+.. java:package:: com.ProjektInzynierski.BackEnd.processors.validation
+   :noindex:
+
+.. java:type:: public abstract class LoginValidationProcessor
+
+   This class is responsible for creating validator processor
+
+Fields
+------
+nextProcessor
+^^^^^^^^^^^^^
+
+.. java:field:: public LoginValidationProcessor nextProcessor
+   :outertype: LoginValidationProcessor
+
+Constructors
+------------
+LoginValidationProcessor
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:constructor::  LoginValidationProcessor(LoginValidationProcessor nextProcessor)
+   :outertype: LoginValidationProcessor
+
+Methods
+-------
+process
+^^^^^^^
+
+.. java:method:: public abstract Map<String, String> process(Map<String, String> map)
+   :outertype: LoginValidationProcessor
+

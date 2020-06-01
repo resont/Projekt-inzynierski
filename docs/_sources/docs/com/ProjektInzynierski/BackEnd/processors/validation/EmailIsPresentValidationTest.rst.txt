@@ -1,0 +1,52 @@
+.. java:import:: com ProjektInzynierski.BackEnd.enums.LoginMsg
+
+.. java:import:: org.junit.jupiter.api Test
+
+.. java:import:: org.junit.jupiter.api.extension ExtendWith
+
+.. java:import:: org.mockito Mock
+
+.. java:import:: org.mockito.junit.jupiter MockitoExtension
+
+.. java:import:: java.util HashMap
+
+.. java:import:: java.util Map
+
+EmailIsPresentValidationTest
+============================
+
+.. java:package:: com.ProjektInzynierski.BackEnd.processors.validation
+   :noindex:
+
+.. java:type:: @ExtendWith  class EmailIsPresentValidationTest
+
+Fields
+------
+loginValidationProcessor
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:field:: @Mock  LoginValidationProcessor loginValidationProcessor
+   :outertype: EmailIsPresentValidationTest
+
+Constructors
+------------
+EmailIsPresentValidationTest
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:constructor::  EmailIsPresentValidationTest()
+   :outertype: EmailIsPresentValidationTest
+
+Methods
+-------
+shouldNotProcessValidationWithemptyEmail
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: @Test  void shouldNotProcessValidationWithemptyEmail()
+   :outertype: EmailIsPresentValidationTest
+
+shouldProcessValidationWithEmail
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: @Test  void shouldProcessValidationWithEmail()
+   :outertype: EmailIsPresentValidationTest
+

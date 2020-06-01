@@ -1,0 +1,26 @@
+.. java:import:: lombok Getter
+
+LogoutMsg
+=========
+
+.. java:package:: com.ProjektInzynierski.BackEnd.enums
+   :noindex:
+
+.. java:type:: @Getter public enum LogoutMsg
+
+   This class is responsible for providing outcome messages regarding logout process
+
+Enum Constants
+--------------
+LOGOUT
+^^^^^^
+
+.. java:field:: public static final LogoutMsg LOGOUT
+   :outertype: LogoutMsg
+
+LOGOUT_ERROR
+^^^^^^^^^^^^
+
+.. java:field:: public static final LogoutMsg LOGOUT_ERROR
+   :outertype: LogoutMsg
+

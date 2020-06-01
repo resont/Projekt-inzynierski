@@ -1,0 +1,24 @@
+.. java:import:: org.apache.logging.log4j LogManager
+
+.. java:import:: org.apache.logging.log4j Logger
+
+.. java:import:: org.springframework.stereotype Component
+
+LoggerController
+================
+
+.. java:package:: com.ProjektInzynierski.BackEnd.controller
+   :noindex:
+
+.. java:type:: @Component public class LoggerController
+
+   This class is responsible for providing logger singleton for another class
+
+Methods
+-------
+getInstance
+^^^^^^^^^^^
+
+.. java:method:: public static Logger getInstance()
+   :outertype: LoggerController
+

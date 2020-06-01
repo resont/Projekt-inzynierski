@@ -1,0 +1,86 @@
+.. java:import:: com ProjektInzynierski.BackEnd.data.entity.Survey
+
+.. java:import:: org.springframework.data.jpa.repository JpaRepository
+
+.. java:import:: org.springframework.data.jpa.repository Modifying
+
+.. java:import:: org.springframework.data.jpa.repository Query
+
+.. java:import:: org.springframework.stereotype Repository
+
+.. java:import:: javax.transaction Transactional
+
+.. java:import:: java.util List
+
+SurveyRepository
+================
+
+.. java:package:: com.ProjektInzynierski.BackEnd.repository
+   :noindex:
+
+.. java:type:: @Repository public interface SurveyRepository extends JpaRepository<Survey, Integer>
+
+   This class is responsible for providing queries to database regarding survey data
+
+Methods
+-------
+findAnsweredSurveysWithUserUuid
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: @Query  int[] findAnsweredSurveysWithUserUuid(String uuid)
+   :outertype: SurveyRepository
+
+findById
+^^^^^^^^
+
+.. java:method::  Survey findById(int id)
+   :outertype: SurveyRepository
+
+findByIdAndTopic
+^^^^^^^^^^^^^^^^
+
+.. java:method::  List<Survey> findByIdAndTopic(int id, String topic)
+   :outertype: SurveyRepository
+
+findCompleteSurveyById
+^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: @Query  Survey findCompleteSurveyById(int id)
+   :outertype: SurveyRepository
+
+findIdByUuidAndSurveyId
+^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: @Query  int findIdByUuidAndSurveyId(String uuid, int surveyId)
+   :outertype: SurveyRepository
+
+findSurveyForUser
+^^^^^^^^^^^^^^^^^
+
+.. java:method:: @Query  Survey findSurveyForUser(int id)
+   :outertype: SurveyRepository
+
+findSurveysWithUserUuid
+^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: @Query  int[] findSurveysWithUserUuid(String uuid)
+   :outertype: SurveyRepository
+
+findValidSurveyByTopic
+^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: @Query  Survey findValidSurveyByTopic(String topic)
+   :outertype: SurveyRepository
+
+updateAnswer
+^^^^^^^^^^^^
+
+.. java:method:: @Transactional @Modifying @Query  void updateAnswer(int id)
+   :outertype: SurveyRepository
+
+updateCount
+^^^^^^^^^^^
+
+.. java:method:: @Transactional @Modifying @Query  void updateCount(int id)
+   :outertype: SurveyRepository
+

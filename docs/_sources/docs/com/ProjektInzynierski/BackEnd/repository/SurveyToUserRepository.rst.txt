@@ -1,0 +1,54 @@
+.. java:import:: com ProjektInzynierski.BackEnd.data.entity.SurveyToUser
+
+.. java:import:: org.springframework.data.jpa.repository JpaRepository
+
+.. java:import:: org.springframework.data.jpa.repository Modifying
+
+.. java:import:: org.springframework.data.jpa.repository Query
+
+.. java:import:: org.springframework.stereotype Repository
+
+.. java:import:: javax.transaction Transactional
+
+SurveyToUserRepository
+======================
+
+.. java:package:: com.ProjektInzynierski.BackEnd.repository
+   :noindex:
+
+.. java:type:: @Repository public interface SurveyToUserRepository extends JpaRepository<SurveyToUser, Integer>
+
+   This class is responsible for providing queries to database regarding surveyToUser data
+
+Methods
+-------
+addSurveyToUser
+^^^^^^^^^^^^^^^
+
+.. java:method:: @Transactional @Modifying @Query  void addSurveyToUser(int uId, int sId, int id)
+   :outertype: SurveyToUserRepository
+
+findAllAnsweredSurveys
+^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: @Query  int[] findAllAnsweredSurveys(int uId)
+   :outertype: SurveyToUserRepository
+
+findAnsweredValue
+^^^^^^^^^^^^^^^^^
+
+.. java:method:: @Query  SurveyToUser findAnsweredValue(int uId, int sId)
+   :outertype: SurveyToUserRepository
+
+findById
+^^^^^^^^
+
+.. java:method::  SurveyToUser findById(int id)
+   :outertype: SurveyToUserRepository
+
+updateAnswered
+^^^^^^^^^^^^^^
+
+.. java:method:: @Transactional @Modifying @Query  void updateAnswered(int id, boolean answered)
+   :outertype: SurveyToUserRepository
+

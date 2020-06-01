@@ -1,0 +1,30 @@
+.. java:import:: com ProjektInzynierski.BackEnd.data.model.UserData
+
+.. java:import:: org.bouncycastle.jcajce.provider.digest SHA3
+
+.. java:import:: org.bouncycastle.util.encoders Hex
+
+UserDataFactory
+===============
+
+.. java:package:: com.ProjektInzynierski.BackEnd.data
+   :noindex:
+
+.. java:type:: public class UserDataFactory
+
+   This class is responsible for creating new userData object with hashed password and lower case email
+
+Methods
+-------
+create
+^^^^^^
+
+.. java:method:: public static UserData create(String email, String password)
+   :outertype: UserDataFactory
+
+create
+^^^^^^
+
+.. java:method:: public static UserData create(String email)
+   :outertype: UserDataFactory
+

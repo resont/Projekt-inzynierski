@@ -1,0 +1,22 @@
+.. java:import:: org.bouncycastle.jcajce.provider.digest SHA3
+
+.. java:import:: org.bouncycastle.util.encoders Hex
+
+StringHashCreator
+=================
+
+.. java:package:: com.ProjektInzynierski.BackEnd.util
+   :noindex:
+
+.. java:type:: public class StringHashCreator
+
+   This class is responsible for creating hash to identify particular answer
+
+Methods
+-------
+createSimpleHash
+^^^^^^^^^^^^^^^^
+
+.. java:method:: public static String createSimpleHash(int[] ids, String email)
+   :outertype: StringHashCreator
+

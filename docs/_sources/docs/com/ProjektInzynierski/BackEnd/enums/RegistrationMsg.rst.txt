@@ -1,0 +1,26 @@
+.. java:import:: lombok Getter
+
+RegistrationMsg
+===============
+
+.. java:package:: com.ProjektInzynierski.BackEnd.enums
+   :noindex:
+
+.. java:type:: @Getter public enum RegistrationMsg
+
+   This class is responsible for providing outcome messages regarding registration process
+
+Enum Constants
+--------------
+REGISTRY_NOT_SUCCESSFUL
+^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:field:: public static final RegistrationMsg REGISTRY_NOT_SUCCESSFUL
+   :outertype: RegistrationMsg
+
+REGISTRY_SUCCESSFUL
+^^^^^^^^^^^^^^^^^^^
+
+.. java:field:: public static final RegistrationMsg REGISTRY_SUCCESSFUL
+   :outertype: RegistrationMsg
+

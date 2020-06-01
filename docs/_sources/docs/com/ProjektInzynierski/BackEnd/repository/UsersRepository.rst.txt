@@ -1,0 +1,80 @@
+.. java:import:: com ProjektInzynierski.BackEnd.data.entity.UserEntity
+
+.. java:import:: org.springframework.data.jpa.repository JpaRepository
+
+.. java:import:: org.springframework.data.jpa.repository Modifying
+
+.. java:import:: org.springframework.data.jpa.repository Query
+
+.. java:import:: org.springframework.stereotype Repository
+
+.. java:import:: javax.transaction Transactional
+
+.. java:import:: java.util Date
+
+UsersRepository
+===============
+
+.. java:package:: com.ProjektInzynierski.BackEnd.repository
+   :noindex:
+
+.. java:type:: @Repository public interface UsersRepository extends JpaRepository<UserEntity, Integer>
+
+   This class is responsible for providing queries to database regarding user data
+
+Methods
+-------
+existsByEmailAndPassword
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method::  boolean existsByEmailAndPassword(String email, String password)
+   :outertype: UsersRepository
+
+findByEmailAndPassword
+^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method::  UserEntity findByEmailAndPassword(String email, String password)
+   :outertype: UsersRepository
+
+findById
+^^^^^^^^
+
+.. java:method::  UserEntity findById(int id)
+   :outertype: UsersRepository
+
+findByUuid
+^^^^^^^^^^
+
+.. java:method::  UserEntity findByUuid(String uuid)
+   :outertype: UsersRepository
+
+findByUuidAndPassword
+^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method::  UserEntity findByUuidAndPassword(String token, String password)
+   :outertype: UsersRepository
+
+setAdmin
+^^^^^^^^
+
+.. java:method:: @Transactional @Modifying @Query  void setAdmin(int id, String group)
+   :outertype: UsersRepository
+
+setNewPassword
+^^^^^^^^^^^^^^
+
+.. java:method:: @Transactional @Modifying @Query  void setNewPassword(String oldPassword, String newPassword, String uuid)
+   :outertype: UsersRepository
+
+setUuidAndValidTo
+^^^^^^^^^^^^^^^^^
+
+.. java:method:: @Transactional @Modifying @Query  void setUuidAndValidTo(String uuid, Date date)
+   :outertype: UsersRepository
+
+setUuidAndValidToWithPassword
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: @Transactional @Modifying @Query  void setUuidAndValidToWithPassword(String email, String password, String uuid, Date date)
+   :outertype: UsersRepository
+

@@ -1,0 +1,22 @@
+.. java:import:: org.springframework.boot SpringApplication
+
+.. java:import:: org.springframework.boot.autoconfigure SpringBootApplication
+
+.. java:import:: springfox.documentation.swagger2.annotations EnableSwagger2
+
+BackEndApplication
+==================
+
+.. java:package:: com.ProjektInzynierski.BackEnd
+   :noindex:
+
+.. java:type:: @EnableSwagger2 @SpringBootApplication public class BackEndApplication
+
+Methods
+-------
+main
+^^^^
+
+.. java:method:: public static void main(String[] args)
+   :outertype: BackEndApplication
+

@@ -1,0 +1,42 @@
+.. java:import:: com ProjektInzynierski.BackEnd.enums.LoginMsg
+
+.. java:import:: java.util HashMap
+
+.. java:import:: java.util Map
+
+ResultMap
+=========
+
+.. java:package:: com.ProjektInzynierski.BackEnd.util
+   :noindex:
+
+.. java:type:: public class ResultMap
+
+   This class is responsible for creating result map with provided message
+
+Methods
+-------
+createErrorMap
+^^^^^^^^^^^^^^
+
+.. java:method:: public static Map<String, String> createErrorMap(String error)
+   :outertype: ResultMap
+
+createNullBodyErrorMap
+^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public static Map<String, String> createNullBodyErrorMap()
+   :outertype: ResultMap
+
+createRegistrationSuccessMap
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: public static Map<String, String> createRegistrationSuccessMap(String result, String email)
+   :outertype: ResultMap
+
+createSuccessMap
+^^^^^^^^^^^^^^^^
+
+.. java:method:: public static Map<String, String> createSuccessMap(String result)
+   :outertype: ResultMap
+

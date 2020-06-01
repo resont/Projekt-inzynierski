@@ -1,0 +1,24 @@
+.. java:import:: lombok Getter
+
+.. java:import:: lombok Setter
+
+.. java:import:: java.util List
+
+SurveyDetailsData
+=================
+
+.. java:package:: com.ProjektInzynierski.BackEnd.data.model
+   :noindex:
+
+.. java:type:: @Setter @Getter public class SurveyDetailsData
+
+   This class is responsible for mapping json data from http request about survey details
+
+Fields
+------
+questions
+^^^^^^^^^
+
+.. java:field::  List<QuestionData> questions
+   :outertype: SurveyDetailsData
+

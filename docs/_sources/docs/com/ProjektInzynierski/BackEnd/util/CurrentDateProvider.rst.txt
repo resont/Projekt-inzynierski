@@ -1,0 +1,26 @@
+.. java:import:: java.util Date
+
+CurrentDateProvider
+===================
+
+.. java:package:: com.ProjektInzynierski.BackEnd.util
+   :noindex:
+
+.. java:type:: public class CurrentDateProvider
+
+   This class is responsible for providing current date
+
+Methods
+-------
+getCurrentDate
+^^^^^^^^^^^^^^
+
+.. java:method:: public static Date getCurrentDate()
+   :outertype: CurrentDateProvider
+
+getOldDate
+^^^^^^^^^^
+
+.. java:method:: public static Date getOldDate()
+   :outertype: CurrentDateProvider
+

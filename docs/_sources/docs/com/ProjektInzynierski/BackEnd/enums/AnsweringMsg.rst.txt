@@ -1,0 +1,34 @@
+.. java:import:: lombok Getter
+
+AnsweringMsg
+============
+
+.. java:package:: com.ProjektInzynierski.BackEnd.enums
+   :noindex:
+
+.. java:type:: @Getter public enum AnsweringMsg
+
+   This class is responsible for providing outcome messages regarding answering process
+
+Enum Constants
+--------------
+ANSWERING_ERROR_EMPTY_SURVEY
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:field:: public static final AnsweringMsg ANSWERING_ERROR_EMPTY_SURVEY
+   :outertype: AnsweringMsg
+
+ANSWERING_UNEXPECTED_ERROR
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:field:: public static final AnsweringMsg ANSWERING_UNEXPECTED_ERROR
+   :outertype: AnsweringMsg
+
+Fields
+------
+errorMsg
+^^^^^^^^
+
+.. java:field:: public final String errorMsg
+   :outertype: AnsweringMsg
+

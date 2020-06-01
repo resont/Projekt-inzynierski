@@ -1,0 +1,37 @@
+.. java:import:: com ProjektInzynierski.BackEnd.enums.LoginMsg
+
+.. java:import:: java.util HashMap
+
+.. java:import:: java.util Map
+
+EmailIsPresentValidation
+========================
+
+.. java:package:: com.ProjektInzynierski.BackEnd.processors.validation
+   :noindex:
+
+.. java:type:: public class EmailIsPresentValidation extends LoginValidationProcessor
+
+   This class is responsible for validating email data
+
+Constructors
+------------
+EmailIsPresentValidation
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:constructor:: public EmailIsPresentValidation(LoginValidationProcessor nextProcessor)
+   :outertype: EmailIsPresentValidation
+
+Methods
+-------
+process
+^^^^^^^
+
+.. java:method:: @Override public Map<String, String> process(Map<String, String> map)
+   :outertype: EmailIsPresentValidation
+
+   This method validate if email data is present.
+
+   :param map: contains data to be validated.
+   :return: Map contains error or input data itself.
+

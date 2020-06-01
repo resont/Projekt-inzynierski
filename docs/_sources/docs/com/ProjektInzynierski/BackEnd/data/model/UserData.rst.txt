@@ -1,0 +1,36 @@
+.. java:import:: lombok AccessLevel
+
+.. java:import:: lombok Getter
+
+.. java:import:: lombok Setter
+
+UserData
+========
+
+.. java:package:: com.ProjektInzynierski.BackEnd.data.model
+   :noindex:
+
+.. java:type:: @Setter @Getter public class UserData
+
+   This class is responsible for mapping json data from http request about user data
+
+Constructors
+------------
+UserData
+^^^^^^^^
+
+.. java:constructor:: public UserData(String email, String password)
+   :outertype: UserData
+
+UserData
+^^^^^^^^
+
+.. java:constructor:: public UserData(String email)
+   :outertype: UserData
+
+UserData
+^^^^^^^^
+
+.. java:constructor:: public UserData()
+   :outertype: UserData
+

@@ -1,0 +1,18 @@
+Container
+=========
+
+.. java:package:: com.ProjektInzynierski.BackEnd.util
+   :noindex:
+
+.. java:type:: public interface Container
+
+   This is a container for Iterator
+
+Methods
+-------
+getIterator
+^^^^^^^^^^^
+
+.. java:method::  Iterator getIterator()
+   :outertype: Container
+

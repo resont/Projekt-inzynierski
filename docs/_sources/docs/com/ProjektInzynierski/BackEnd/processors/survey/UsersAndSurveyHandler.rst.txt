@@ -1,0 +1,53 @@
+.. java:import:: com ProjektInzynierski.BackEnd.controller.LoggerController
+
+.. java:import:: com ProjektInzynierski.BackEnd.data.entity.SurveyToUser
+
+.. java:import:: com ProjektInzynierski.BackEnd.data.model.SurveyAnsweredData
+
+.. java:import:: com ProjektInzynierski.BackEnd.data.model.SurveyToUserData
+
+.. java:import:: com ProjektInzynierski.BackEnd.enums.SurveyToUserUpdateMsg
+
+.. java:import:: com ProjektInzynierski.BackEnd.processors.ProcessInterface
+
+.. java:import:: com ProjektInzynierski.BackEnd.repository.SurveyToUserRepository
+
+.. java:import:: com ProjektInzynierski.BackEnd.util.ResultMap
+
+.. java:import:: org.apache.logging.log4j Logger
+
+.. java:import:: org.springframework.stereotype Component
+
+.. java:import:: java.util Map
+
+UsersAndSurveyHandler
+=====================
+
+.. java:package:: com.ProjektInzynierski.BackEnd.processors.survey
+   :noindex:
+
+.. java:type:: @Component public class UsersAndSurveyHandler extends ProcessInterface
+
+   This class is responsible for handling updating connection between user and survey
+
+Constructors
+------------
+UsersAndSurveyHandler
+^^^^^^^^^^^^^^^^^^^^^
+
+.. java:constructor:: public UsersAndSurveyHandler(SurveyToUserRepository surveyToUserRepository)
+   :outertype: UsersAndSurveyHandler
+
+Methods
+-------
+process
+^^^^^^^
+
+.. java:method:: @Override public Map<String, String> process(SurveyToUserData surveyToUserData)
+   :outertype: UsersAndSurveyHandler
+
+   This method persist connection between user and survey into database out of json mapped into surveyToUserData.
+
+   :param surveyToUserData: contains connection data to be persisted.
+   :return: Map contains data to be returned respectively success or error message.
+

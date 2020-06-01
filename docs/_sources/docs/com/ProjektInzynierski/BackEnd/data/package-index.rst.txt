@@ -1,0 +1,10 @@
+com.ProjektInzynierski.BackEnd.data
+===================================
+
+.. java:package:: com.ProjektInzynierski.BackEnd.data
+
+.. toctree::
+   :maxdepth: 1
+
+   UserDataFactory
+

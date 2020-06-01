@@ -1,0 +1,50 @@
+.. java:import:: com ProjektInzynierski.BackEnd.data.entity.UserEntity
+
+.. java:import:: com ProjektInzynierski.BackEnd.repository.UsersRepository
+
+.. java:import:: org.junit.jupiter.api BeforeEach
+
+.. java:import:: org.junit.jupiter.api Disabled
+
+.. java:import:: org.junit.jupiter.api Test
+
+.. java:import:: org.junit.jupiter.api.extension ExtendWith
+
+.. java:import:: org.mockito Mock
+
+.. java:import:: org.mockito Mockito
+
+.. java:import:: org.mockito.junit.jupiter MockitoExtension
+
+.. java:import:: java.util HashMap
+
+.. java:import:: java.util Map
+
+LoginProcessorTest
+==================
+
+.. java:package:: com.ProjektInzynierski.BackEnd.processors.login
+   :noindex:
+
+.. java:type:: @Disabled @ExtendWith  class LoginProcessorTest
+
+Methods
+-------
+init
+^^^^
+
+.. java:method:: @BeforeEach  void init()
+   :outertype: LoginProcessorTest
+
+shouldNotProcessLoginWithWrongValues
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: @Test  void shouldNotProcessLoginWithWrongValues()
+   :outertype: LoginProcessorTest
+
+shouldProcessLogin
+^^^^^^^^^^^^^^^^^^
+
+.. java:method:: @Test  void shouldProcessLogin()
+   :outertype: LoginProcessorTest
+

@@ -1,0 +1,38 @@
+.. java:import:: com ProjektInzynierski.BackEnd.data.entity.Answers
+
+.. java:import:: org.springframework.data.jpa.repository JpaRepository
+
+.. java:import:: org.springframework.data.jpa.repository Modifying
+
+.. java:import:: org.springframework.data.jpa.repository Query
+
+.. java:import:: org.springframework.stereotype Repository
+
+.. java:import:: javax.transaction Transactional
+
+.. java:import:: java.util List
+
+AnswersRepository
+=================
+
+.. java:package:: com.ProjektInzynierski.BackEnd.repository
+   :noindex:
+
+.. java:type:: @Repository public interface AnswersRepository extends JpaRepository<Answers, Integer>
+
+   This class is responsible for providing queries to database regarding answer data
+
+Methods
+-------
+findAnswersByKey
+^^^^^^^^^^^^^^^^
+
+.. java:method:: @Query  List<Answers> findAnswersByKey(String key)
+   :outertype: AnswersRepository
+
+updateAnswer
+^^^^^^^^^^^^
+
+.. java:method:: @Transactional @Modifying @Query  void updateAnswer(int id, int aId)
+   :outertype: AnswersRepository
+

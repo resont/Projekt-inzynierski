@@ -1,0 +1,34 @@
+.. java:import:: java.util List
+
+AnswerRep
+=========
+
+.. java:package:: com.ProjektInzynierski.BackEnd.util
+   :noindex:
+
+.. java:type:: public class AnswerRep implements Container
+
+   This class is responsible for iterating through answers
+
+Fields
+------
+answers
+^^^^^^^
+
+.. java:field:: public List<String> answers
+   :outertype: AnswerRep
+
+Methods
+-------
+getIterator
+^^^^^^^^^^^
+
+.. java:method:: @Override public Iterator getIterator()
+   :outertype: AnswerRep
+
+setAnswers
+^^^^^^^^^^
+
+.. java:method:: public void setAnswers(List<String> Answers)
+   :outertype: AnswerRep
+

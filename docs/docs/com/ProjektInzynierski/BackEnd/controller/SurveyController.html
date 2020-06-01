@@ -1,0 +1,271 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>SurveyController &#8212; Projekt inzynierski 1.0 documentation</title>
+    <link rel="stylesheet" href="../../../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../../../" src="../../../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="surveycontroller">
+<h1>SurveyController<a class="headerlink" href="#surveycontroller" title="Permalink to this headline">¶</a></h1>
+<dl class="type">
+<dt id="com.ProjektInzynierski.BackEnd.controller.SurveyController">
+public class <code class="descname">SurveyController</code><a class="headerlink" href="#com.ProjektInzynierski.BackEnd.controller.SurveyController" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class is responsible for handling every http request regarding survey data</p>
+</dd></dl>
+
+<div class="section" id="fields">
+<h2>Fields<a class="headerlink" href="#fields" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="key-error-msg">
+<h3>KEY_ERROR_MSG<a class="headerlink" href="#key-error-msg" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="com.ProjektInzynierski.BackEnd.controller.SurveyController.KEY_ERROR_MSG">
+public static final <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a> <code class="descname">KEY_ERROR_MSG</code><a class="headerlink" href="#com.ProjektInzynierski.BackEnd.controller.SurveyController.KEY_ERROR_MSG" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="key-success-msg">
+<h3>KEY_SUCCESS_MSG<a class="headerlink" href="#key-success-msg" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="com.ProjektInzynierski.BackEnd.controller.SurveyController.KEY_SUCCESS_MSG">
+public static final <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a> <code class="descname">KEY_SUCCESS_MSG</code><a class="headerlink" href="#com.ProjektInzynierski.BackEnd.controller.SurveyController.KEY_SUCCESS_MSG" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="no-data-msg">
+<h3>NO_DATA_MSG<a class="headerlink" href="#no-data-msg" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="com.ProjektInzynierski.BackEnd.controller.SurveyController.NO_DATA_MSG">
+public static final <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a> <code class="descname">NO_DATA_MSG</code><a class="headerlink" href="#com.ProjektInzynierski.BackEnd.controller.SurveyController.NO_DATA_MSG" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+</div>
+<div class="section" id="constructors">
+<h2>Constructors<a class="headerlink" href="#constructors" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h3>SurveyController<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<dl class="constructor">
+<dt id="com.ProjektInzynierski.BackEnd.controller.SurveyController.SurveyController(CreatorProcessor, SurveyRepository, AnswersRepository, QuestionAndAnswerIdHandler, UsersRepository, SurveyToUserRepository, UsersAndSurveyHandler, KeyRepository, KeyToAnswerRepository)">
+public <code class="descname">SurveyController</code><span class="sig-paren">(</span><a class="reference internal" href="../processors/creator/CreatorProcessor.html#com.ProjektInzynierski.BackEnd.processors.creator.CreatorProcessor" title="com.ProjektInzynierski.BackEnd.processors.creator.CreatorProcessor">CreatorProcessor</a><em> creatorProcessor</em>, <a class="reference internal" href="../repository/SurveyRepository.html#com.ProjektInzynierski.BackEnd.repository.SurveyRepository" title="com.ProjektInzynierski.BackEnd.repository.SurveyRepository">SurveyRepository</a><em> surveyRepository</em>, <a class="reference internal" href="../repository/AnswersRepository.html#com.ProjektInzynierski.BackEnd.repository.AnswersRepository" title="com.ProjektInzynierski.BackEnd.repository.AnswersRepository">AnswersRepository</a><em> answersRepository</em>, <a class="reference internal" href="../processors/creator/QuestionAndAnswerIdHandler.html#com.ProjektInzynierski.BackEnd.processors.creator.QuestionAndAnswerIdHandler" title="com.ProjektInzynierski.BackEnd.processors.creator.QuestionAndAnswerIdHandler">QuestionAndAnswerIdHandler</a><em> questionAndAnswerIdHandler</em>, <a class="reference internal" href="../repository/UsersRepository.html#com.ProjektInzynierski.BackEnd.repository.UsersRepository" title="com.ProjektInzynierski.BackEnd.repository.UsersRepository">UsersRepository</a><em> usersRepository</em>, <a class="reference internal" href="../repository/SurveyToUserRepository.html#com.ProjektInzynierski.BackEnd.repository.SurveyToUserRepository" title="com.ProjektInzynierski.BackEnd.repository.SurveyToUserRepository">SurveyToUserRepository</a><em> surveyToUserRepository</em>, <a class="reference internal" href="../processors/survey/UsersAndSurveyHandler.html#com.ProjektInzynierski.BackEnd.processors.survey.UsersAndSurveyHandler" title="com.ProjektInzynierski.BackEnd.processors.survey.UsersAndSurveyHandler">UsersAndSurveyHandler</a><em> usersAndSurveyHandler</em>, <a class="reference internal" href="../repository/KeyRepository.html#com.ProjektInzynierski.BackEnd.repository.KeyRepository" title="com.ProjektInzynierski.BackEnd.repository.KeyRepository">KeyRepository</a><em> keyRepository</em>, <a class="reference internal" href="../repository/KeyToAnswerRepository.html#com.ProjektInzynierski.BackEnd.repository.KeyToAnswerRepository" title="com.ProjektInzynierski.BackEnd.repository.KeyToAnswerRepository">KeyToAnswerRepository</a><em> keyToAnswerRepository</em><span class="sig-paren">)</span><a class="headerlink" href="#com.ProjektInzynierski.BackEnd.controller.SurveyController.SurveyController(CreatorProcessor, SurveyRepository, AnswersRepository, QuestionAndAnswerIdHandler, UsersRepository, SurveyToUserRepository, UsersAndSurveyHandler, KeyRepository, KeyToAnswerRepository)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+</div>
+<div class="section" id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="create">
+<h3>create<a class="headerlink" href="#create" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="com.ProjektInzynierski.BackEnd.controller.SurveyController.create(Map)">
+ <a class="reference internal" href="../data/entity/Survey.html#com.ProjektInzynierski.BackEnd.data.entity.Survey" title="com.ProjektInzynierski.BackEnd.data.entity.Survey">Survey</a> <code class="descname">create</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html" title="java.util.Map">Map</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a>&gt;<em> body</em><span class="sig-paren">)</span><a class="headerlink" href="#com.ProjektInzynierski.BackEnd.controller.SurveyController.create(Map)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="createsurvey">
+<h3>createSurvey<a class="headerlink" href="#createsurvey" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="com.ProjektInzynierski.BackEnd.controller.SurveyController.createSurvey(SurveyDetailsData)">
+ <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html" title="java.util.Map">Map</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a>&gt; <code class="descname">createSurvey</code><span class="sig-paren">(</span><a class="reference internal" href="../data/model/SurveyDetailsData.html#com.ProjektInzynierski.BackEnd.data.model.SurveyDetailsData" title="com.ProjektInzynierski.BackEnd.data.model.SurveyDetailsData">SurveyDetailsData</a><em> body</em><span class="sig-paren">)</span><a class="headerlink" href="#com.ProjektInzynierski.BackEnd.controller.SurveyController.createSurvey(SurveyDetailsData)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="delete">
+<h3>delete<a class="headerlink" href="#delete" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="com.ProjektInzynierski.BackEnd.controller.SurveyController.delete(String)">
+ boolean <code class="descname">delete</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> id</em><span class="sig-paren">)</span><a class="headerlink" href="#com.ProjektInzynierski.BackEnd.controller.SurveyController.delete(String)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="getallsurveysfromdatabase">
+<h3>getAllSurveysFromDatabase<a class="headerlink" href="#getallsurveysfromdatabase" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="com.ProjektInzynierski.BackEnd.controller.SurveyController.getAllSurveysFromDatabase()">
+ <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html" title="java.util.List">List</a>&lt;<a class="reference internal" href="../data/entity/Survey.html#com.ProjektInzynierski.BackEnd.data.entity.Survey" title="com.ProjektInzynierski.BackEnd.data.entity.Survey">Survey</a>&gt; <code class="descname">getAllSurveysFromDatabase</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#com.ProjektInzynierski.BackEnd.controller.SurveyController.getAllSurveysFromDatabase()" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="getanswersbykey">
+<h3>getAnswersByKey<a class="headerlink" href="#getanswersbykey" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="com.ProjektInzynierski.BackEnd.controller.SurveyController.getAnswersByKey(Map)">
+ <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html" title="java.util.Map">Map</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html" title="java.lang.Integer">Integer</a>, <a class="reference internal" href="../data/entity/Questions.html#com.ProjektInzynierski.BackEnd.data.entity.Questions" title="com.ProjektInzynierski.BackEnd.data.entity.Questions">Questions</a>&gt; <code class="descname">getAnswersByKey</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html" title="java.util.Map">Map</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a>&gt;<em> body</em><span class="sig-paren">)</span><a class="headerlink" href="#com.ProjektInzynierski.BackEnd.controller.SurveyController.getAnswersByKey(Map)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="getsurveytouser">
+<h3>getSurveyToUser<a class="headerlink" href="#getsurveytouser" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="com.ProjektInzynierski.BackEnd.controller.SurveyController.getSurveyToUser(String)">
+ <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html" title="java.util.List">List</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html" title="java.util.Map">Map</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a>&gt;&gt; <code class="descname">getSurveyToUser</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> id</em><span class="sig-paren">)</span><a class="headerlink" href="#com.ProjektInzynierski.BackEnd.controller.SurveyController.getSurveyToUser(String)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="search">
+<h3>search<a class="headerlink" href="#search" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="com.ProjektInzynierski.BackEnd.controller.SurveyController.search(String)">
+ <a class="reference internal" href="../data/entity/Survey.html#com.ProjektInzynierski.BackEnd.data.entity.Survey" title="com.ProjektInzynierski.BackEnd.data.entity.Survey">Survey</a> <code class="descname">search</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> topic</em><span class="sig-paren">)</span><a class="headerlink" href="#com.ProjektInzynierski.BackEnd.controller.SurveyController.search(String)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="show">
+<h3>show<a class="headerlink" href="#show" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="com.ProjektInzynierski.BackEnd.controller.SurveyController.show(String)">
+ <a class="reference internal" href="../data/entity/Survey.html#com.ProjektInzynierski.BackEnd.data.entity.Survey" title="com.ProjektInzynierski.BackEnd.data.entity.Survey">Survey</a> <code class="descname">show</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> id</em><span class="sig-paren">)</span><a class="headerlink" href="#com.ProjektInzynierski.BackEnd.controller.SurveyController.show(String)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="showcon">
+<h3>showCon<a class="headerlink" href="#showcon" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="com.ProjektInzynierski.BackEnd.controller.SurveyController.showCon(String)">
+ int[] <code class="descname">showCon</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> uuid</em><span class="sig-paren">)</span><a class="headerlink" href="#com.ProjektInzynierski.BackEnd.controller.SurveyController.showCon(String)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="showconans">
+<h3>showConAns<a class="headerlink" href="#showconans" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="com.ProjektInzynierski.BackEnd.controller.SurveyController.showConAns(String)">
+ int[] <code class="descname">showConAns</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> uuid</em><span class="sig-paren">)</span><a class="headerlink" href="#com.ProjektInzynierski.BackEnd.controller.SurveyController.showConAns(String)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="status">
+<h3>status<a class="headerlink" href="#status" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="com.ProjektInzynierski.BackEnd.controller.SurveyController.status()">
+public ResponseEntity&lt;<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a>&gt; <code class="descname">status</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#com.ProjektInzynierski.BackEnd.controller.SurveyController.status()" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="update">
+<h3>update<a class="headerlink" href="#update" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="com.ProjektInzynierski.BackEnd.controller.SurveyController.update(String, Map)">
+ <a class="reference internal" href="../data/entity/Survey.html#com.ProjektInzynierski.BackEnd.data.entity.Survey" title="com.ProjektInzynierski.BackEnd.data.entity.Survey">Survey</a> <code class="descname">update</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> id</em>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html" title="java.util.Map">Map</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a>&gt;<em> body</em><span class="sig-paren">)</span><a class="headerlink" href="#com.ProjektInzynierski.BackEnd.controller.SurveyController.update(String, Map)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="updateanswer">
+<h3>updateAnswer<a class="headerlink" href="#updateanswer" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="com.ProjektInzynierski.BackEnd.controller.SurveyController.updateAnswer(Map)">
+ <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html" title="java.util.Map">Map</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a>&gt; <code class="descname">updateAnswer</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html" title="java.util.Map">Map</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a>&gt;<em> body</em><span class="sig-paren">)</span><a class="headerlink" href="#com.ProjektInzynierski.BackEnd.controller.SurveyController.updateAnswer(Map)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="updateanswerscount">
+<h3>updateAnswersCount<a class="headerlink" href="#updateanswerscount" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="com.ProjektInzynierski.BackEnd.controller.SurveyController.updateAnswersCount(AnswerDetailsData)">
+ <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html" title="java.util.Map">Map</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a>&gt; <code class="descname">updateAnswersCount</code><span class="sig-paren">(</span><a class="reference internal" href="../data/model/AnswerDetailsData.html#com.ProjektInzynierski.BackEnd.data.model.AnswerDetailsData" title="com.ProjektInzynierski.BackEnd.data.model.AnswerDetailsData">AnswerDetailsData</a><em> body</em><span class="sig-paren">)</span><a class="headerlink" href="#com.ProjektInzynierski.BackEnd.controller.SurveyController.updateAnswersCount(AnswerDetailsData)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="updatesurveytouser">
+<h3>updateSurveyToUser<a class="headerlink" href="#updatesurveytouser" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="com.ProjektInzynierski.BackEnd.controller.SurveyController.updateSurveyToUser(SurveyToUserData)">
+ <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html" title="java.util.Map">Map</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a>&gt; <code class="descname">updateSurveyToUser</code><span class="sig-paren">(</span><a class="reference internal" href="../data/model/SurveyToUserData.html#com.ProjektInzynierski.BackEnd.data.model.SurveyToUserData" title="com.ProjektInzynierski.BackEnd.data.model.SurveyToUserData">SurveyToUserData</a><em> body</em><span class="sig-paren">)</span><a class="headerlink" href="#com.ProjektInzynierski.BackEnd.controller.SurveyController.updateSurveyToUser(SurveyToUserData)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../../../index.html">Projekt inzynierski</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../../../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Maciej Gumiński, Wojciech Fornagiel.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../../../../../_sources/docs/com/ProjektInzynierski/BackEnd/controller/SurveyController.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

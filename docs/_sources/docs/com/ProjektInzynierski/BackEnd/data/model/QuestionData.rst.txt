@@ -1,0 +1,36 @@
+.. java:import:: lombok Getter
+
+.. java:import:: lombok Setter
+
+.. java:import:: java.util List
+
+QuestionData
+============
+
+.. java:package:: com.ProjektInzynierski.BackEnd.data.model
+   :noindex:
+
+.. java:type:: @Setter @Getter public class QuestionData
+
+   This class is responsible for mapping json data from http request about question data
+
+Fields
+------
+answers
+^^^^^^^
+
+.. java:field::  List<String> answers
+   :outertype: QuestionData
+
+question
+^^^^^^^^
+
+.. java:field::  String question
+   :outertype: QuestionData
+
+type
+^^^^
+
+.. java:field::  int type
+   :outertype: QuestionData
+

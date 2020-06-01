@@ -1,0 +1,16 @@
+com.ProjektInzynierski.BackEnd.enums
+====================================
+
+.. java:package:: com.ProjektInzynierski.BackEnd.enums
+
+.. toctree::
+   :maxdepth: 1
+
+   AnsweringMsg
+   CreatorMsg
+   LoginMsg
+   LogoutMsg
+   PasswordResetMsg
+   RegistrationMsg
+   SurveyToUserUpdateMsg
+

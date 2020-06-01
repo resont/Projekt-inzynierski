@@ -1,0 +1,16 @@
+com.ProjektInzynierski.BackEnd.repository
+=========================================
+
+.. java:package:: com.ProjektInzynierski.BackEnd.repository
+
+.. toctree::
+   :maxdepth: 1
+
+   AnswersRepository
+   KeyRepository
+   KeyToAnswerRepository
+   QuestionRepository
+   SurveyRepository
+   SurveyToUserRepository
+   UsersRepository
+

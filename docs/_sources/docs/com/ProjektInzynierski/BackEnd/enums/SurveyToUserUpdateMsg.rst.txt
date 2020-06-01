@@ -1,0 +1,40 @@
+.. java:import:: lombok Getter
+
+SurveyToUserUpdateMsg
+=====================
+
+.. java:package:: com.ProjektInzynierski.BackEnd.enums
+   :noindex:
+
+.. java:type:: @Getter public enum SurveyToUserUpdateMsg
+
+   This class is responsible for providing outcome messages regarding update of survey and user connection
+
+Enum Constants
+--------------
+UPDATE_ERROR
+^^^^^^^^^^^^
+
+.. java:field:: public static final SurveyToUserUpdateMsg UPDATE_ERROR
+   :outertype: SurveyToUserUpdateMsg
+
+UPDATE_SUCCESS
+^^^^^^^^^^^^^^
+
+.. java:field:: public static final SurveyToUserUpdateMsg UPDATE_SUCCESS
+   :outertype: SurveyToUserUpdateMsg
+
+UPDATE_UNEXPECTED_ERROR
+^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:field:: public static final SurveyToUserUpdateMsg UPDATE_UNEXPECTED_ERROR
+   :outertype: SurveyToUserUpdateMsg
+
+Fields
+------
+errorMsg
+^^^^^^^^
+
+.. java:field:: public final String errorMsg
+   :outertype: SurveyToUserUpdateMsg
+

@@ -1,0 +1,164 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>UsersController &#8212; Projekt inzynierski 1.0 documentation</title>
+    <link rel="stylesheet" href="../../../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../../../" src="../../../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="userscontroller">
+<h1>UsersController<a class="headerlink" href="#userscontroller" title="Permalink to this headline">¶</a></h1>
+<dl class="type">
+<dt id="com.ProjektInzynierski.BackEnd.controller.UsersController">
+public class <code class="descname">UsersController</code><a class="headerlink" href="#com.ProjektInzynierski.BackEnd.controller.UsersController" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class is responsible for handling every http request regarding user data</p>
+</dd></dl>
+
+<div class="section" id="constructors">
+<h2>Constructors<a class="headerlink" href="#constructors" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h3>UsersController<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<dl class="constructor">
+<dt id="com.ProjektInzynierski.BackEnd.controller.UsersController.UsersController(UsersRepository, SurveyToUserRepository, AuthProcessor)">
+public <code class="descname">UsersController</code><span class="sig-paren">(</span><a class="reference internal" href="../repository/UsersRepository.html#com.ProjektInzynierski.BackEnd.repository.UsersRepository" title="com.ProjektInzynierski.BackEnd.repository.UsersRepository">UsersRepository</a><em> usersRepository</em>, <a class="reference internal" href="../repository/SurveyToUserRepository.html#com.ProjektInzynierski.BackEnd.repository.SurveyToUserRepository" title="com.ProjektInzynierski.BackEnd.repository.SurveyToUserRepository">SurveyToUserRepository</a><em> surveyToUserRepository</em>, <a class="reference internal" href="../processors/login/AuthProcessor.html#com.ProjektInzynierski.BackEnd.processors.login.AuthProcessor" title="com.ProjektInzynierski.BackEnd.processors.login.AuthProcessor">AuthProcessor</a><em> authProcessor</em><span class="sig-paren">)</span><a class="headerlink" href="#com.ProjektInzynierski.BackEnd.controller.UsersController.UsersController(UsersRepository, SurveyToUserRepository, AuthProcessor)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+</div>
+<div class="section" id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="checkifauth">
+<h3>checkIfAuth<a class="headerlink" href="#checkifauth" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="com.ProjektInzynierski.BackEnd.controller.UsersController.checkIfAuth(Map)">
+ <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html" title="java.util.Map">Map</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a>&gt; <code class="descname">checkIfAuth</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html" title="java.util.Map">Map</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a>&gt;<em> body</em><span class="sig-paren">)</span><a class="headerlink" href="#com.ProjektInzynierski.BackEnd.controller.UsersController.checkIfAuth(Map)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="getallusersfromdatabase">
+<h3>getAllUsersFromDatabase<a class="headerlink" href="#getallusersfromdatabase" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="com.ProjektInzynierski.BackEnd.controller.UsersController.getAllUsersFromDatabase()">
+ <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html" title="java.util.List">List</a>&lt;<a class="reference internal" href="../data/entity/UserEntity.html#com.ProjektInzynierski.BackEnd.data.entity.UserEntity" title="com.ProjektInzynierski.BackEnd.data.entity.UserEntity">UserEntity</a>&gt; <code class="descname">getAllUsersFromDatabase</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#com.ProjektInzynierski.BackEnd.controller.UsersController.getAllUsersFromDatabase()" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="getuser">
+<h3>getUser<a class="headerlink" href="#getuser" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="com.ProjektInzynierski.BackEnd.controller.UsersController.getUser(String)">
+ <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html" title="java.util.Map">Map</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a>&gt; <code class="descname">getUser</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> uuid</em><span class="sig-paren">)</span><a class="headerlink" href="#com.ProjektInzynierski.BackEnd.controller.UsersController.getUser(String)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="setadmin">
+<h3>setAdmin<a class="headerlink" href="#setadmin" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="com.ProjektInzynierski.BackEnd.controller.UsersController.setAdmin(Map)">
+ <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html" title="java.util.Map">Map</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a>&gt; <code class="descname">setAdmin</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html" title="java.util.Map">Map</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a>&gt;<em> body</em><span class="sig-paren">)</span><a class="headerlink" href="#com.ProjektInzynierski.BackEnd.controller.UsersController.setAdmin(Map)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="setsurveytouser">
+<h3>setSurveyToUser<a class="headerlink" href="#setsurveytouser" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="com.ProjektInzynierski.BackEnd.controller.UsersController.setSurveyToUser(Map)">
+ <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html" title="java.util.Map">Map</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a>&gt; <code class="descname">setSurveyToUser</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html" title="java.util.Map">Map</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a>&gt;<em> body</em><span class="sig-paren">)</span><a class="headerlink" href="#com.ProjektInzynierski.BackEnd.controller.UsersController.setSurveyToUser(Map)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../../../index.html">Projekt inzynierski</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../../../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Maciej Gumiński, Wojciech Fornagiel.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../../../../../_sources/docs/com/ProjektInzynierski/BackEnd/controller/UsersController.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,193 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>SurveyRepository &#8212; Projekt inzynierski 1.0 documentation</title>
+    <link rel="stylesheet" href="../../../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../../../" src="../../../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="surveyrepository">
+<h1>SurveyRepository<a class="headerlink" href="#surveyrepository" title="Permalink to this headline">¶</a></h1>
+<dl class="type">
+<dt id="com.ProjektInzynierski.BackEnd.repository.SurveyRepository">
+public interface <code class="descname">SurveyRepository</code> extends JpaRepository&lt;<a class="reference internal" href="../data/entity/Survey.html#com.ProjektInzynierski.BackEnd.data.entity.Survey" title="com.ProjektInzynierski.BackEnd.data.entity.Survey">Survey</a>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html" title="java.lang.Integer">Integer</a>&gt;<a class="headerlink" href="#com.ProjektInzynierski.BackEnd.repository.SurveyRepository" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class is responsible for providing queries to database regarding survey data</p>
+</dd></dl>
+
+<div class="section" id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="findansweredsurveyswithuseruuid">
+<h3>findAnsweredSurveysWithUserUuid<a class="headerlink" href="#findansweredsurveyswithuseruuid" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="com.ProjektInzynierski.BackEnd.repository.SurveyRepository.findAnsweredSurveysWithUserUuid(String)">
+ int[] <code class="descname">findAnsweredSurveysWithUserUuid</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> uuid</em><span class="sig-paren">)</span><a class="headerlink" href="#com.ProjektInzynierski.BackEnd.repository.SurveyRepository.findAnsweredSurveysWithUserUuid(String)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="findbyid">
+<h3>findById<a class="headerlink" href="#findbyid" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="com.ProjektInzynierski.BackEnd.repository.SurveyRepository.findById(int)">
+ <a class="reference internal" href="../data/entity/Survey.html#com.ProjektInzynierski.BackEnd.data.entity.Survey" title="com.ProjektInzynierski.BackEnd.data.entity.Survey">Survey</a> <code class="descname">findById</code><span class="sig-paren">(</span>int<em> id</em><span class="sig-paren">)</span><a class="headerlink" href="#com.ProjektInzynierski.BackEnd.repository.SurveyRepository.findById(int)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="findbyidandtopic">
+<h3>findByIdAndTopic<a class="headerlink" href="#findbyidandtopic" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="com.ProjektInzynierski.BackEnd.repository.SurveyRepository.findByIdAndTopic(int, String)">
+ <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html" title="java.util.List">List</a>&lt;<a class="reference internal" href="../data/entity/Survey.html#com.ProjektInzynierski.BackEnd.data.entity.Survey" title="com.ProjektInzynierski.BackEnd.data.entity.Survey">Survey</a>&gt; <code class="descname">findByIdAndTopic</code><span class="sig-paren">(</span>int<em> id</em>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> topic</em><span class="sig-paren">)</span><a class="headerlink" href="#com.ProjektInzynierski.BackEnd.repository.SurveyRepository.findByIdAndTopic(int, String)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="findcompletesurveybyid">
+<h3>findCompleteSurveyById<a class="headerlink" href="#findcompletesurveybyid" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="com.ProjektInzynierski.BackEnd.repository.SurveyRepository.findCompleteSurveyById(int)">
+ <a class="reference internal" href="../data/entity/Survey.html#com.ProjektInzynierski.BackEnd.data.entity.Survey" title="com.ProjektInzynierski.BackEnd.data.entity.Survey">Survey</a> <code class="descname">findCompleteSurveyById</code><span class="sig-paren">(</span>int<em> id</em><span class="sig-paren">)</span><a class="headerlink" href="#com.ProjektInzynierski.BackEnd.repository.SurveyRepository.findCompleteSurveyById(int)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="findidbyuuidandsurveyid">
+<h3>findIdByUuidAndSurveyId<a class="headerlink" href="#findidbyuuidandsurveyid" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="com.ProjektInzynierski.BackEnd.repository.SurveyRepository.findIdByUuidAndSurveyId(String, int)">
+ int <code class="descname">findIdByUuidAndSurveyId</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> uuid</em>, int<em> surveyId</em><span class="sig-paren">)</span><a class="headerlink" href="#com.ProjektInzynierski.BackEnd.repository.SurveyRepository.findIdByUuidAndSurveyId(String, int)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="findsurveyforuser">
+<h3>findSurveyForUser<a class="headerlink" href="#findsurveyforuser" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="com.ProjektInzynierski.BackEnd.repository.SurveyRepository.findSurveyForUser(int)">
+ <a class="reference internal" href="../data/entity/Survey.html#com.ProjektInzynierski.BackEnd.data.entity.Survey" title="com.ProjektInzynierski.BackEnd.data.entity.Survey">Survey</a> <code class="descname">findSurveyForUser</code><span class="sig-paren">(</span>int<em> id</em><span class="sig-paren">)</span><a class="headerlink" href="#com.ProjektInzynierski.BackEnd.repository.SurveyRepository.findSurveyForUser(int)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="findsurveyswithuseruuid">
+<h3>findSurveysWithUserUuid<a class="headerlink" href="#findsurveyswithuseruuid" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="com.ProjektInzynierski.BackEnd.repository.SurveyRepository.findSurveysWithUserUuid(String)">
+ int[] <code class="descname">findSurveysWithUserUuid</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> uuid</em><span class="sig-paren">)</span><a class="headerlink" href="#com.ProjektInzynierski.BackEnd.repository.SurveyRepository.findSurveysWithUserUuid(String)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="findvalidsurveybytopic">
+<h3>findValidSurveyByTopic<a class="headerlink" href="#findvalidsurveybytopic" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="com.ProjektInzynierski.BackEnd.repository.SurveyRepository.findValidSurveyByTopic(String)">
+ <a class="reference internal" href="../data/entity/Survey.html#com.ProjektInzynierski.BackEnd.data.entity.Survey" title="com.ProjektInzynierski.BackEnd.data.entity.Survey">Survey</a> <code class="descname">findValidSurveyByTopic</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> topic</em><span class="sig-paren">)</span><a class="headerlink" href="#com.ProjektInzynierski.BackEnd.repository.SurveyRepository.findValidSurveyByTopic(String)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="updateanswer">
+<h3>updateAnswer<a class="headerlink" href="#updateanswer" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="com.ProjektInzynierski.BackEnd.repository.SurveyRepository.updateAnswer(int)">
+ void <code class="descname">updateAnswer</code><span class="sig-paren">(</span>int<em> id</em><span class="sig-paren">)</span><a class="headerlink" href="#com.ProjektInzynierski.BackEnd.repository.SurveyRepository.updateAnswer(int)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="updatecount">
+<h3>updateCount<a class="headerlink" href="#updatecount" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="com.ProjektInzynierski.BackEnd.repository.SurveyRepository.updateCount(int)">
+ void <code class="descname">updateCount</code><span class="sig-paren">(</span>int<em> id</em><span class="sig-paren">)</span><a class="headerlink" href="#com.ProjektInzynierski.BackEnd.repository.SurveyRepository.updateCount(int)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../../../index.html">Projekt inzynierski</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../../../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Maciej Gumiński, Wojciech Fornagiel.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../../../../../_sources/docs/com/ProjektInzynierski/BackEnd/repository/SurveyRepository.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

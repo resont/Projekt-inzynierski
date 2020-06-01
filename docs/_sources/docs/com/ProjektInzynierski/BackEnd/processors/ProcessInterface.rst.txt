@@ -1,0 +1,44 @@
+.. java:import:: com ProjektInzynierski.BackEnd.data.model.AnswerDetailsData
+
+.. java:import:: com ProjektInzynierski.BackEnd.data.model.SurveyDetailsData
+
+.. java:import:: com ProjektInzynierski.BackEnd.data.model.SurveyToUserData
+
+.. java:import:: java.util Map
+
+ProcessInterface
+================
+
+.. java:package:: com.ProjektInzynierski.BackEnd.processors
+   :noindex:
+
+.. java:type:: public abstract class ProcessInterface
+
+   This is a process template
+
+Methods
+-------
+process
+^^^^^^^
+
+.. java:method:: public Map<String, String> process(Map<String, String> body)
+   :outertype: ProcessInterface
+
+process
+^^^^^^^
+
+.. java:method:: public Map<String, String> process(SurveyDetailsData surveyDetailsData)
+   :outertype: ProcessInterface
+
+process
+^^^^^^^
+
+.. java:method:: public Map<String, String> process(AnswerDetailsData answerDetailsData)
+   :outertype: ProcessInterface
+
+process
+^^^^^^^
+
+.. java:method:: public Map<String, String> process(SurveyToUserData surveyToUserData)
+   :outertype: ProcessInterface
+

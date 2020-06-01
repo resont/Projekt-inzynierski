@@ -1,0 +1,11 @@
+com.ProjektInzynierski.BackEnd.processors.registration
+======================================================
+
+.. java:package:: com.ProjektInzynierski.BackEnd.processors.registration
+
+.. toctree::
+   :maxdepth: 1
+
+   RegistrationProcessor
+   RegistrationProcessorTest
+

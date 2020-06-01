@@ -1,0 +1,80 @@
+.. java:import:: com ProjektInzynierski.BackEnd.data.entity.SurveyToUser
+
+.. java:import:: com ProjektInzynierski.BackEnd.data.entity.UserEntity
+
+.. java:import:: com ProjektInzynierski.BackEnd.processors.login.AuthProcessor
+
+.. java:import:: com ProjektInzynierski.BackEnd.repository.SurveyToUserRepository
+
+.. java:import:: com ProjektInzynierski.BackEnd.repository.UsersRepository
+
+.. java:import:: com ProjektInzynierski.BackEnd.util.ResultMap
+
+.. java:import:: org.springframework.web.bind.annotation CrossOrigin
+
+.. java:import:: org.springframework.web.bind.annotation GetMapping
+
+.. java:import:: org.springframework.web.bind.annotation PathVariable
+
+.. java:import:: org.springframework.web.bind.annotation PostMapping
+
+.. java:import:: org.springframework.web.bind.annotation RequestBody
+
+.. java:import:: org.springframework.web.bind.annotation RestController
+
+.. java:import:: java.util HashMap
+
+.. java:import:: java.util List
+
+.. java:import:: java.util Map
+
+UsersController
+===============
+
+.. java:package:: com.ProjektInzynierski.BackEnd.controller
+   :noindex:
+
+.. java:type:: @CrossOrigin @RestController public class UsersController
+
+   This class is responsible for handling every http request regarding user data
+
+Constructors
+------------
+UsersController
+^^^^^^^^^^^^^^^
+
+.. java:constructor:: public UsersController(UsersRepository usersRepository, SurveyToUserRepository surveyToUserRepository, AuthProcessor authProcessor)
+   :outertype: UsersController
+
+Methods
+-------
+checkIfAuth
+^^^^^^^^^^^
+
+.. java:method:: @PostMapping  Map<String, String> checkIfAuth(Map<String, String> body)
+   :outertype: UsersController
+
+getAllUsersFromDatabase
+^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: @GetMapping  List<UserEntity> getAllUsersFromDatabase()
+   :outertype: UsersController
+
+getUser
+^^^^^^^
+
+.. java:method:: @GetMapping  Map<String, String> getUser(String uuid)
+   :outertype: UsersController
+
+setAdmin
+^^^^^^^^
+
+.. java:method:: @PostMapping  Map<String, String> setAdmin(Map<String, String> body)
+   :outertype: UsersController
+
+setSurveyToUser
+^^^^^^^^^^^^^^^
+
+.. java:method:: @PostMapping  Map<String, String> setSurveyToUser(Map<String, String> body)
+   :outertype: UsersController
+

@@ -1,0 +1,26 @@
+.. java:import:: lombok Getter
+
+.. java:import:: lombok Setter
+
+.. java:import:: javax.persistence Column
+
+.. java:import:: javax.persistence Entity
+
+.. java:import:: javax.persistence GeneratedValue
+
+.. java:import:: javax.persistence GenerationType
+
+.. java:import:: javax.persistence Id
+
+.. java:import:: javax.persistence Table
+
+KeyEntity
+=========
+
+.. java:package:: com.ProjektInzynierski.BackEnd.data.entity
+   :noindex:
+
+.. java:type:: @Entity @Table @Getter @Setter public class KeyEntity
+
+   This class is responsible for mapping data from database about key data
+

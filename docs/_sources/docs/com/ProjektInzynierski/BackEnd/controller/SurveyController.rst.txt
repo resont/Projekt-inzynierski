@@ -1,0 +1,206 @@
+.. java:import:: com ProjektInzynierski.BackEnd.data.entity.Answers
+
+.. java:import:: com ProjektInzynierski.BackEnd.data.entity.KeyEntity
+
+.. java:import:: com ProjektInzynierski.BackEnd.data.entity.Questions
+
+.. java:import:: com ProjektInzynierski.BackEnd.data.entity.Survey
+
+.. java:import:: com ProjektInzynierski.BackEnd.data.entity.SurveyToUser
+
+.. java:import:: com ProjektInzynierski.BackEnd.data.entity.UserEntity
+
+.. java:import:: com ProjektInzynierski.BackEnd.data.model.AnswerDetailsData
+
+.. java:import:: com ProjektInzynierski.BackEnd.data.model.SurveyDetailsData
+
+.. java:import:: com ProjektInzynierski.BackEnd.data.model.SurveyToUserData
+
+.. java:import:: com ProjektInzynierski.BackEnd.processors.creator.CreatorProcessor
+
+.. java:import:: com ProjektInzynierski.BackEnd.processors.creator.QuestionAndAnswerIdHandler
+
+.. java:import:: com ProjektInzynierski.BackEnd.processors.survey.UsersAndSurveyHandler
+
+.. java:import:: com ProjektInzynierski.BackEnd.repository.AnswersRepository
+
+.. java:import:: com ProjektInzynierski.BackEnd.repository.KeyRepository
+
+.. java:import:: com ProjektInzynierski.BackEnd.repository.KeyToAnswerRepository
+
+.. java:import:: com ProjektInzynierski.BackEnd.repository.SurveyRepository
+
+.. java:import:: com ProjektInzynierski.BackEnd.repository.SurveyToUserRepository
+
+.. java:import:: com ProjektInzynierski.BackEnd.repository.UsersRepository
+
+.. java:import:: com ProjektInzynierski.BackEnd.util.ResultMap
+
+.. java:import:: com ProjektInzynierski.BackEnd.util.StringHashCreator
+
+.. java:import:: org.apache.logging.log4j Logger
+
+.. java:import:: org.springframework.http HttpStatus
+
+.. java:import:: org.springframework.http ResponseEntity
+
+.. java:import:: org.springframework.web.bind.annotation CrossOrigin
+
+.. java:import:: org.springframework.web.bind.annotation DeleteMapping
+
+.. java:import:: org.springframework.web.bind.annotation GetMapping
+
+.. java:import:: org.springframework.web.bind.annotation PathVariable
+
+.. java:import:: org.springframework.web.bind.annotation PostMapping
+
+.. java:import:: org.springframework.web.bind.annotation PutMapping
+
+.. java:import:: org.springframework.web.bind.annotation RequestBody
+
+.. java:import:: org.springframework.web.bind.annotation RequestParam
+
+.. java:import:: org.springframework.web.bind.annotation RestController
+
+.. java:import:: java.util ArrayList
+
+.. java:import:: java.util HashMap
+
+.. java:import:: java.util HashSet
+
+.. java:import:: java.util List
+
+.. java:import:: java.util Map
+
+.. java:import:: java.util Set
+
+SurveyController
+================
+
+.. java:package:: com.ProjektInzynierski.BackEnd.controller
+   :noindex:
+
+.. java:type:: @CrossOrigin @RestController public class SurveyController
+
+   This class is responsible for handling every http request regarding survey data
+
+Fields
+------
+KEY_ERROR_MSG
+^^^^^^^^^^^^^
+
+.. java:field:: public static final String KEY_ERROR_MSG
+   :outertype: SurveyController
+
+KEY_SUCCESS_MSG
+^^^^^^^^^^^^^^^
+
+.. java:field:: public static final String KEY_SUCCESS_MSG
+   :outertype: SurveyController
+
+NO_DATA_MSG
+^^^^^^^^^^^
+
+.. java:field:: public static final String NO_DATA_MSG
+   :outertype: SurveyController
+
+Constructors
+------------
+SurveyController
+^^^^^^^^^^^^^^^^
+
+.. java:constructor:: public SurveyController(CreatorProcessor creatorProcessor, SurveyRepository surveyRepository, AnswersRepository answersRepository, QuestionAndAnswerIdHandler questionAndAnswerIdHandler, UsersRepository usersRepository, SurveyToUserRepository surveyToUserRepository, UsersAndSurveyHandler usersAndSurveyHandler, KeyRepository keyRepository, KeyToAnswerRepository keyToAnswerRepository)
+   :outertype: SurveyController
+
+Methods
+-------
+create
+^^^^^^
+
+.. java:method:: @PostMapping  Survey create(Map<String, String> body)
+   :outertype: SurveyController
+
+createSurvey
+^^^^^^^^^^^^
+
+.. java:method:: @PostMapping  Map<String, String> createSurvey(SurveyDetailsData body)
+   :outertype: SurveyController
+
+delete
+^^^^^^
+
+.. java:method:: @DeleteMapping  boolean delete(String id)
+   :outertype: SurveyController
+
+getAllSurveysFromDatabase
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:method:: @GetMapping  List<Survey> getAllSurveysFromDatabase()
+   :outertype: SurveyController
+
+getAnswersByKey
+^^^^^^^^^^^^^^^
+
+.. java:method:: @PostMapping  Map<Integer, Questions> getAnswersByKey(Map<String, String> body)
+   :outertype: SurveyController
+
+getSurveyToUser
+^^^^^^^^^^^^^^^
+
+.. java:method:: @GetMapping  List<Map<String, String>> getSurveyToUser(String id)
+   :outertype: SurveyController
+
+search
+^^^^^^
+
+.. java:method:: @GetMapping  Survey search(String topic)
+   :outertype: SurveyController
+
+show
+^^^^
+
+.. java:method:: @GetMapping  Survey show(String id)
+   :outertype: SurveyController
+
+showCon
+^^^^^^^
+
+.. java:method:: @GetMapping  int[] showCon(String uuid)
+   :outertype: SurveyController
+
+showConAns
+^^^^^^^^^^
+
+.. java:method:: @GetMapping  int[] showConAns(String uuid)
+   :outertype: SurveyController
+
+status
+^^^^^^
+
+.. java:method:: @GetMapping public ResponseEntity<String> status()
+   :outertype: SurveyController
+
+update
+^^^^^^
+
+.. java:method:: @PutMapping  Survey update(String id, Map<String, String> body)
+   :outertype: SurveyController
+
+updateAnswer
+^^^^^^^^^^^^
+
+.. java:method:: @PostMapping  Map<String, String> updateAnswer(Map<String, String> body)
+   :outertype: SurveyController
+
+updateAnswersCount
+^^^^^^^^^^^^^^^^^^
+
+.. java:method:: @PostMapping  Map<String, String> updateAnswersCount(AnswerDetailsData body)
+   :outertype: SurveyController
+
+updateSurveyToUser
+^^^^^^^^^^^^^^^^^^
+
+.. java:method:: @PostMapping  Map<String, String> updateSurveyToUser(SurveyToUserData body)
+   :outertype: SurveyController
+

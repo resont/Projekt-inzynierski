@@ -1,0 +1,58 @@
+.. java:import:: lombok Getter
+
+CreatorMsg
+==========
+
+.. java:package:: com.ProjektInzynierski.BackEnd.enums
+   :noindex:
+
+.. java:type:: @Getter public enum CreatorMsg
+
+   This class is responsible for providing outcome messages regarding creator process
+
+Enum Constants
+--------------
+ANSWERING_ERROR
+^^^^^^^^^^^^^^^
+
+.. java:field:: public static final CreatorMsg ANSWERING_ERROR
+   :outertype: CreatorMsg
+
+CREATOR_ERROR
+^^^^^^^^^^^^^
+
+.. java:field:: public static final CreatorMsg CREATOR_ERROR
+   :outertype: CreatorMsg
+
+CREATOR_NULL_ERROR
+^^^^^^^^^^^^^^^^^^
+
+.. java:field:: public static final CreatorMsg CREATOR_NULL_ERROR
+   :outertype: CreatorMsg
+
+CREATOR_NULL_QUESTIONS_DATA_ERROR
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:field:: public static final CreatorMsg CREATOR_NULL_QUESTIONS_DATA_ERROR
+   :outertype: CreatorMsg
+
+CREATOR_SUCCESS
+^^^^^^^^^^^^^^^
+
+.. java:field:: public static final CreatorMsg CREATOR_SUCCESS
+   :outertype: CreatorMsg
+
+CREATOR_UNEXPECTED_ERROR
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. java:field:: public static final CreatorMsg CREATOR_UNEXPECTED_ERROR
+   :outertype: CreatorMsg
+
+Fields
+------
+errorMsg
+^^^^^^^^
+
+.. java:field:: public final String errorMsg
+   :outertype: CreatorMsg
+
